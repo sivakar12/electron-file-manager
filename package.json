@@ -1,0 +1,11 @@
+{
+  "name": "electron-file-manager",
+  "author": "Sivakar Sithamparanathan",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^1.8.4"
+  }
+}

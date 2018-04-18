@@ -1,11 +1,21 @@
 {
   "name": "electron-file-manager",
   "author": "Sivakar Sithamparanathan",
-  "main": "src/main.js",
+  "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build-react": "webpack-cli"
   },
   "devDependencies": {
-    "electron": "^1.8.4"
+    "babel": "^6.23.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-react": "^6.24.1",
+    "electron": "^1.8.4",
+    "webpack": "^4.6.0",
+    "webpack-cli": "^2.0.14"
+  },
+  "dependencies": {
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
   }
 }

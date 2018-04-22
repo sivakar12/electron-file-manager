@@ -4,11 +4,12 @@ import md5 from 'md5'
 import _ from 'lodash'
 
 const initialState = {}
-export function favorites(state = initialState, action) {
+export default function favorites(state = initialState, action) {
     switch (action.type) {
         case actionTypes.ADD_FAVORITE:
+            const { path } = action.payload
             const newFavorite = {
-                path: action.payload.path,
+                path,
                 name: pathModule.basename(path)
             }
             const hash = md5(action.payload.path)
@@ -23,5 +24,7 @@ export function favorites(state = initialState, action) {
                     name: action.payload.newName
                 }
             })
+        default:
+            return state
     }
 }

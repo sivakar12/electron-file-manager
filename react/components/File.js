@@ -6,9 +6,9 @@ export default function File(props) {
         padding: '4px',
         margin: '2px',
         width: '120px',
-        'white-space': 'nowrap',
+        whiteSpace: 'nowrap',
         overflow: 'hidden',
-        'text-overflow': 'ellipsis'
+        textOverflow: 'ellipsis'
     }
     return (
         <div style={style} className={"file"} onClick={props.onClick}>

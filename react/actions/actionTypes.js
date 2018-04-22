@@ -1,0 +1,5 @@
+export default {
+    CHANGE_PATH: 'CHANGE_PATH',
+    SET_FILES_LIST: 'SET_FILES_LIST',
+    OPEN_FOLDER: 'OPEN_FOLDER'
+}

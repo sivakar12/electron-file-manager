@@ -20,5 +20,10 @@ module.exports = {
             }
         ]
     },
-    mode: "development"
+    mode: "development",
+    externals: {
+        "electron": "require('electron')",
+        "fs": "require('fs')",
+        "os": "require('os')"
+    }
 }

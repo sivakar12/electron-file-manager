@@ -20,4 +20,5 @@ function* setInitialPath() {
 function* watchPathChangeSaga() {
     yield takeEvery(actionTypes.CHANGE_PATH, loadFilesSaga)
     yield takeEvery(actionTypes.OPEN_FOLDER, loadFilesSaga)
+    yield takeEvery(actionTypes.GO_TO_PARENT_FOLDER, loadFilesSaga)
 }

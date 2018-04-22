@@ -9,7 +9,7 @@ export function getFiles(path) {
             if (err) {
                 reject(err)
             } else {
-                resolve(['..', ...files])
+                resolve(files)
             }
         })
     })

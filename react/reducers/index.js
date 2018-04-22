@@ -26,6 +26,11 @@ export default function rootReducer(state = initialState, action) {
                     filenames: []
                 })
             }
+        case actionTypes.GO_TO_PARENT_FOLDER:
+            const parentFolder = pathModule.dirname(state.path)
+            return Object.assign({}, state, {
+                path: parentFolder
+            })
         default:
             return state
     }

@@ -20,3 +20,9 @@ export function openFolder(foldername) {
         payload: { foldername }
     }
 }
+
+export function goToParentFolder() {
+    return {
+        type: actionTypes.GO_TO_PARENT_FOLDER
+    }
+}

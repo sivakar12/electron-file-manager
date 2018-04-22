@@ -1,0 +1,58 @@
+Arguments: 
+  /usr/bin/node /usr/share/yarn/bin/yarn.js start
+
+PATH: 
+  /home/sivakar/bin:/home/sivakar/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+
+Yarn version: 
+  1.5.1
+
+Node version: 
+  9.7.1
+
+Platform: 
+  linux x64
+
+npm manifest: 
+  {
+    "name": "electron-file-manager",
+    "author": "Sivakar Sithamparanathan",
+    "main": "main.js",
+    "scripts": {
+      "start": "electron .",
+      "build-react": "webpack-cli"
+    },
+    "devDependencies": {
+      "babel": "^6.23.0",
+      "babel-loader": "^7.1.4",
+      "babel-preset-react": "^6.24.1",
+      "electron": "^1.8.4",
+      "webpack": "^4.6.0",
+      "webpack-cli": "^2.0.14"
+    },
+    "dependencies": {
+      "react": "^16.3.2",
+      "react-dom": "^16.3.2"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: Command failed.
+  Exit code: 1
+  Command: sh
+  Arguments: -c electron .
+  Directory: /home/sivakar/Desktop/electron-file-manager
+  Output:
+  
+      at ProcessTermError.MessageError (/usr/share/yarn/lib/cli.js:186:110)
+      at new ProcessTermError (/usr/share/yarn/lib/cli.js:226:113)
+      at ChildProcess.<anonymous> (/usr/share/yarn/lib/cli.js:30281:17)
+      at ChildProcess.emit (events.js:127:13)
+      at maybeClose (internal/child_process.js:936:16)
+      at Process.ChildProcess._handle.onexit (internal/child_process.js:220:5)

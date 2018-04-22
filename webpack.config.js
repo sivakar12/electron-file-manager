@@ -25,5 +25,6 @@ module.exports = {
         "electron": "require('electron')",
         "fs": "require('fs')",
         "os": "require('os')"
-    }
+    },
+    target: "electron-renderer"
 }

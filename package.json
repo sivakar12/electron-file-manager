@@ -3,7 +3,7 @@
   "author": "Sivakar Sithamparanathan",
   "main": "main.js",
   "scripts": {
-    "start": "electron .",
+    "start": "webpack-cli && electron .",
     "build-react": "webpack-cli"
   },
   "devDependencies": {

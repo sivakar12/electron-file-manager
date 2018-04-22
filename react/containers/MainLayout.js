@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { openFolder } from '../actions'
 const MainLayout = (props) => (
     <div>
-        <h6>Path: {props.path}</h6>
+        <h2>Path: {props.path}</h2>
         <ul>
             {props.filenames.map(filename => 
                 <li key={filename}><a onClick={() => props.openFolder(filename)}>{filename}</a></li>

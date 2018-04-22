@@ -2,16 +2,8 @@ import React from 'react'
 
 // Props: isFolder, name, onClick
 export default function File(props) {
-    const style = {
-        padding: '4px',
-        margin: '2px',
-        width: '120px',
-        whiteSpace: 'nowrap',
-        overflow: 'hidden',
-        textOverflow: 'ellipsis'
-    }
     return (
-        <div style={style} className={"file"} onClick={props.onClick}>
+        <div className={"file"} onClick={props.onClick}>
             {props.filename}
         </div>
     )

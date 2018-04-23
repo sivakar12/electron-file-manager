@@ -1,9 +1,10 @@
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
     entry: path.join(__dirname, 'react', 'main.js'),
     output: {
-        path: path.join(__dirname, 'react-build'), 
+        path: path.join(__dirname, 'react', 'dist'), 
         filename: 'bundle.js'
     },
     module: {
@@ -30,5 +31,8 @@ module.exports = {
         "fs": "require('fs')",
         "os": "require('os')"
     },
-    target: "electron-renderer"
+    target: "electron-renderer",
+    plugins: [
+        new HtmlWebpackPlugin()
+    ]
 }

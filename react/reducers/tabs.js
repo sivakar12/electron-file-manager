@@ -1,3 +1,4 @@
+import pathModule from 'path'
 import actionTypes from '../actions/actionTypes'
 
 const initialState = {
@@ -6,6 +7,8 @@ const initialState = {
 }
 
 export default function tabsReducer(state = initialState, action) {
+    let newPath
+    let newTabs
     switch (action.type) {
         case actionTypes.NEW_TAB:
             return Object.assign({}, state, {
@@ -20,7 +23,7 @@ export default function tabsReducer(state = initialState, action) {
             else
                 newCurrent = current
             const { index } = action.payload
-            const newTabs = [...state.tabs.slice(0, index), 
+            newTabs = [...state.tabs.slice(0, index), 
                 ...state.tabs.slice(index + 1)]
             return {
                 current: newCurrent,
@@ -30,19 +33,22 @@ export default function tabsReducer(state = initialState, action) {
             return Object.assign({}, state, { current: action.payload.index })
 
         case actionTypes.CHANGE_PATH:
-            const newPath = action.payload.path
-            return Object.assign([], state.tabs, 
-                { [action.payload.index]: newPath })
+            newPath = action.payload.path
+            newTabs = Object.assign([], state.tabs, 
+                { [state.current]: newPath })
+            return Object.assign({}, state, { tabs: newTabs })
         case actionTypes.OPEN_FOLDER:
             const { foldername } = action.payload
-            const newPath = pathModule.join(state, foldername)
-            return Object.assign([], state.tabs, 
-                { [action.payload.index]: newPath })
+            newPath = pathModule.join(state.tabs[state.current], foldername)
+            newTabs = Object.assign([], state.tabs, 
+                { [state.current]: newPath })
+            return Object.assign({}, state, { tabs: newTabs })            
         case actionTypes.GO_TO_PARENT_FOLDER:
-            const parentFolder = pathModule.dirname(state)
-            const newPath = parentFolder
-            return Object.assign([], state.tabs, 
-                { [action.payload.index]: newPath })
+            const parentFolder = pathModule.dirname(state.tabs[state.current])
+            newPath = parentFolder
+            newTabs = Object.assign([], state.tabs, 
+                { [state.current]: newPath })
+            return Object.assign({}, state, { tabs: newTabs })            
         default:
             return state
     }

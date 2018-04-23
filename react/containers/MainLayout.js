@@ -26,7 +26,7 @@ const MainLayout = (props) => (
 )
 
 const mapStateToProps = state => ({ 
-    path: state.path,
+    path: state.tabs.tabs[state.tabs.current],
     contents: state.contents
 })
 export default connect(

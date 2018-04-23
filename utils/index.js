@@ -1,4 +1,8 @@
-const fs = require('fs')
+import jsonFile from 'jsonfile'
+import pathModule from 'path'
+import _ from 'lodash'
+const fs = require('fs') // Not webpack import
+const os = require('os')
 
 export function getFiles(path) {
     // const files = ['ps.epub', 'cos.epub', 'poa.epub', 
@@ -11,6 +15,26 @@ export function getFiles(path) {
             } else {
                 resolve(files)
             }
+        })
+    })
+}
+
+const storedStateFile = pathModule.join(os.homedir(), '.electron-file-manager', 'stored-state.json')
+
+export function storeStateInJsonFile(data) {
+    return new Promise((resolve, reject) => {
+        jsonFile.writeFile(storedStateFile, data, err => {
+            if (err) return reject(err)
+            return resolve()
+        })
+    })
+}
+
+export function getStateFromJsonFile() {
+    return new Promise((resolve, reject) => {
+        jsonFile.readFile(storedStateFile, (err, data) => {
+            if (err) return reject(err)
+            return resolve(data)
         })
     })
 }

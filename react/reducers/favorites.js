@@ -24,6 +24,8 @@ export default function favorites(state = initialState, action) {
                     name: action.payload.newName
                 }
             })
+        case actionTypes.LOAD_FAVORITES:
+            return action.payload
         default:
             return state
     }

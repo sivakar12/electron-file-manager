@@ -47,3 +47,22 @@ export function renameFavorite(hash, newName) {
         payload: { hash, newName }
     }
 }
+
+export function loadFavorites(favorites) {
+    return {
+        type: actionTypes.LOAD_FAVORITES,
+        payload: favorites
+    }
+}
+
+export function storeStateInFile() {
+    return { 
+        type: actionTypes.STORE_STATE_IN_FILE
+    }
+}
+
+export function loadStateFromFile() {
+    return {
+        type: actionTypes.LOAD_STATE_FROM_FILE
+    }
+}

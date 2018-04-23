@@ -7,10 +7,10 @@ export function changePath(path) {
     }
 }
 
-export function setFilesList(filenames) {
+export function setContents(contents) {
     return {
-        type: actionTypes.SET_FILES_LIST,
-        payload: { filenames }
+        type: actionTypes.SET_CONTENTS,
+        payload: { contents }
     }
 }
 

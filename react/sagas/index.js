@@ -1,7 +1,7 @@
 import { takeEvery, put, all } from 'redux-saga/effects'
 
 import actionTypes from '../actions/actionTypes'
-import { changePath, setFilesList } from '../actions'
+import { changePath, setContents } from '../actions'
 import { 
     loadFilesSaga
  } from './fs'

@@ -15,7 +15,7 @@ const MainLayout = (props) => (
         <button onClick={() => props.addFavorite(props.path)}>Add to favorites</button>
         <button style={{float: 'left'}} onClick={props.goToParentFolder}>Up</button>
         <FileList>
-            {props.filenames.map(filename => 
+            {props.contents.map(filename => 
                 <File key={filename}
                     filename={filename} 
                     onClick={() => props.openFolder(filename)}/>
@@ -25,7 +25,10 @@ const MainLayout = (props) => (
     </div>
 )
 
-const mapStateToProps = state => state.tabs
+const mapStateToProps = state => ({ 
+    path: state.path,
+    contents: state.contents
+})
 export default connect(
     mapStateToProps, 
     dispatch => bindActionCreators({

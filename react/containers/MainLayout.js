@@ -8,10 +8,12 @@ import {
 } from '../actions'
 import { FileList, File } from '../components'
 import Favorites from './Favorites'
+import Tabs from './Tabs'
 
 const MainLayout = (props) => (
     <div>
-        <h2>Path: {props.path}</h2>
+        <Tabs/>
+        <h2>{props.path}</h2>
         <button onClick={() => props.addFavorite(props.path)}>Add to favorites</button>
         <button style={{float: 'left'}} onClick={props.goToParentFolder}>Up</button>
         <FileList>

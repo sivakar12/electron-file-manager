@@ -1,20 +1,20 @@
 import actionTypes from './actionTypes'
 
-export function switchTab(tabIndex) {
+export function switchTab(index) {
     return {
         type: actionTypes.SWITCH_TAB,
-        payload: { tabIndex }
+        payload: { index }
     }
 }
 
-export function closeTab(tabIndex) {
+export function closeTab(index) {
     return {
         type: actionTypes.CLOSE_TAB,
-        payload: { tabIndex }
+        payload: { index }
     }
 }
 
-export function newTab(path) {
+export function newTab(path = '/') {
     return {
         type: actionTypes.NEW_TAB,
         payload: { path }

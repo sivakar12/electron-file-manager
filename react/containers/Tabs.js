@@ -20,16 +20,19 @@ function mapDispatchToProps(dispatch) {
     }, dispatch)
 }
 const Tabs = (props) => (
-    <TabBar
-        onNewTab={() => props.newTab()}>
-        {props.tabs.map((t, i) => 
-            <TabItem key={i}
-                path={t}
-                active={i == props.current}
-                onClose={() => props.closeTab(i)}
-                onClick={() => props.switchTab(i)}/>
-        )}
-    </TabBar>
+    <div>
+        <TabBar
+            onNewTab={() => props.newTab()}>
+            {props.tabs.map((t, i) => 
+                <TabItem key={i}
+                    path={t}
+                    active={i == props.current}
+                    onClose={() => props.closeTab(i)}
+                    onClick={() => props.switchTab(i)}/>
+            )}
+        </TabBar>
+        <div>{JSON.stringify(props)}</div>
+    </div>
 )
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tabs)

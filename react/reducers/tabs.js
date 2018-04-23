@@ -6,6 +6,20 @@ const initialState = {
     tabs: ['/']
 }
 
+function handleTabClose({tabs, current}, index) {
+    let newTabs
+    let newCurrent
+
+    newTabs = [...tabs.slice(0, index), ...tabs.slice(index + 1)]
+    if (current < index)
+        newCurrent = current
+    else if (current >= index) newCurrent = current - 1
+    if (newCurrent >= newTabs.length) newCurrent = newTabs.length - 1
+    if (newCurrent < 0) newCurrent = 0
+    console.log('reducers tabs', { tabs: newTabs, current: newCurrent })
+    return { tabs: newTabs, current: newCurrent }
+}
+
 export default function tabsReducer(state = initialState, action) {
     let newPath
     let newTabs
@@ -15,23 +29,9 @@ export default function tabsReducer(state = initialState, action) {
               tabs: [...state.tabs, action.payload.path]  
             })
         case actionTypes.CLOSE_TAB:
-            if (state.tabs.length == 1)
-                return state
-            let newCurrent
-            if (state.current == state.tabs.length - 1)
-                newCurrent = state.current - 1
-            else
-                newCurrent = state.current
-            const { index } = action.payload
-            newTabs = [...state.tabs.slice(0, index), 
-                ...state.tabs.slice(index + 1)]
-            return {
-                current: newCurrent,
-                tabs: newTabs
-            }
+            return handleTabClose(state, action.payload.index)
         case actionTypes.SWITCH_TAB:
             return Object.assign({}, state, { current: action.payload.index })
-
         case actionTypes.CHANGE_PATH:
             newPath = action.payload.path
             newTabs = Object.assign([], state.tabs, 

@@ -1,3 +1,5 @@
-export { default as FileList } from './FileList'
-export { default as File } from './File'
-export { default as FavoriteItem } from './FavoriteItem'
+export * from './FileList'
+export * from './File'
+export * from './FavoriteItem'
+export * from './TabBar'
+export * from './TabItem'

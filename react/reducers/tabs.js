@@ -18,10 +18,10 @@ export default function tabsReducer(state = initialState, action) {
             if (state.tabs.length == 1)
                 return state
             let newCurrent
-            if (current == state.tabs.length - 1)
-                newCurrent = current - 1
+            if (state.current == state.tabs.length - 1)
+                newCurrent = state.current - 1
             else
-                newCurrent = current
+                newCurrent = state.current
             const { index } = action.payload
             newTabs = [...state.tabs.slice(0, index), 
                 ...state.tabs.slice(index + 1)]

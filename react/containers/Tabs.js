@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import { newTab, switchTab, closeTab } from '../actions'
+import { TabBar, TabItem } from '../components'
 
 function mapStateToProps(state) {
     return {
@@ -19,15 +20,16 @@ function mapDispatchToProps(dispatch) {
     }, dispatch)
 }
 const Tabs = (props) => (
-    <div>
-        <h3>Tabs</h3>
-        <div>{JSON.stringify(props)}</div>
+    <TabBar
+        onNewTab={() => props.newTab()}>
         {props.tabs.map((t, i) => 
-            <span key={i} style={{ padding: '5px'}}
-                onClick={() => props.switchTab(i)}>{t}</span>
+            <TabItem key={i}
+                path={t}
+                active={i == props.current}
+                onClose={() => props.closeTab(i)}
+                onClick={() => props.switchTab(i)}/>
         )}
-        <button onClick={() => props.newTab()}>New Tab</button>
-    </div>
+    </TabBar>
 )
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tabs)

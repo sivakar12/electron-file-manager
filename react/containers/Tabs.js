@@ -31,7 +31,6 @@ const Tabs = (props) => (
                     onClick={() => props.switchTab(i)}/>
             )}
         </TabBar>
-        <div>{JSON.stringify(props)}</div>
     </div>
 )
 

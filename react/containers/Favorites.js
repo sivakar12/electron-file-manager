@@ -10,10 +10,16 @@ const Favorites = props => (
             <FavoriteItem name={f.name} key={f.path}
                 onClick={() => props.changePath(f.path)}/>
         ))}
+        <button onClick={() => props.addFavorite(props.currentPath)}>
+            Add this folder
+        </button>
     </div>
 )
 
-const mapStateToProps = state => ({ favorites: state.favorites })
+const mapStateToProps = state => ({ 
+    favorites: state.favorites,
+    currentPath: state.tabs.tabs[state.tabs.current]
+})
 const mapDispatchToProps = dispatch => 
-    bindActionCreators({ changePath }, dispatch)
+    bindActionCreators({ changePath, addFavorite }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(Favorites)

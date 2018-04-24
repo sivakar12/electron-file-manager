@@ -1,10 +1,16 @@
+// @flow
+
 import actionTypes from '../actions/actionTypes'
 import pathModule from 'path'
 import md5 from 'md5'
 import _ from 'lodash'
 
+import type { FavoritesActionTypes } from '../actions/favorites'
+import type { FavoritesState } from '../types'
+
 const initialState = {}
-export default function favorites(state = initialState, action) {
+export default function favorites(state: FavoritesState = initialState,
+        action: FavoritesActionTypes) {
     switch (action.type) {
         case actionTypes.ADD_FAVORITE:
             const { path } = action.payload

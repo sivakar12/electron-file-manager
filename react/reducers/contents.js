@@ -1,9 +1,11 @@
 import pathModule from 'path'
 import actionTypes from '../actions/actionTypes'
 
+import type { Action } from '../actions'
 const initialState = []
 
-export default function contentsReducer(state = initialState, action) {
+export default function contentsReducer(state: Array<String> = initialState,
+     action: Action) {
     switch (action.type) {
         case actionTypes.SET_CONTENTS:
             return action.payload.contents

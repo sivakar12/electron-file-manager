@@ -2,17 +2,17 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { addFavorite, changePath } from '../actions'
-import { FavoriteItem } from '../components'
+import { FavoriteItem, FavoritesPanel } from '../components'
+
 const Favorites = props => (
     <div>
-        <h2>Favorites</h2>
-        {Object.values(props.favorites).map(f => (
-            <FavoriteItem name={f.name} key={f.path}
-                onClick={() => props.changePath(f.path)}/>
-        ))}
-        <button onClick={() => props.addFavorite(props.currentPath)}>
-            Add this folder
-        </button>
+        <FavoritesPanel onAddFavorite={() =>{
+            props.addFavorite(props.currentPath) }}>
+            {Object.values(props.favorites).map(f => (
+                <FavoriteItem name={f.name} key={f.path}
+                    onClick={() => props.changePath(f.path)}/>
+            ))}
+        </FavoritesPanel>
     </div>
 )
 

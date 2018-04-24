@@ -7,10 +7,22 @@ export function changePath(path) {
     }
 }
 
+export type ChangePathAction = {
+    type: string,
+    payload: { path: string }
+}
+
 export function setContents(contents) {
     return {
         type: actionTypes.SET_CONTENTS,
         payload: { contents }
+    }
+}
+
+export type SetContentsAction = {
+    type: string,
+    payload: {
+        contents: string
     }
 }
 
@@ -21,8 +33,17 @@ export function openFolder(foldername) {
     }
 }
 
+export type OpenFolderAction = {
+    type: string,
+    payload: { foldername: string }
+}
+
 export function goToParentFolder() {
     return {
         type: actionTypes.GO_TO_PARENT_FOLDER
     }
+}
+
+export type GoToParentFolderAction = {
+    type: string
 }

@@ -16,6 +16,12 @@ export function getFiles(path) {
                 resolve(files)
             }
         })
+        // .then(files => {
+        //     files.map(file => {
+        //         fs.
+        //     })
+        //     return Promise.all(files.ma)
+        // })
     })
 }
 

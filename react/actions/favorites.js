@@ -1,58 +1,29 @@
-// @flow
-
 import actionTypes from './actionTypes'
-import { FavoritesState } from '../types'
-export function addFavorite(path: string) {
+
+export function addFavorite(path) {
     return {
         type: actionTypes.ADD_FAVORITE,
         payload: { path }
     }
 }
-export type AddFavoriteAction = {
-    type: string,
-    payload: {
-        path: string
-    }
-}
-export function removeFavorite(hash: string) {
+
+export function removeFavorite(hash) {
     return {
         type: actionTypes.REMOVE_FAVORITE,
         payload: { hash }
     }
 }
 
-export type RemoveFavoriteAction = {
-    type: string,
-    payload: {
-        hash: string
-    }
-}
-export function renameFavorite(hash: string, newName: string) {
+export function renameFavorite(hash, newName) {
     return {
         type: actionTypes.RENAME_FAVORITE,
         payload: { hash, newName }
     }
 }
 
-export type RenameFavoriteType = {
-    type: string,
-    payload: {
-        hash: string,
-        newName: string
-    }
-}
-
-export function loadFavorites(favorites: FavoritesState) {
+export function loadFavorites(favorites) {
     return {
         type: actionTypes.LOAD_FAVORITES,
         payload: favorites
     }
 }
-
-export type LoadFavoritesType = {
-    type: string,
-    payload: FavoritesState
-}
-
-export type FavoritesActionType = AddFavoriteAction | RemoveFavoriteAction |
-    RenameFavoriteType | LoadFavoritesType

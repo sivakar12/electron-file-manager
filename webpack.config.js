@@ -1,5 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     entry: path.join(__dirname, 'react', 'main.js'),
@@ -21,7 +22,9 @@ module.exports = {
             }, {
                 test: /.styl$/,
                 exclude: /node_modules/,
-                loader: 'style-loader!css-loader!stylus-loader'
+                use: ExtractTextPlugin.extract({
+                    use: ['css-loader', 'stylus-loader']
+                })
             }, {
                 test: /.woff2$/,
                 loader: 'file-loader?name=fonts/[name].[ext]'
@@ -36,6 +39,7 @@ module.exports = {
     },
     target: "electron-renderer",
     plugins: [
-        new HtmlWebpackPlugin()
+        new HtmlWebpackPlugin(),
+        new ExtractTextPlugin('style.css')
     ]
 }

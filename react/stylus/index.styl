@@ -29,9 +29,15 @@ body
 
 .title-bar
     display: flex
+    align-content: baseline
     .title-bar-draggable-area
         flex-grow: 1
         -webkit-app-region: drag
+    .title-bar-buttons
+        display: flex
+    .title-bar-button
+        padding: 2px
+        color: $color1
 .tab-bar
     display: flex
     flex-direction: row

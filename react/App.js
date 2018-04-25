@@ -6,7 +6,8 @@ import {
     Tabs,
     Path,
     Contents,
-    Favorites
+    Favorites,
+    TitleBar
  } from './containers'
 
 import './stylus/index.styl'
@@ -16,7 +17,7 @@ export default function App(props) {
     return (
         <Provider store={store}>
             <div>
-                <Tabs/>
+                <TitleBar/>
                 <Path/>
                 <Contents/>
                 <Favorites/>

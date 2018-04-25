@@ -2,7 +2,7 @@ import React from 'react'
 
 export function FileList(props) {
     return (
-        <div className="file-list">
+        <div className="contents">
             {props.children}
         </div>
     )

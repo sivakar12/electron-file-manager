@@ -5,12 +5,13 @@ const url = require('url')
 let win
 
 function createWindow() {
-    win = new BrowserWindow({ width: 800, height: 600 })
+    win = new BrowserWindow({ width: 800, height: 600, frame: false })
     win.loadURL(url.format({
         pathname: path.join(__dirname, 'react', 'dist', 'index.html'),
         protocol: 'file:',
         slashes: true
     }))
+    // win.setMenu(null)
 
     win.on('closed', () => {
         win = null

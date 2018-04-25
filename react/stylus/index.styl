@@ -1,39 +1,80 @@
 @import './fonts'
+@import './colors'
 
 body 
     font-family: 'Work Sans'
-.file-list
+    font-size: 20px
+    background-color: $color2
+    padding: 0
+    margin: 0
+
+.contents
+    margin: 20px
     display: flex
     flex-direction: row
     flex-wrap: wrap
 
-.file
+.contents-item
     padding: 4px
     margin: 2px
     width: 120px
     white-space: nowrap
     overflow: hidden
     text-overflow: ellipsis
+    background-color: $color4
 
 .file:hover
-    background: lightblue
+    background: $color5
+    font-color: $color2
 
+.title-bar
+    display: flex
+    .title-bar-draggable-area
+        flex-grow: 1
+        -webkit-app-region: drag
 .tab-bar
     display: flex
     flex-direction: row
+    align-items: baseline
     border: 1px solid black
-
-    .new-tab
-        padding: 5px
 
 .tab-bar-item
     min-width: 100px
     max-width: 200px
     padding: 5px
     border: 1px solid black
+    display: flex
 
-    .close
-        float: right
+    .tab-bar-path
+        text-overflow: ellipsis
+        overflow: hidden
+        white-space: nowrap
+        flex-grow: 1
+
+    .tab-bar-close:hover
+        background-color: $color1
     
     &.active
-        background-color: lightblue
+        background-color: $color5
+
+.path-bar
+    border: 1px solid black
+    padding: 5px
+    display: flex
+
+    .path-bar-up-button
+        background-color: $color4
+        border-radius: 100%
+    
+    .path-bar-path-string
+        flex-grow: 1
+        text-align: center
+    
+.favorites-panel
+    padding: 5px
+    .favorites-title
+        text-decoration: bold
+    .favorites-item
+        text-align: center
+    .favorites-add-button
+        background-color: $color1

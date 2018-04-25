@@ -2,9 +2,9 @@ import React from 'react'
 
 export const FavoritesPanel = props => (
     <div className="favorites-panel">
-        <h3>Favorites</h3>
+        <div className="favorites-title">Favorites</div>
         {props.children}
-        <button onClick={props.onAddFavorite}>
+        <button className="favorites-add-button" onClick={props.onAddFavorite}>
             Add this folder
         </button>
     </div>

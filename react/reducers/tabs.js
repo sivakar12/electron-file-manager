@@ -16,7 +16,6 @@ function handleTabClose({tabs, current}, index) {
     else if (current >= index) newCurrent = current - 1
     if (newCurrent >= newTabs.length) newCurrent = newTabs.length - 1
     if (newCurrent < 0) newCurrent = 0
-    console.log('reducers tabs', { tabs: newTabs, current: newCurrent })
     return { tabs: newTabs, current: newCurrent }
 }
 

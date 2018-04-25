@@ -10,10 +10,14 @@ import type {
 } from '../actions/contents'
 
 const initialState = []
+type ContentItem = {
+    name: string,
+    isDir: boolean
+}
 
 type ContentsReducerAction = SetContentsAction | OpenFolderAction | GoToParentFolderAction
 
-export default function contentsReducer(state: Array<String> = initialState,
+export default function contentsReducer(state: Array<ContentItem> = initialState,
      action: ContentsReducerAction) {
     switch (action.type) {
         case actionTypes.SET_CONTENTS:

@@ -22,7 +22,9 @@ export function setContents(contents) {
 export type SetContentsAction = {
     type: string,
     payload: {
-        contents: string
+        contents: {
+            name: string
+        }
     }
 }
 

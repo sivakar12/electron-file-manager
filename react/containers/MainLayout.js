@@ -19,10 +19,10 @@ const MainLayout = (props) => (
         {/* <button onClick={() => props.addFavorite(props.path)}>Add to favorites</button> */}
         {/* <button style={{float: 'left'}} onClick={props.goToParentFolder}>Up</button> */}
         <FileList>
-            {props.contents.map(filename => 
-                <File key={filename}
-                    filename={filename} 
-                    onClick={() => props.openFolder(filename)}/>
+            {props.contents.map(file => 
+                <File key={file.name}
+                    filename={file.name} 
+                    onClick={() => props.openFolder(file.name)}/>
             )}
         </FileList>
         <Favorites/>

@@ -5,9 +5,6 @@ const fs = require('fs') // Not webpack import
 const os = require('os')
 
 export function getFiles(path) {
-    // const files = ['ps.epub', 'cos.epub', 'poa.epub', 
-    //     'gof.epub', 'ootf.epub', 'hbp.epub', 'dh.epub']
-    // return Promise.resolve(files)
     return new Promise((resolve, reject) => {
         fs.readdir(path, function(err, files) {
             if (err) {
@@ -16,12 +13,22 @@ export function getFiles(path) {
                 resolve(files)
             }
         })
-        // .then(files => {
-        //     files.map(file => {
-        //         fs.
-        //     })
-        //     return Promise.all(files.ma)
-        // })
+    }).then(files => {
+        const promises = files.map(file => {
+            return new Promise((resolve, reject) => {
+                const filename = pathModule.join(path, file)
+                fs.lstat(filename, (err, stat) => {
+                    if (err) return reject(err)
+                    const contents = {
+                        name: file,
+                        isDir: stat.isDirectory(),
+                        size: stat.size
+                    }
+                    resolve(contents)
+                })
+            })
+        })
+        return Promise.all(promises)
     })
 }
 

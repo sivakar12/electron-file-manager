@@ -1,13 +1,13 @@
 import actionTypes from './actionTypes'
 
-export const minimizeWindow = () => {
+export const minimizeWindow = () => ({
     type: actionTypes.MINIMIZE_WINDOW
-}
+})
 
-export const toggleMaximizeWindow = () => {
+export const toggleMaximizeWindow = () => ({
     type: actionTypes.TOGGLE_MAXIMIZE_WINDOW
-}
+})
 
-export const closeWindow = () => {
+export const closeWindow = () => ({
     type: actionTypes.CLOSE_WINDOW
-}
+})

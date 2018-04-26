@@ -13,19 +13,22 @@ const TitleBar = (props) => (
     <div className="title-bar">
         <Tabs/>
         <div className="title-bar-draggable-area">
-            {/* close buttons go here */}
+        {/* empty space */}
         </div>
-        <div class="title-bar-buttons">
-            <div class="title-bar-button" 
-                onClick={minimizeWindow}>-</div>
-            <div class="title-bar-button" 
-                onClick={toggleMaximizeWindow}>o</div>
-            <div class="title-bar-button"
-                onClick={closeWindow}>x</div>
+        <div className="title-bar-buttons">
+            <div className="title-bar-button" 
+                onClick={props.minimizeWindow}>-</div>
+            <div className="title-bar-button" 
+                onClick={props.toggleMaximizeWindow}>o</div>
+            <div className="title-bar-button"
+                onClick={props.closeWindow}>x</div>
         </div>
     </div>
 )
 
+function mapStateToProps() {
+    return {}
+}
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         minimizeWindow,
@@ -34,4 +37,4 @@ function mapDispatchToProps(dispatch) {
     }, dispatch)
 }
 
-export default connect(null, mapDispatchToProps)(TitleBar)
+export default connect(mapStateToProps, mapDispatchToProps)(TitleBar)

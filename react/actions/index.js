@@ -5,6 +5,7 @@ export * from './favorites'
 export * from './tabs'
 export * from './contents'
 export * from './window'
+export * from './staging-area'
 
 export type Action = {|
     type: String,

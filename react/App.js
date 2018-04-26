@@ -7,7 +7,8 @@ import {
     Path,
     Contents,
     Favorites,
-    TitleBar
+    TitleBar,
+    StagingArea
  } from './containers'
 
 import './stylus/index.styl'
@@ -21,6 +22,7 @@ export default function App(props) {
                 <Path/>
                 <Contents/>
                 <Favorites/>
+                <StagingArea/>
             </div>
         </Provider>
     )

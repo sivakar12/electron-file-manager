@@ -23,6 +23,7 @@ export default function stagingAreaReducer(state = initialState, action) {
             return state.merge({[action.payload.path]: {
                 complete: true
             }})
-
+        default:
+            return state
     }
 }

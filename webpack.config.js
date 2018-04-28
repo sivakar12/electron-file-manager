@@ -26,7 +26,7 @@ module.exports = {
                     use: ['css-loader', 'stylus-loader']
                 })
             }, {
-                test: /.woff2$/,
+                test: /\.(ttf|eot|woff|woff2)$/,
                 loader: 'file-loader?name=fonts/[name].[ext]'
             }
         ]

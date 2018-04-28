@@ -1,4 +1,4 @@
-const remote = require('electron').remote
+import { remote } from 'electron'
 import { takeEvery, put, all } from 'redux-saga/effects'
 import actionTypes from '../actions/actionTypes'
 import { changePath, setContents } from '../actions'

@@ -1,8 +1,8 @@
 import jsonFile from 'jsonfile'
 import pathModule from 'path'
 import _ from 'lodash'
-const fs = require('fs') // Not webpack import
-const os = require('os')
+import fs from 'fs'
+import os from 'os'
 
 export function getFiles(path) {
     return new Promise((resolve, reject) => {
@@ -12,7 +12,7 @@ export function getFiles(path) {
             } else {
                 resolve(files)
             }
-        })
+        })          
     }).then(files => {
         const promises = files.map(file => {
             return new Promise((resolve, reject) => {

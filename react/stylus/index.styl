@@ -6,6 +6,7 @@ body
     background-color: $color2
     padding: 0
     margin: 0
+    cursor: default
 
 .contents
     margin: 20px
@@ -20,6 +21,7 @@ body
     white-space: nowrap
     overflow: hidden
     text-overflow: ellipsis
+    cursor: pointer
 
     &.selected
         background-color: $color4
@@ -62,7 +64,7 @@ body
         background-color: $color1
     
     &.active
-        background-color: $color5
+        background-color: $color4
 
 .path-bar
     border: 1px solid black
@@ -80,8 +82,8 @@ body
 .favorites-panel
     padding: 5px
     .favorites-title
-        text-decoration: bold
+        font-weight: bold
     .favorites-item
-        text-align: center
+        cursor: pointer
     .favorites-add-button
         background-color: $color1

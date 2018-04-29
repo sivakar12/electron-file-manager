@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { removeFromStagingArea } from '../actions'
+import { StagingArea as StagingAreaComponent, StagingAreaItem } from '../components'
 
 function mapStateToProps(state) {
     return {
@@ -14,14 +15,18 @@ function mapDispatchToProps(dispatch) {
 }
 class StagingArea extends Component {
     render() {
-        if (!this.props.stagingArea.size) {
+        if (this.props.stagingArea.size == 0) {
             return null
         }
+        const itemsArray = this.props.stagingArea.valueSeq().toArray()
         return (
-            <div>
-                <h2>Staging Area</h2>
-                {JSON.stringify(this.props.stagingArea)}
-            </div>
+            <StagingAreaComponent>
+                {itemsArray.map(i => (
+                    <StagingAreaItem 
+                        key={i.path} path={i.path} onRemove={() => 
+                        this.props.removeFromStagingArea(i.path)}/>
+                ))}
+            </StagingAreaComponent>
         )
     }
 }

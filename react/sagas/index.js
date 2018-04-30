@@ -5,6 +5,7 @@ import { watchWindowButtonEvents } from './window-buttons'
 import { watchStateStorageEvents } from './state-storage'
 import { watchPathChanges } from './path-changes'
 import { watchKeyboardEvents } from './keyboard-events'
+import { watchFileTransferEvents } from './file-transfers'
 
 function* initialize() {
     yield put(loadStateFromFile())
@@ -18,6 +19,7 @@ export default function* rootSaga() {
         watchStateStorageEvents(),
         watchWindowButtonEvents(),
         watchKeyboardEvents(),
+        watchFileTransferEvents(),
         initialize()
     ])
 }

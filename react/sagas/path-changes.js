@@ -10,6 +10,8 @@ export function* watchPathChanges() {
     yield takeEvery(actionTypes.CLOSE_TAB, loadFilesSaga)
     yield takeEvery(actionTypes.NEW_TAB, loadFilesSaga)
     yield takeEvery(actionTypes.SWITCH_TAB, loadFilesSaga)
+    yield takeEvery(actionTypes.PREVIOUS_TAB, loadFilesSaga)
+    yield takeEvery(actionTypes.NEXT_TAB, loadFilesSaga)    
 }
 
 function* loadFilesSaga() {

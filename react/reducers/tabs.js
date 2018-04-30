@@ -22,13 +22,26 @@ function handleTabClose({tabs, current}, index) {
 export default function tabsReducer(state = initialState, action) {
     let newPath
     let newTabs
+    let newCurrent
     switch (action.type) {
         case actionTypes.NEW_TAB:
+            let path
+            if (action.payoad && action.payload.path) {
+                path = action.payload.path
+            } else {
+                path = '/'
+            }
             return Object.assign({}, state, {
-              tabs: [...state.tabs, action.payload.path]  
+              tabs: [...state.tabs, path]  
             })
         case actionTypes.CLOSE_TAB:
-            return handleTabClose(state, action.payload.index)
+            let index
+            if (action.payload && action.payload.index) {
+                index = action.payload.index
+            } else {
+                index = state.current
+            }
+            return handleTabClose(state, index)
         case actionTypes.SWITCH_TAB:
             return Object.assign({}, state, { current: action.payload.index })
         case actionTypes.CHANGE_PATH:
@@ -48,6 +61,12 @@ export default function tabsReducer(state = initialState, action) {
             newTabs = Object.assign([], state.tabs, 
                 { [state.current]: newPath })
             return Object.assign({}, state, { tabs: newTabs })            
+        case actionTypes.NEXT_TAB:
+            newCurrent = (state.current + 1) % state.tabs.length
+            return Object.assign({}, state, { current: newCurrent })
+        case actionTypes.PREVIOUS_TAB:
+            newCurrent = (state.tabs.length + state.current - 1) % state.tabs.length
+            return Object.assign({}, state, { current: newCurrent })
         default:
             return state
     }

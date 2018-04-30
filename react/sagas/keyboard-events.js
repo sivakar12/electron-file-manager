@@ -1,7 +1,11 @@
 import { takeEvery, select, put } from 'redux-saga/effects'
 
 import actionTypes from '../actions/actionTypes'
-import { copyToStagingArea, cutToStagingArea }from '../actions'
+import { 
+    copyToStagingArea, 
+    cutToStagingArea,
+    pasteFromStagingArea
+}from '../actions'
 
 function* handleCtrlC() {
     const state = yield select()
@@ -18,7 +22,14 @@ function* handleCtrlX() {
     }
 }
 
+function* handleCtrlV() {
+    const { tabs } = yield select()
+    const currentPath = tabs.tabs[tabs.current]
+    yield put(pasteFromStagingArea(currentPath))
+}
+
 export function* watchKeyboardEvents() {
     yield takeEvery(actionTypes.CTRL_C, handleCtrlC)
     yield takeEvery(actionTypes.CTRL_X, handleCtrlX)
+    yield takeEvery(actionTypes.CTRL_V, handleCtrlV)
 }

@@ -40,6 +40,7 @@ class Contents extends Component {
                 {this.props.contents.map(file => 
                     <File key={file.name}
                         filename={file.name}
+                        isDir={file.isDir}
                         isSelected={this.isFileSelected(file.name)}
                         onClick={this.makeOnClickHandler(file)} 
                         onDoubleClick={this.makeOnDoubleClickHandler(file)}/>

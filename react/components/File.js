@@ -6,7 +6,7 @@ export function File(props) {
         <div className={`contents-item ${props.isSelected ? 'selected' : ''}`} 
             onClick={props.onClick}
             onDoubleClick={props.onDoubleClick}>
-            {props.filename}
+            {props.filename}{props.isDir ? '/': ''}
         </div>
     )
 }

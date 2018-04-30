@@ -15,9 +15,13 @@ function mapDispatchToProps(dispatch) {
 }
 
 function Path(props) {
+    let path = props.path
+    if (path.match('[^/]$')) {
+        path = path + '/'
+    } 
     return (
         <PathBar
-            path={props.path}
+            path={path}
             onGoUp={props.goToParentFolder}/>
     )
 }

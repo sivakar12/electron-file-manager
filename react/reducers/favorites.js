@@ -25,7 +25,10 @@ export default function favorites(state = initialState, action) {
                 }
             })
         case actionTypes.LOAD_FAVORITES:
-            return action.payload
+            if (action.payload)
+                return action.payload
+            else
+                return state
         default:
             return state
     }

@@ -43,11 +43,34 @@ export function storeStateInJsonFile(data) {
     })
 }
 
+// this is ugly. change after moving to fspromises
 export function getStateFromJsonFile() {
     return new Promise((resolve, reject) => {
-        jsonFile.readFile(storedStateFile, (err, data) => {
-            if (err) return reject(err)
-            return resolve(data)
+        fs.access(storedStateFile, err => {
+            if (err) {
+                createStateJsonFile().then(() => {
+                    jsonFile.readFile(storedStateFile, (err, data) => {
+                        if (err) return reject(err)
+                        return resolve(data)
+                    })
+                })
+            } else {
+                jsonFile.readFile(storedStateFile, (err, data) => {
+                    if (err) return reject(err)
+                    return resolve(data)
+                })
+            }
+        })
+    })
+}
+
+export function createStateJsonFile() {
+    return new Promise((resolve, reject) => {
+        fs.mkdir(pathModule.dirname(storedStateFile), () => {
+            jsonFile.writeFile(storedStateFile, {}, err => {
+                if (err) return reject(err)
+                return resolve()
+            })
         })
     })
 }

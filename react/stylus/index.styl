@@ -18,13 +18,9 @@ body
     transition: all 1s ease
 
     .contents-item
-        font-size: 1.2em
         padding: 4px
         margin: 2px
         width: 150px
-        white-space: nowrap
-        overflow: hidden
-        text-overflow: ellipsis
         cursor: pointer
 
         &.selected
@@ -35,6 +31,13 @@ body
             background-color: $color4
             color: $color2
 
+        .contents-item-name
+            white-space: nowrap
+            overflow: hidden
+            text-overflow: ellipsis
+            font-size: 1.2em
+        .contents-item-size
+            font-size: 0.6em
 .title-bar
     display: flex
     align-content: justify

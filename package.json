@@ -8,6 +8,7 @@
   },
   "devDependencies": {
     "babel": "^6.23.0",
+    "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.6.1",
     "babel-preset-flow": "^6.23.0",
@@ -26,6 +27,7 @@
     "webpack-cli": "^2.0.14"
   },
   "dependencies": {
+    "filesize": "^3.6.1",
     "immutable": "^3.8.2",
     "jsonfile": "^4.0.0",
     "lodash": "^4.17.5",

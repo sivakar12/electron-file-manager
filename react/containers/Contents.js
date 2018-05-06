@@ -41,6 +41,7 @@ class Contents extends Component {
                     <File key={file.name}
                         filename={file.name}
                         isDir={file.isDir}
+                        size={file.size}
                         isSelected={this.isFileSelected(file.name)}
                         onClick={this.makeOnClickHandler(file)} 
                         onDoubleClick={this.makeOnDoubleClickHandler(file)}/>

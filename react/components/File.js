@@ -1,4 +1,5 @@
 import React from 'react'
+import filesize from 'filesize'
 
 // Props: isFolder, name, onClick
 export function File(props) {
@@ -6,7 +7,11 @@ export function File(props) {
         <div className={`contents-item ${props.isSelected ? 'selected' : ''}`} 
             onClick={props.onClick}
             onDoubleClick={props.onDoubleClick}>
-            {props.filename}{props.isDir ? '/': ''}
+            <div className="contents-item-name">
+                {props.filename}{props.isDir ? '/': ''}
+            </div>
+            { !props.isDir &&
+                <div className="contents-item-size">{filesize(props.size)}</div>}
         </div>
     )
 }

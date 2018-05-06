@@ -2,129 +2,130 @@
 @import './colors'
 
 body 
-    font-family: 'Merriweather'
-    font-size: 20px
-    background-color: $color2
-    padding: 0
-    margin: 0
-    cursor: default
-    display: grid
+    font-family 'Merriweather'
+    font-size 20px
+    background-color $color2
+    padding 0
+    margin 0
+    cursor default
+    display grid
+    user-select none
 
 .contents
-    margin: 20px
-    display: flex
-    flex-direction: row
-    flex-wrap: wrap
-    transition: all 1s ease
+    margin 20px
+    display flex
+    flex-direction row
+    flex-wrap wrap
+    transition all 1s ease
 
     .contents-item
-        padding: 4px
-        margin: 2px
-        width: 150px
-        cursor: pointer
+        padding 4px
+        margin 2px
+        width 150px
+        cursor pointer
 
         &.selected
-            background-color: $color4
-            color: $color2
+            background-color $color4
+            color $color2
 
         &:hover
-            background-color: $color4
-            color: $color2
+            background-color $color4
+            color $color2
 
         .contents-item-name
-            white-space: nowrap
-            overflow: hidden
-            text-overflow: ellipsis
-            font-size: 1.2em
+            white-space nowrap
+            overflow hidden
+            text-overflow ellipsis
+            font-size 1.2em
         .contents-item-size
-            font-size: 0.6em
+            font-size 0.6em
 .title-bar
-    display: flex
-    align-content: justify
-    align-items: strecth
+    display flex
+    align-content justify
+    align-items strecth
     .title-bar-draggable-area
-        flex-grow: 1
-        -webkit-app-region: drag
+        flex-grow 1
+        -webkit-app-region drag
     .title-bar-buttons
-        display: flex
-        flex-direction: row
-        align-items: stretch
+        display flex
+        flex-direction row
+        align-items stretch
     .title-bar-button
-        padding-left: 8px
-        padding-right: 8px
-        color: $color1
+        padding-left 8px
+        padding-right 8px
+        color $color1
         &:hover
-            background-color: $color1
-            color: $color2
+            background-color $color1
+            color $color2
 
 .tab-bar
-    display: flex
-    flex-direction: row
-    align-items: baseline
-    border: 1px solid black
+    display flex
+    flex-direction row
+    align-items baseline
+    border 1px solid black
 
     .tab-bar-item
-        min-width: 100px
-        max-width: 200px
-        padding: 5px
-        border: 1px solid black
-        display: flex
+        min-width 100px
+        max-width 200px
+        padding 5px
+        border 1px solid black
+        display flex
         
         &:hover
-            background-color: $color4
+            background-color $color4
         .tab-bar-path
-            text-overflow: ellipsis
-            overflow: hidden
-            white-space: nowrap
-            flex-grow: 1
+            text-overflow ellipsis
+            overflow hidden
+            white-space nowrap
+            flex-grow 1
 
         .tab-bar-close:hover
-            background-color: $color1
+            background-color $color1
         
         &.active
-            background-color: $color4
+            background-color $color4
     
     .tab-bar-new-tab
-        padding: 5px
-        border: 1px solid black
+        padding 5px
+        border 1px solid black
         &:hover
-            background-color: $color4
+            background-color $color4
 
 .path-bar
-    border: 1px solid black
-    padding: 5px
-    display: flex
+    border 1px solid black
+    padding 5px
+    display flex
 
     .path-bar-up-button
         &:hover
-            background-color: $color4
+            background-color $color4
     
     .path-bar-path-string
-        flex-grow: 1
-        text-align: center
+        flex-grow 1
+        text-align center
     
 .favorites-panel
-    padding: 5px
+    padding 5px
     .favorites-title
-        font-weight: bold
+        font-weight bold
     .favorites-item
-        cursor: pointer
+        cursor pointer
         &:hover
-            background-color: $color4
-            color: $color2
+            background-color $color4
+            color $color2
     .favorites-add-button
-        color: $color5
+        color $color5
 
 .staging-area
     .staging-area-items
-        display: flex
-        flex-direction: row
+        display flex
+        flex-direction row
         .staging-area-item
-            display: flex
-            flex-direction: row
-            min-width: 120px
-            margin: 5px
+            display flex
+            flex-direction row
+            min-width 120px
+            margin 5px
             .staging-area-item-name
-                flex-grow: 1
+                flex-grow 1
             .staging-area-item-remove
-                background: $color1
+                background $color1

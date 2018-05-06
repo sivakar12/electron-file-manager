@@ -1,5 +1,6 @@
 import jsonFile from 'jsonfile'
 import pathModule from 'path'
+import { exec } from 'child_process'
 import _ from 'lodash'
 import fs from 'fs'
 import os from 'os'
@@ -73,5 +74,33 @@ export function createStateJsonFile() {
                 return resolve()
             })
         })
+    })
+}
+
+export function openFile(filePath) {
+    return new Promise((resolve, reject) => {
+        let command
+        switch (os.platform()) {
+            case 'linux':
+                command = 'xdg-open'
+                break
+            case 'darwin':
+                command = 'open'
+                break
+            case 'win-32':
+            case 'win-65':
+                command = 'start'
+                break
+            default:
+                command = 'xdg-open'
+        }
+        try {
+            command += ' "' + filePath + '"'
+            console.log(command)
+            exec(command)
+            resolve()
+        } catch(e) {
+            reject(e)
+        }
     })
 }

@@ -35,7 +35,8 @@ module.exports = {
     externals: {
         "electron": "require('electron')",
         "fs": "require('fs')",
-        "os": "require('os')"
+        "os": "require('os')",
+        "child_process": "require('child_process')"
     },
     target: "electron-renderer",
     plugins: [

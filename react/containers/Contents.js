@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import pathModule from 'path'
 
-import { openFolder, selectItem } from '../actions'
+import { openFolder, openFile, selectItem } from '../actions'
 import { FileList, File } from '../components'
 
 
@@ -26,7 +26,7 @@ class Contents extends Component {
             if (item.isDir) {
                 self.props.openFolder(item.name)
             } else {
-                console.log(`Opening file ${item.name}`)
+                self.props.openFile(item.name)
             }
         }
     }
@@ -61,6 +61,7 @@ export default connect(
     mapStateToProps, 
     dispatch => bindActionCreators({
         openFolder,
+        openFile,
         selectItem 
     }, dispatch)
 )(Contents)

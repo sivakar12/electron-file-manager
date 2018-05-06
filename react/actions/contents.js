@@ -40,6 +40,18 @@ export type OpenFolderAction = {
     payload: { foldername: string }
 }
 
+export function openFile(filename) {
+    return {
+        type: actionTypes.OPEN_FILE,
+        payload: { filename }
+    }
+}
+
+export type openFileAction = {
+    type: string,
+    payload: { filename: strint }
+}
+
 export function goToParentFolder() {
     return {
         type: actionTypes.GO_TO_PARENT_FOLDER

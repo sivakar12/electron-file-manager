@@ -10,7 +10,8 @@ import {
     Contents,
     Favorites,
     TitleBar,
-    StagingArea
+    StagingArea,
+    Properties
  } from './containers'
 
 import './stylus/index.styl'
@@ -24,6 +25,7 @@ export default function App(props) {
                 <TitleBar/>
                 <Path/>
                 <Contents/>
+                <Properties/>
                 <Favorites/>
                 <StagingArea/>
             </div>

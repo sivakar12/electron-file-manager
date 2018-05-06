@@ -22,6 +22,7 @@ export function getFiles(path) {
                     const contents = {
                         name: file,
                         isDir: stat.isDirectory(),
+                        isSymLink: stat.isSymbolicLink(),
                         size: stat.size
                     }
                     resolve(contents)

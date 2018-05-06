@@ -8,7 +8,9 @@ export function File(props) {
             onClick={props.onClick}
             onDoubleClick={props.onDoubleClick}>
             <div className="contents-item-name">
-                {props.filename}{props.isDir ? '/': ''}
+                {props.isSymLink ? '->' : '' }
+                {props.filename}
+                {props.isDir ? '/': ''}
             </div>
             { !props.isDir &&
                 <div className="contents-item-size">{filesize(props.size)}</div>}

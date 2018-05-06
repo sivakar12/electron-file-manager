@@ -2,7 +2,7 @@ import React from 'react'
 import filesize from 'filesize'
 
 // Props: isFolder, name, onClick
-export function File(props) {
+export function ContentsItem(props) {
     return (
         <div className={`contents-item ${props.isSelected ? 'selected' : ''}`} 
             onClick={props.onClick}

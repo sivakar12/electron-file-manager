@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import pathModule from 'path'
 
 import { openFolder, openFile, selectItem } from '../actions'
-import { FileList, File } from '../components'
+import { ContentsList, ContentsItem } from '../components'
 
 
 class Contents extends Component {
@@ -36,9 +36,9 @@ class Contents extends Component {
     }
     render() {
         return (
-            <FileList>
+            <ContentsList>
                 {this.props.contents.map(file => 
-                    <File key={file.name}
+                    <ContentsItem key={file.name}
                         filename={file.name}
                         isDir={file.isDir}
                         isSymLink={file.isSymLink}
@@ -47,7 +47,7 @@ class Contents extends Component {
                         onClick={this.makeOnClickHandler(file)} 
                         onDoubleClick={this.makeOnDoubleClickHandler(file)}/>
                 )}
-            </FileList>
+            </ContentsList>
         )
     }
 }

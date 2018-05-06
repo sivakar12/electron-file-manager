@@ -1,6 +1,6 @@
 import React from 'react'
 
-export function FileList(props) {
+export function ContentsList(props) {
     return (
         <div className="contents">
             {props.children}

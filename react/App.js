@@ -21,13 +21,25 @@ export default function App(props) {
     registerKeyboardEvents(store.dispatch)
     return (
         <Provider store={store}>
-            <div>
-                <TitleBar/>
-                <Path/>
-                <Contents/>
-                <Properties/>
-                <Favorites/>
-                <StagingArea/>
+            <div id="container">
+                <div id="title-bar">
+                    <TitleBar/>
+                </div>
+                <div id="path-bar">
+                    <Path/>
+                </div>
+                <div id="contents">
+                    <Contents/>
+                </div>
+                <div id="properties">
+                    <Properties/>
+                </div>
+                <div id="favorites">
+                    <Favorites/>
+                </div>
+                <div id="staging-area">
+                    <StagingArea/>
+                </div>
             </div>
         </Provider>
     )

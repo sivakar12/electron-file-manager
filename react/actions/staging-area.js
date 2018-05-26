@@ -14,10 +14,10 @@ export function cutToStagingArea(path) {
     }
 }
 
-export function removeFromStagingArea(path) {
+export function removeFromStagingArea(index) {
     return {
         type: actionTypes.REMOVE_FROM_STAGING_AREA,
-        payload: { path }
+        payload: { index }
     }
 }
 
@@ -28,9 +28,9 @@ export function pasteFromStagingArea(path) {
     }
 }
 
-export function transferComplete(path) {
+export function transferComplete(index) {
     return {
         type: actionTypes.TRANSFER_COMPLETE,
-        payload: { path }
+        payload: { index }
     }
 }

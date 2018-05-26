@@ -15,16 +15,15 @@ function mapDispatchToProps(dispatch) {
 }
 class StagingArea extends Component {
     render() {
-        if (this.props.stagingArea.size == 0) {
+        if (this.props.stagingArea.length == 0) {
             return null
         }
-        const itemsArray = this.props.stagingArea.valueSeq().toArray()
         return (
             <StagingAreaComponent>
-                {itemsArray.map(i => (
+                {this.props.stagingArea.map((item, index) => (
                     <StagingAreaItem 
-                        key={i.path} path={i.path} onRemove={() => 
-                        this.props.removeFromStagingArea(i.path)}/>
+                        key={index} path={item.path} onRemove={() => 
+                        this.props.removeFromStagingArea(index)}/>
                 ))}
             </StagingAreaComponent>
         )

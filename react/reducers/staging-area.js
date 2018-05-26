@@ -22,6 +22,8 @@ export default function stagingAreaReducer(state = initialState, action) {
             let newState = state.slice()
             newState[action.payload.index].complete = true
             return newState
+        case actionTypes.REMOVE_COMPLETED_TRANSFERS:
+            return state.filter(item => !item.complete)
         default:
             return state
     }

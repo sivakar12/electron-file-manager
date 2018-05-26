@@ -1,9 +1,10 @@
+import { delay } from 'redux-saga'
 import { takeEvery, put, select } from 'redux-saga/effects'
 import pathModule from 'path'
 
 import actionTypes from '../actions/actionTypes'
 import { transferComplete, deleteComplete,
-    clearSelection } from '../actions'
+    clearSelection, removeCompletedTransfers } from '../actions'
 import { move, copy, deletePermenently } from '../../utils'
 
 function* handlePaste(action) {
@@ -29,6 +30,8 @@ function* handlePaste(action) {
             console.error(e)
         }
     }
+    yield delay(5000)
+    yield put(removeCompletedTransfers())
 }
 
 function* handleDelete() {

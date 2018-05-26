@@ -40,3 +40,9 @@ export function deleteComplete() {
         type: actionTypes.DELETE_COMPLETE
     }
 }
+
+export function removeCompletedTransfers() {
+    return {
+        type: actionTypes.REMOVE_COMPLETED_TRANSFERS
+    }
+}

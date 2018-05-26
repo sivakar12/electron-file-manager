@@ -9,13 +9,13 @@ body
     margin 0
     cursor default
     user-select none
-    box-sizing: border-box;
+    box-sizing border-box
     
 #container   
-    display: grid
+    display grid
     align-content: start
-    height: 100vh
-    width: 100vw
+    height 100vh
+    width 100vw
     grid-template-columns: auto 1fr auto
     grid-template-rows: auto auto 1fr auto
     grid-template-areas: 
@@ -43,7 +43,7 @@ body
     overflow-y: auto
     grid-area: properties
 #staging-area
-    max-height: 200px
+    max-height: 20vh
     overflow-y: auto
     overflow-x: auto
     grid-area: staging-area
@@ -56,12 +56,12 @@ body
     transition all 1s ease
 
     .contents-item
-        padding 4px
+        padding 5px
         margin 2px
-        width 150px
+        width 20vw
         cursor pointer
 
-        &.selectedwidth 150px
+        &.selected
             background-color $color4
             color $color2
 
@@ -147,6 +147,7 @@ body
     .favorites-title
         font-weight bold
     .favorites-item
+        padding 5px
         cursor pointer
         &:hover
             background-color $color4
@@ -158,7 +159,7 @@ body
     .staging-area-items
         display flex
         flex-direction row
-        flex-wrap: wrap
+        flex-wrap wrap
         .staging-area-item
             display flex
             flex-direction row

@@ -2,8 +2,9 @@ import { takeEvery, put, select } from 'redux-saga/effects'
 import pathModule from 'path'
 
 import actionTypes from '../actions/actionTypes'
-import { transferComplete } from '../actions'
-import { copy } from '../../utils'
+import { transferComplete, deleteComplete,
+    clearSelection } from '../actions'
+import { move, copy, deletePermenently } from '../../utils'
 
 function* handlePaste(action) {
     const destinationFolder = action.payload.path
@@ -14,7 +15,14 @@ function* handlePaste(action) {
             pathModule.basename(item.path))
         console.log(`Copying ${item.path} to ${destinationPath}`)
         try {
-            yield copy(item.path, destinationPath)
+            if (item.complete) {
+                continue
+            }
+            if (item.cut) {
+                yield move(item.path, destinationPath)
+            } else {
+                yield copy(item.path, destinationPath)
+            }
             console.log(`Copying ${item.path} finished`)
             yield put(transferComplete(key))
         } catch (e) {
@@ -27,6 +35,9 @@ function* handleDelete() {
     const state = yield select()
     const path = state.selection
     console.log('Deleting ', path)
+    yield deletePermenently(path)
+    yield put(deleteComplete())
+    yield put(clearSelection())
 }
 export function* watchFileTransferEvents() {
     yield takeEvery(actionTypes.PASTE_FROM_STAGING_AREA, handlePaste)

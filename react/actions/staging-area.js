@@ -34,3 +34,9 @@ export function transferComplete(index) {
         payload: { index }
     }
 }
+
+export function deleteComplete() {
+    return {
+        type: actionTypes.DELETE_COMPLETE
+    }
+}

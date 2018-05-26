@@ -1,6 +1,7 @@
 import jsonFile from 'jsonfile'
 import pathModule from 'path'
 import fs from 'fs'
+import os from 'os'
 
 const storedStateFile = pathModule.join(os.homedir(), '.electron-file-manager', 'stored-state.json')
 

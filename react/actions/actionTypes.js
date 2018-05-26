@@ -34,4 +34,7 @@ export default {
     CTRL_X: 'CTRL_X',
     CTRL_C: 'CTRL_C',
     CTRL_V: 'CTRL_V',
+
+    TOGGLE_PROPERTIES: 'TOGGLE_PROPERTIES',
+    TOGGLE_FAVORITES: 'TOGGLE_FAVORITES'
 }

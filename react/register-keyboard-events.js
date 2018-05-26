@@ -26,4 +26,10 @@ export default function(dispatch) {
     Mousetrap.bind('backspace', () => {
         dispatch(goToParentFolder())
     })
+    Mousetrap.bind('ctrl+b', function() {
+        dispatch({ type: actionTypes.TOGGLE_FAVORITES })
+    })
+    Mousetrap.bind('alt+enter', function() {
+        dispatch({ type: actionTypes.TOGGLE_PROPERTIES })
+    })
 }

@@ -64,3 +64,4 @@ export function openFile(filePath) {
 
 export * from './state-storage'
 export * from './folder-size'
+export * from './file-transfers'

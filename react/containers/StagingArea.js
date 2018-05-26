@@ -22,7 +22,7 @@ class StagingArea extends Component {
             <StagingAreaComponent>
                 {this.props.stagingArea.map((item, index) => (
                     <StagingAreaItem 
-                        key={index} path={item.path} onRemove={() => 
+                        key={index} {...item} onRemove={() => 
                         this.props.removeFromStagingArea(index)}/>
                 ))}
             </StagingAreaComponent>

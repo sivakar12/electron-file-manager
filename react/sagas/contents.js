@@ -14,7 +14,8 @@ export function* watchContentsEvents() {
     yield takeEvery(actionTypes.SWITCH_TAB, loadFilesSaga)
     yield takeEvery(actionTypes.PREVIOUS_TAB, loadFilesSaga)
     yield takeEvery(actionTypes.NEXT_TAB, loadFilesSaga)
-    yield takeEvery(actionTypes.OPEN_FILE, openFileSaga)    
+    yield takeEvery(actionTypes.OPEN_FILE, openFileSaga)
+    yield takeEvery(actionTypes.TRANSFER_COMPLETE, loadFilesSaga)    
 }
 
 function* openFileSaga(action) {

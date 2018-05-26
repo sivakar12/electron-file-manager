@@ -11,6 +11,9 @@ export default function(dispatch) {
     Mousetrap.bind('ctrl+v', function() {
         dispatch({ type: actionTypes.CTRL_V })
     })
+    Mousetrap.bind('del', function() {
+        dispatch({ type: actionTypes.DELETE })
+    })
     Mousetrap.bind('ctrl+tab', function() {
         dispatch({ type: actionTypes.NEXT_TAB })
     })

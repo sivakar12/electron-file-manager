@@ -19,7 +19,7 @@ export default function stagingAreaReducer(state = initialState, action) {
             const { index } = action.payload
             return [...state.slice(0, index), ...state.slice(index + 1)]
         case actionTypes.TRANSFER_COMPLETE:
-            let newState = state.slice(0)
+            let newState = state.slice()
             newState[action.payload.index].complete = true
             return newState
         default:

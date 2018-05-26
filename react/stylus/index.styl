@@ -16,7 +16,7 @@ body
     align-content: start
     height: 100vh
     width: 100vw
-    grid-template-columns: 100px 1fr auto
+    grid-template-columns: auto 1fr auto
     grid-template-rows: auto auto 1fr auto
     grid-template-areas: 
         "title-bar title-bar title-bar" \
@@ -29,6 +29,7 @@ body
 #path-bar
     grid-area: path-bar
 #favorites
+    width: 20vw
     overflow-x: auto
     overflow-y: auto
     grid-area: favorites
@@ -37,7 +38,7 @@ body
     overflow-y: auto
     grid-area: contents
 #properties
-    max-width: 200px
+    width: 20vw
     overflow-x: auto
     overflow-y: auto
     grid-area: properties
@@ -60,7 +61,7 @@ body
         width 150px
         cursor pointer
 
-        &.selected
+        &.selectedwidth 150px
             background-color $color4
             color $color2
 
@@ -75,10 +76,11 @@ body
             font-size 1.2em
         .contents-item-size
             font-size 0.6em
+
 .title-bar
     display flex
     align-content justify
-    align-items strecth
+    align-items stretch
     .title-bar-draggable-area
         flex-grow 1
         -webkit-app-region drag

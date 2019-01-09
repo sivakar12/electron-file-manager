@@ -1,6 +1,7 @@
 import pathModule from 'path'
 import actionTypes from '../actions/actionTypes'
 import { getHomeFolder } from '../../utils'
+
 const initialState = {
     current: 0,
     tabs: [getHomeFolder()]

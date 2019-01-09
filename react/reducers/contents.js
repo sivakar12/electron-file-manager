@@ -1,25 +1,11 @@
-// @flow
 import pathModule from 'path'
 import _ from 'lodash'
 
 import actionTypes from '../actions/actionTypes'
 
-import type { 
-    SetContentsAction,
-    OpenFolderAction,
-    GoToParentFolderAction
-} from '../actions/contents'
-
 const initialState = []
-type ContentItem = {
-    name: string,
-    isDir: boolean
-}
 
-type ContentsReducerAction = SetContentsAction | OpenFolderAction | GoToParentFolderAction
-
-export default function contentsReducer(state: Array<ContentItem> = initialState,
-     action: ContentsReducerAction) {
+export default function contentsReducer(state = initialState, action) {
     switch (action.type) {
         case actionTypes.SET_CONTENTS:
             const sorted = _.orderBy(action.payload.contents, ['isDir', 'name'], ['desc', 'asc'])

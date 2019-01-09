@@ -1,9 +1,9 @@
 import pathModule from 'path'
 import actionTypes from '../actions/actionTypes'
-
+import { getHomeFolder } from '../../utils'
 const initialState = {
     current: 0,
-    tabs: ['/']
+    tabs: [getHomeFolder()]
 }
 
 function handleTabClose({tabs, current}, index) {
@@ -29,7 +29,7 @@ export default function tabsReducer(state = initialState, action) {
             if (action.payoad && action.payload.path) {
                 path = action.payload.path
             } else {
-                path = '/'
+                path = getHomeFolder()
             }
             return Object.assign({}, state, {
               tabs: [...state.tabs, path]  

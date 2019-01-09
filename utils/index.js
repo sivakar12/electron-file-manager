@@ -1,5 +1,5 @@
 import pathModule from 'path'
-import { exec } from 'child_process'
+import { exec, spawn } from 'child_process'
 import _ from 'lodash'
 import fs from 'fs'
 import os from 'os'
@@ -46,6 +46,7 @@ export function openFile(filePath) {
                 break
             case 'win-32':
             case 'win-65':
+            case 'win32':
                 command = 'start'
                 break
             default:
@@ -54,12 +55,16 @@ export function openFile(filePath) {
         try {
             command += ' "' + filePath + '"'
             console.log(command)
-            exec(command)
+            spawn(command)
             resolve()
         } catch(e) {
             reject(e)
         }
     })
+}
+
+export function getHomeFolder() {
+    return os.homedir()
 }
 
 export * from './state-storage'

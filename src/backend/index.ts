@@ -1,6 +1,6 @@
 import fs from 'fs'
 import os from 'os'
-import { ContentItem } from '../types'
+import { ContentItem } from '../types/core'
 
 const fsPromise = fs.promises
 

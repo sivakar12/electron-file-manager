@@ -78,7 +78,8 @@ interface CloseTabAction {
 
 export const NEW_TAB = 'NEW_TAB'
 interface NewTabAction {
-    type: typeof NEW_TAB
+    type: typeof NEW_TAB,
+    payload: { path?: Path }
 }
 
 export const NEXT_TAB = 'NEXT_TAB'
@@ -153,3 +154,6 @@ export type TabActions = SwitchTabAction
 | CloseTabAction
 | NextTabAction
 | PreviousTabAction
+| ChangePathAction
+| OpenFolderAction
+| GoToParentFolderAction

@@ -1,0 +1,15 @@
+import fs from 'fs'
+import os from 'os'
+import { FileDetail } from '../types'
+
+const fsPromise = fs.promises
+
+export function getHomeDirectory():string {
+    return os.homedir()
+}
+
+export function getFolderContents(path: string): FileDetail[] {
+    const files = fs.readdirSync(path)
+    const fileDetails = files.map(f => ({ name: f }))
+    return fileDetails
+}

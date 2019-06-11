@@ -8,3 +8,8 @@ export interface TabsState {
 export type ContentsState = ContentItem[]
 
 export type FavoritesState = FavoriteItem[]
+
+export type ViewState = {
+    properties: boolean,
+    favorites: boolean
+}

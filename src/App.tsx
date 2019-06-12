@@ -1,18 +1,24 @@
 import React from 'react';
+import { createStore } from 'redux'
+import { Provider, useSelector } from 'react-redux'
 
-import {getHomeDirectory, getFolderContents } from './backend'
+import rootReducer from './reducers'
+
+const DisplayState: React.FC = (props) => {
+    const state = useSelector(state => state)
+    return (
+        <div>{JSON.stringify(state)}</div>
+    )        
+}
+    
 const App: React.FC = () => {
-  const homeFolder = getHomeDirectory()
-  const files = getFolderContents(homeFolder)
-  return (
-    <div>
-      <p>Home folder: {homeFolder}</p>
-      <ul>
-        {files.map(f => <li key={f.name}>{f.name}</li>)}
-      </ul>
-    </div>
-    );
-  }
-  
-  export default App;
-  
+    const store = createStore(rootReducer)
+    return (
+        
+        <Provider store={store}>
+        <DisplayState/>
+        </Provider>
+        )
+    }
+
+export default App;

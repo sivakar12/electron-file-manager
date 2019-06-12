@@ -11,7 +11,8 @@ const initialState: ViewState = {
     favorites: true
 }
 
-export default function viewReducer(state: ViewState = initialState, action: ViewActions) {
+export default function viewReducer(state: ViewState = initialState, 
+        action: ViewActions): ViewState {
     switch (action.type) {
         case TOGGLE_FAVORITES:
             return {
@@ -23,5 +24,7 @@ export default function viewReducer(state: ViewState = initialState, action: Vie
                 ...state,
                 properties: !state.properties
             }
+        default:
+            return state
     }
 }

@@ -10,9 +10,10 @@ import {
 import { FavoritesState } from '../types/redux-state'
 import { FavoriteItem } from '../types/core';
 
-const initialState:FavoritesState = []
+const initialState: FavoritesState = []
 
-export default function favorites(state: FavoritesState = initialState, action: FavoritesActions) {
+export default function favorites(state: FavoritesState = initialState, 
+        action: FavoritesActions): FavoritesState {
     switch (action.type) {
         case ADD_FAVORITE:
             const { path } = action.payload
@@ -22,7 +23,8 @@ export default function favorites(state: FavoritesState = initialState, action: 
             }
             return [...state, newFavorite]
         case REMOVE_FAVORITE:
-            return [...state.slice(0, action.payload.index), ...state.slice(action.payload.index + 1)]
+            return [...state.slice(0, action.payload.index), 
+                ...state.slice(action.payload.index + 1)]
         case RENAME_FAVORITE:
             const newState: FavoritesState = [...state]
             newState[action.payload.index]['name'] = action.payload.newName

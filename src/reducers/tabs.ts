@@ -33,7 +33,8 @@ function handleTabClose({tabs, current}: TabsState, index: number) {
     return { tabs: newTabs, current: newCurrent }
 }
 
-export default function tabsReducer(state: TabsState = initialState, action: TabActions) {
+export default function tabsReducer(state: TabsState = initialState, 
+        action: TabActions): TabsState {
     let newPath
     let newTabs
     let newCurrent

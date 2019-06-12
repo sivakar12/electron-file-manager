@@ -10,10 +10,10 @@ import { ContentsState } from '../types/redux-state'
 const initialState: ContentsState = []
 
 export default function contentsReducer(state:ContentsState = initialState,
-        action:ContentActions) {
+        action:ContentActions): ContentsState {
     switch (action.type) {
         case SET_CONTENTS:
-            return action.payload
+            return action.payload.contents
         case OPEN_FOLDER:
             return []
         case GO_TO_PARENT_FOLDER:

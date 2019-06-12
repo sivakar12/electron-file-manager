@@ -3,14 +3,16 @@ import { createStore, applyMiddleware } from 'redux'
 import { Provider, useSelector } from 'react-redux'
 import createSagaMiddleware from 'redux-saga'
 
-import rootReducer from './reducers'
+import rootReducer, { AppState } from './reducers'
 import rootSaga from './sagas'
+import ContentItem from './components/ContentItem';
 
-const DisplayState: React.FC = (props) => {
-    const state = useSelector(state => state)
-    return (
-        <div>{JSON.stringify(state)}</div>
-    )        
+const ContentItems: React.FC = (props) => {
+    const contents = useSelector((state: AppState) => state.contents)
+    return <div>
+        {contents.map(c => <ContentItem {...c} />)}
+    </div>
+             
 }
     
 const App: React.FC = () => {
@@ -23,7 +25,7 @@ const App: React.FC = () => {
     return (
         
         <Provider store={store}>
-        <DisplayState/>
+        <ContentItems/>
         </Provider>
         )
     }

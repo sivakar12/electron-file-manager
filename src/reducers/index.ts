@@ -5,9 +5,12 @@ import contents from './contents'
 import favorites from './favorites'
 import view from './view'
 
-export default combineReducers({
+const rootReducer = combineReducers({
     tabs,
     contents,
     favorites,
     view
 })
+export default rootReducer
+
+export type AppState = ReturnType<typeof rootReducer>

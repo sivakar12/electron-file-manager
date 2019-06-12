@@ -8,6 +8,8 @@
     "@types/react": "16.8.19",
     "@types/react-dom": "16.8.4",
     "electron-is-dev": "^1.1.0",
+    "filesize": "^4.1.2",
+    "lodash": "^4.17.11",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.1.0",
@@ -43,6 +45,8 @@
   "devDependencies": {
     "@rescripts/cli": "^0.0.10",
     "@rescripts/rescript-env": "^0.0.10",
+    "@types/filesize": "^4.1.0",
+    "@types/lodash": "^4.14.134",
     "@types/react-redux": "^7.1.0",
     "concurrently": "^4.1.0",
     "cross-env": "^5.2.0",

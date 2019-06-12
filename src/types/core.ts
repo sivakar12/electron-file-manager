@@ -1,3 +1,5 @@
+import { Stats } from 'fs'
+
 export type Path = string
 
 export interface FavoriteItem {
@@ -7,4 +9,6 @@ export interface FavoriteItem {
 
 export interface ContentItem {
     name: string;
+    path: string;
+    stats: Stats;
 }

@@ -4,12 +4,14 @@ import tabs from './tabs'
 import contents from './contents'
 import favorites from './favorites'
 import view from './view'
+import selection from './selection'
 
 const rootReducer = combineReducers({
     tabs,
     contents,
     favorites,
-    view
+    view,
+    selection
 })
 export default rootReducer
 

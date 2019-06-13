@@ -1,4 +1,4 @@
-import { ContentItem, FavoriteItem } from './core'
+import { ContentItem, FavoriteItem, Path } from './core'
 
 export interface TabsState {
     current: number,
@@ -13,3 +13,5 @@ export type ViewState = {
     properties: boolean,
     favorites: boolean
 }
+
+export type SelectionState = null | Path

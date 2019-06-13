@@ -167,3 +167,6 @@ export type ContentActions = SetContentsAction
 | OpenFolderAction | GoToParentFolderAction
 
 export type ViewActions = ToggleFavoritesAction | TogglePropertiesAction
+
+export type SelectionActions = SelectItemAction | ClearSelectionAction |
+    OpenFileAction | OpenFolderAction | GoToParentFolderAction

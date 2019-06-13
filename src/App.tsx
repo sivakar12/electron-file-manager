@@ -6,7 +6,7 @@ import logger from 'redux-logger'
 
 import rootReducer, { AppState } from './reducers'
 import rootSaga from './sagas'
-import Contents from './containers/Contents';
+import MainLayout from './containers/MainLayout'
 
 import './styles/App.css';
     
@@ -20,7 +20,7 @@ const App: React.FC = () => {
     return (
         
         <Provider store={store}>
-            <Contents/>
+            <MainLayout/>
         </Provider>
         )
     }

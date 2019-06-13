@@ -3,8 +3,11 @@ import { takeEvery, put, all, select } from 'redux-saga/effects'
 import {
     LOAD_CONTENTS,
     SET_CONTENTS, 
-    SetContentsAction,
-    OPEN_FOLDER
+    OPEN_FOLDER,
+    SWITCH_TAB,
+    CLOSE_TAB,
+    NEW_TAB,
+    SetContentsAction
 } from '../types/redux-actions'
 import { getHomeDirectory, getFolderContents } from '../backend'
 import { AppState } from '../reducers'
@@ -31,7 +34,7 @@ function *initialize() {
 function* setUpActionListeners() {
     yield all([
         takeEvery(LOAD_CONTENTS, handleLoadContents),
-        takeEvery(OPEN_FOLDER, handleOpenFolder)
+        takeEvery([OPEN_FOLDER, SWITCH_TAB, CLOSE_TAB, NEW_TAB], handleOpenFolder)
     ])
 }
 export default function* rootSaga() {

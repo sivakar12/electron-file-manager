@@ -1,9 +1,8 @@
 import React from 'react'
 
-export const TabItem = (props) => (
+export default (props) => (
     <div className={`tab-bar-item ${props.active ? 'active' : ''}`} 
-        onClick={props.onClick}
-        onClose={props.onClose}>
+        onClick={props.onClick}>
         <div className="tab-bar-path">{props.path}</div>
         <div onClick={e => {e.stopPropagation(); props.onClose() } } className="tab-bar-close">x</div>
     </div>

@@ -1,11 +1,8 @@
 import React from 'react'
-
-export const FavoritesPanel = props => (
-    <div className="favorites-panel">
-        <div className="favorites-title">Favorites</div>
-        {props.children}
-        <div className="favorites-add-button" onClick={props.onAddFavorite}>
-            (Add this folder)
-        </div>
+export default props => (
+    <div className="path-bar">
+        <div className="path-bar-up-button"
+            onClick={() => props.onGoUp()}>{'<-'}</div>
+        <div className="path-bar-path-string">{props.path}</div>
     </div>
 )

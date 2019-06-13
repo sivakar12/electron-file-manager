@@ -65,9 +65,8 @@ export default function tabsReducer(state: TabsState = initialState,
                 { [state.current]: newPath })
             return Object.assign({}, state, { tabs: newTabs })
         case OPEN_FOLDER:
-            newPath = pathModule.join(state.tabs[state.current], action.payload.path)
             newTabs = Object.assign([], state.tabs, 
-                { [state.current]: newPath })
+                { [state.current]: action.payload.path })
             return Object.assign({}, state, { tabs: newTabs })            
         case GO_TO_PARENT_FOLDER:
             const parentFolder = pathModule.dirname(state.tabs[state.current])

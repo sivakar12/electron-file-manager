@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const ContentsList = (props) => (
+export default (props) => (
     <div className="contents">
         {props.children}
     </div>

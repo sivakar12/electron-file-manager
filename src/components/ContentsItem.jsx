@@ -1,7 +1,7 @@
 import React from 'react'
 import filesize from 'filesize'
 
-export function ContentsItem(props) {
+function ContentsItem(props) {
     return (
         <div className={`contents-item ${props.isSelected ? 'selected' : ''}`} 
             onClick={props.onClick}
@@ -16,3 +16,5 @@ export function ContentsItem(props) {
         </div>
     )
 }
+
+export default ContentsItem

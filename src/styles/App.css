@@ -74,12 +74,12 @@ body {
     cursor: pointer;
   }
   .contents .contents-item.selected {
-    background-color: --color4;
-    color: --color2;
+    background-color: var(--color4);
+    color: var(--color2);
   }
   .contents .contents-item:hover {
-    background-color: --color4;
-    color: --color2;
+    background-color: var(--color4);
+    color: var(--color2);
   }
   .contents .contents-item .contents-item-name {
     white-space: nowrap;
@@ -107,11 +107,11 @@ body {
   .title-bar .title-bar-button {
     padding-left: 8px;
     padding-right: 8px;
-    color: --color1;
+    color: var(--color1);
   }
   .title-bar .title-bar-button:hover {
-    background-color: --color1;
-    color: --color2;
+    background-color: var(--color1);
+    color: var(--color2);
   }
   .tab-bar {
     display: flex;
@@ -127,7 +127,7 @@ body {
     display: flex;
   }
   .tab-bar .tab-bar-item:hover {
-    background-color: --color4;
+    background-color: var(--color4);
   }
   .tab-bar .tab-bar-item .tab-bar-path {
     text-overflow: ellipsis;
@@ -136,17 +136,17 @@ body {
     flex-grow: 1;
   }
   .tab-bar .tab-bar-item .tab-bar-close:hover {
-    background-color: --color1;
+    background-color: var(--color1);
   }
   .tab-bar .tab-bar-item.active {
-    background-color: --color4;
+    background-color: var(--color4);
   }
   .tab-bar .tab-bar-new-tab {
     padding: 5px;
     border: 1px solid #000;
   }
   .tab-bar .tab-bar-new-tab:hover {
-    background-color: --color4;
+    background-color: var(--color4);
   }
   .path-bar {
     border: 1px solid #000;
@@ -154,7 +154,7 @@ body {
     display: flex;
   }
   .path-bar .path-bar-up-button:hover {
-    background-color: --color4;
+    background-color: var(--color4);
   }
   .path-bar .path-bar-path-string {
     flex-grow: 1;
@@ -171,11 +171,11 @@ body {
     cursor: pointer;
   }
   .favorites-panel .favorites-item:hover {
-    background-color: --color4;
-    color: --color2;
+    background-color: var(--color4);
+    color: (--color2);
   }
   .favorites-panel .favorites-add-button {
-    color: --color5;
+    color: (--color5);
   }
   .staging-area .staging-area-items {
     display: flex;
@@ -192,6 +192,6 @@ body {
     flex-grow: 1;
   }
   .staging-area .staging-area-items .staging-area-item .staging-area-item-remove {
-    background: --color1;
+    background: var(--color1);
   }
   

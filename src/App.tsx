@@ -5,12 +5,14 @@ import createSagaMiddleware from 'redux-saga'
 
 import rootReducer, { AppState } from './reducers'
 import rootSaga from './sagas'
-import ContentItem from './components/ContentItem';
+import { ContentsItem } from './components/ContentsItem';
+
+import './styles/App.css';
 
 const ContentItems: React.FC = (props) => {
     const contents = useSelector((state: AppState) => state.contents)
     return <div>
-        {contents.map(c => <ContentItem {...c} />)}
+        {contents.map(c => <ContentsItem {...c} />)}
     </div>
              
 }

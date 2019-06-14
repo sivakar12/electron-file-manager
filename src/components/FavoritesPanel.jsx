@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const FavoritesPanel = props => (
+export default props => (
     <div className="favorites-panel">
         <div className="favorites-title">Favorites</div>
         {props.children}

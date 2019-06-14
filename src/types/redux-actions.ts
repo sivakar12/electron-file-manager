@@ -164,7 +164,7 @@ export type TabActions = SwitchTabAction
 | GoToParentFolderAction
 
 export type ContentActions = SetContentsAction
-| OpenFolderAction | GoToParentFolderAction
+| OpenFolderAction | GoToParentFolderAction | ChangePathAction
 
 export type ViewActions = ToggleFavoritesAction | TogglePropertiesAction
 

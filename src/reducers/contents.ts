@@ -2,7 +2,8 @@ import {
     ContentActions,
     SET_CONTENTS,
     OPEN_FOLDER,
-    GO_TO_PARENT_FOLDER
+    GO_TO_PARENT_FOLDER,
+    CHANGE_PATH
 } from '../types/redux-actions'
 
 import { ContentsState } from '../types/redux-state'
@@ -17,6 +18,8 @@ export default function contentsReducer(state:ContentsState = initialState,
         case OPEN_FOLDER:
             return []
         case GO_TO_PARENT_FOLDER:
+            return []
+        case CHANGE_PATH:
             return []
         default:
             return state

@@ -8,7 +8,8 @@ import {
     CLOSE_TAB,
     NEW_TAB,
     SetContentsAction,
-    GO_TO_PARENT_FOLDER
+    GO_TO_PARENT_FOLDER,
+    CHANGE_PATH
 } from '../types/redux-actions'
 import { getHomeDirectory, getFolderContents } from '../backend'
 import { AppState } from '../reducers'
@@ -35,7 +36,7 @@ function *initialize() {
 function* setUpActionListeners() {
     yield all([
         takeEvery(LOAD_CONTENTS, handleLoadContents),
-        takeEvery([OPEN_FOLDER, SWITCH_TAB, CLOSE_TAB, NEW_TAB, GO_TO_PARENT_FOLDER], handleOpenFolder)
+        takeEvery([OPEN_FOLDER, SWITCH_TAB, CLOSE_TAB, NEW_TAB, GO_TO_PARENT_FOLDER, CHANGE_PATH], handleOpenFolder)
     ])
 }
 export default function* rootSaga() {

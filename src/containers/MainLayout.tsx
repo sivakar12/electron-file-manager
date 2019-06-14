@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import TitleBar from './TitleBar'
 import Contents from './Contents'
 import PathBar from './PathBar'
+import Favorites from './Favorites'
 import { AppState } from '../reducers'
 
 export default function() {
@@ -24,7 +25,7 @@ export default function() {
             </div> }
             { viewState.favorites && 
             <div id="favorites">
-            
+                <Favorites/>
             </div> }
             <div id="staging-area">
             

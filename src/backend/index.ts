@@ -16,11 +16,17 @@ export async function getFolderContents(path: string): Promise<ContentItem[]> {
     const files = await fsPromise.readdir(path)
     const filePaths = files.map(f => pathModule.join(path, f))
     const fileStats =  await Promise.all(filePaths.map(f => fsPromise.stat(f)))
-    const fileDetails = _.range(0, files.length).map(i => ({
-        name: files[i],
-        path: filePaths[i],
-        stats: fileStats[i]
-    }))
+    const fileDetails = _.range(0, files.length).map(i => {
+        const stats = fileStats[i]
+        return {
+            name: files[i],
+            path: filePaths[i],
+            size: stats.size,
+            isDirectory: stats.isDirectory(),
+            isSymLink: stats.isSymbolicLink()
+
+        }
+    })
     return fileDetails
 }
 

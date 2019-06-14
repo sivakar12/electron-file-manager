@@ -37,7 +37,7 @@ export default function() {
 
     function makeOnDoubleClickHandler(item: ContentItem) {
         return function() {
-            if (item.stats.isDirectory()) {
+            if (item.isDirectory) {
                 const action: OpenFolderAction = {
                     type: OPEN_FOLDER,
                     payload: { path: item.path }

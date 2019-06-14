@@ -7,12 +7,12 @@ function ContentsItem(props) {
             onClick={props.onClick}
             onDoubleClick={props.onDoubleClick}>
             <div className="contents-item-name">
-                {props.stats.isDirectory() ? '📁': '📃'}
+                {props.isDirectory ? '📁': '📃'}
                 {props.name}
-                {props.stats.isSymLink ? '🔗' : '' }
+                {props.isSymLink ? '🔗' : '' }
             </div>
             { !props.isDir &&
-                <div className="contents-item-size">{filesize(props.stats.size)}</div>}
+                <div className="contents-item-size">{filesize(props.size)}</div>}
         </div>
     )
 }

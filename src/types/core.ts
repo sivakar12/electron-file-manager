@@ -10,5 +10,7 @@ export interface FavoriteItem {
 export interface ContentItem {
     name: string;
     path: string;
-    stats: Stats;
+    isDirectory: boolean,
+    isSymLink: boolean,
+    size: number;
 }

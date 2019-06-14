@@ -8,7 +8,7 @@ import rootReducer, { AppState } from './reducers'
 import rootSaga from './sagas'
 import MainLayout from './containers/MainLayout'
 
-import './styles/App.css';
+import './styles/App.scss';
     
 const App: React.FC = () => {
     const sagaMiddleware = createSagaMiddleware()

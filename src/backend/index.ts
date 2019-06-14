@@ -2,7 +2,7 @@ import fs from 'fs'
 import os from 'os'
 import pathModule from 'path'
 import _ from 'lodash'
-
+import spawn from 'cross-spawn'
 import { ContentItem } from '../types/core'
 import { string } from 'prop-types';
 
@@ -22,4 +22,31 @@ export async function getFolderContents(path: string): Promise<ContentItem[]> {
         stats: fileStats[i]
     }))
     return fileDetails
+}
+
+export function openFile(filePath: string) {
+    return new Promise((resolve, reject) => {
+        let command
+        switch (os.platform()) {
+            case 'linux':
+                command = 'xdg-open'
+                break
+            case 'darwin':
+                command = 'open'
+                break
+            case 'win32':
+                command = 'start'
+                break
+            default:
+                command = 'xdg-open'
+        }
+        try {
+            command += ' "' + filePath + '"'
+            console.log(command)
+            spawn(command, [filePath], {detached: true} )
+            resolve()
+        } catch(e) {
+            reject(e)
+        }
+    })
 }

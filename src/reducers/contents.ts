@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 import {
     ContentActions,
     SET_CONTENTS,
@@ -14,7 +16,8 @@ export default function contentsReducer(state:ContentsState = initialState,
         action:ContentActions): ContentsState {
     switch (action.type) {
         case SET_CONTENTS:
-            return action.payload.contents
+            const sorted = _.orderBy(action.payload.contents, ['isDirectory', 'name'], ['desc', 'asc'])
+            return sorted
         case OPEN_FOLDER:
             return []
         case GO_TO_PARENT_FOLDER:

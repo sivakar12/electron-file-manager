@@ -1,5 +1,10 @@
-import { ContentItem, FavoriteItem, Path } from './core'
-
+import {
+    ContentItem,
+    FavoriteItem,
+    Path,
+    TransferItem
+} from './core'
+import Immutable from 'immutable'
 export interface TabsState {
     current: number,
     tabs: string[]
@@ -15,3 +20,5 @@ export type ViewState = {
 }
 
 export type SelectionState = null | Path
+
+export type TransfersState = Immutable.Map<Path, TransferItem>

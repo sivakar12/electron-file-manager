@@ -113,7 +113,6 @@ export interface CloseWindowAction {
     type: typeof CLOSE_WINDOW
 }
 
-
 export const COPY_TO_STAGING_AREA = 'COPY_TO_STAGING_AREA'
 export interface CopyToStagingAreaAction {
     type: typeof COPY_TO_STAGING_AREA,
@@ -137,6 +136,16 @@ export interface PasteFromStagingAreaAction {
     type: typeof PASTE_FROM_STAGING_AREA
 }
 
+export const UPDATE_TRANSFER_PROGRESS = 'UPDATE_TRANSFER_PROGRESS'
+export interface UpdateTransferProgressAction {
+    type: typeof UPDATE_TRANSFER_PROGRESS,
+    payload: {
+        path: Path,
+        totalBytes: number,
+        bytesDone: number,
+        completed: boolean
+    }
+}
 
 export const TOGGLE_PROPERTIES = 'TOGGLE_PROPERTIES'
 export interface TogglePropertiesAction {
@@ -170,3 +179,6 @@ export type ViewActions = ToggleFavoritesAction | TogglePropertiesAction
 
 export type SelectionActions = SelectItemAction | ClearSelectionAction |
     OpenFileAction | OpenFolderAction | GoToParentFolderAction
+
+export type TransferActions = CutToStagingAreaAction | CopyToStagingAreaAction |
+    PasteFromStagingAreaAction | RemoveFromStagingAreaAction | UpdateTransferProgressAction

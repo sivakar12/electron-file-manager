@@ -5,6 +5,8 @@ import TitleBar from './TitleBar'
 import Contents from './Contents'
 import PathBar from './PathBar'
 import Favorites from './Favorites'
+import Properties from './Properties'
+
 import { AppState } from '../reducers'
 
 export default function() {
@@ -21,7 +23,7 @@ export default function() {
                 <Contents/>
             </div>
             { viewState.properties && <div id="properties">
-            
+                <Properties/>
             </div> }
             { viewState.favorites && 
             <div id="favorites">

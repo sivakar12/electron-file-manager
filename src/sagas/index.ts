@@ -21,18 +21,14 @@ import { getHomeDirectory, getFolderContents, openFile } from '../backend'
 import { AppState } from '../reducers'
 
 function* handleLoadContents() {
-    try {
-        const {tabs}: AppState = yield select()
-        const path = tabs.tabs[tabs.current]
-        const contents = yield getFolderContents(path)
-        const action: SetContentsAction = {
-            type: SET_CONTENTS,
-            payload: { contents }
-        }
-        yield put(action)
-    } catch (e) {
-        console.error(e)
+    const {tabs}: AppState = yield select()
+    const path = tabs.tabs[tabs.current]
+    const contents = yield getFolderContents(path)
+    const action: SetContentsAction = {
+        type: SET_CONTENTS,
+        payload: { contents }
     }
+    yield put(action)
 }
 
 function* handleOpenFolder() {

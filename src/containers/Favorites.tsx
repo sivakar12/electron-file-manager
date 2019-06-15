@@ -1,6 +1,5 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import pathModule from 'path'
 
 import {
     AddFavoriteAction,
@@ -11,7 +10,6 @@ import {
 import { AppState } from '../reducers'
 import { FavoriteItem } from '../types/core';
 import FavoriteItemComponent from '../components/FavoriteItem'
-import FavoritePanel from '../components/FavoritesPanel'
 import FavoritesPanel from '../components/FavoritesPanel';
 
 export default function() {
@@ -20,7 +18,6 @@ export default function() {
 
     function handleAddFavorite(favorite: FavoriteItem) {
         const path = state.tabs.tabs[state.tabs.current]
-        const name = pathModule.basename(path)
         const action: AddFavoriteAction = {
             type: ADD_FAVORITE,
             payload: {

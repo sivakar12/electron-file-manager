@@ -1,7 +1,6 @@
 import {
     Path,
     ContentItem,
-    FavoriteItem
 } from './core'
 
 export const CHANGE_PATH = 'CHANGE_PATH'

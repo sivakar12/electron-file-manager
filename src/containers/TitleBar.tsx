@@ -11,7 +11,6 @@ import {
     MinimizeWindowAction,
     ToggleMaximizeWindowAction,
 } from '../types/redux-actions'
-import { AppState } from '../reducers'
 
 export default function() {
     const dispatch = useDispatch()

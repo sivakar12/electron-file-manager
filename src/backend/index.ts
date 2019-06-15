@@ -48,7 +48,6 @@ export function openFile(filePath: string) {
         }
         try {
             command += ' "' + filePath + '"'
-            console.log(command)
             spawn(command, [filePath], {detached: true} )
             resolve()
         } catch(e) {

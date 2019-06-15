@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import pathModule from 'path'
 
 import {
     NEW_TAB,
@@ -54,7 +55,7 @@ export default function() {
             {tabs.map((t, index) => 
                 <TabItem
                     key={index}
-                    path={t}
+                    name={pathModule.basename(t)}
                     active={index === current}
                     onClick={makeSwitchTabHandler(index)}
                     onClose={makeCloseTabHandler(index)}

@@ -13,7 +13,7 @@ export default function selectionReducer(state: SelectionState = initialState,
         action: SelectionActions): SelectionState {
     switch (action.type) {
         case SELECT_ITEM:
-            if (state == action.payload.path) return null
+            if (state === action.payload.path) return null
             return action.payload.path
         case CLEAR_SELECTION:
             return null

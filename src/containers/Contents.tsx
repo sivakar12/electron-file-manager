@@ -1,6 +1,5 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import pathModule from 'path'
 
 import {
     OpenFolderAction,
@@ -14,12 +13,10 @@ import { AppState } from '../reducers'
 import { ContentItem } from '../types/core'
 
 import ContentsItem from '../components/ContentsItem'
-import ContetntsList from '../components/ContentsList'
-import ContentsList from '../components/ContentsList';
+import ContentsList from '../components/ContentsList'
 
 export default function() {
-    const { contents, tabs, selection } = useSelector((state: AppState) => state)
-    const path = tabs.tabs[tabs.current]
+    const { contents, selection } = useSelector((state: AppState) => state)
     const dispatch = useDispatch()
 
     function isItemSelected(item: ContentItem) {
@@ -57,6 +54,7 @@ export default function() {
             {contents.map(c => 
                 <ContentsItem 
                     {...c}
+                    key={c.path}
                     onClick={makeOnClickHandler(c)}
                     onDoubleClick={makeOnDoubleClickHandler(c)}
                     isSelected={isItemSelected(c)}

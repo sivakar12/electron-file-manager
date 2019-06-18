@@ -19,6 +19,7 @@ import {
 } from '../types/redux-actions'
 import { getHomeDirectory, getFolderContents, openFile } from '../backend'
 import { AppState } from '../reducers'
+import { handleKeyboardEvents } from './keyboard-shortcuts';
 
 function* handleLoadContents() {
     const {tabs}: AppState = yield select()
@@ -72,6 +73,7 @@ function* setUpActionListeners() {
 export default function* rootSaga() {
     yield all([
         initialize(),
-        setUpActionListeners()
+        setUpActionListeners(),
+        handleKeyboardEvents()
     ])
 }

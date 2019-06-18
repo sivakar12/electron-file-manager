@@ -1,4 +1,4 @@
-import Immutable from 'immutable'
+import _ from 'lodash'
 import {
     CUT_TO_STAGING_AREA,
     COPY_TO_STAGING_AREA,
@@ -11,7 +11,7 @@ import {
 import { TransferItem, Path } from '../types/core'
 import { TransfersState } from '../types/redux-state'
 
-const initialState: TransfersState = Immutable.Map<Path, TransferItem>()
+const initialState: TransfersState = {}
 
 export default function(state: TransfersState = initialState, 
     action: TransferActions): TransfersState {
@@ -26,7 +26,7 @@ export default function(state: TransfersState = initialState,
                     started: false,
                     complete: false
                 }
-                return state.set(path, Immutable.fromJS(transferItem))
+                return { ...state, [path]: transferItem }
             case CUT_TO_STAGING_AREA:
                 path = action.payload.path
                 transferItem = {
@@ -35,11 +35,12 @@ export default function(state: TransfersState = initialState,
                     started: false,
                     complete: false
                 }
-                return state.set(path, Immutable.fromJS(transferItem))
+                return { ...state, [path]: transferItem }
             case REMOVE_FROM_STAGING_AREA:
-                return state.remove(action.payload.path)
+                return _.omit(state, action.payload.path)
             case UPDATE_TRANSFER_PROGRESS:
-                return state.set(action.payload.path, Immutable.fromJS(action.payload))
+                const newItem = { ...state[action.payload.path], ...action.payload }
+                return {...state, [action.payload.path]: newItem }
             default:
                 return state
         }

@@ -9,7 +9,7 @@ import {
     CUT_TO_STAGING_AREA,
     PASTE_FROM_STAGING_AREA
 } from '../types/redux-actions';
-import { getCurrentPath } from './helpers'
+import { getCurrentPath, getSelectedItem } from './helpers'
 
 function createKeyboardEventChannel() {
     return eventChannel(emitter => {
@@ -49,14 +49,14 @@ export function* handleKeyboardEvents() {
             case 'ctrl+c':
                 action = {
                     type: COPY_TO_STAGING_AREA,
-                    payload: { path: yield getCurrentPath()}
+                    payload: { path: yield getSelectedItem()}
                 }
                 yield put(action)
                 break
             case 'ctrl+x':
                 action = {
                     type: CUT_TO_STAGING_AREA,
-                    payload: { path: yield getCurrentPath() }
+                    payload: { path: yield getSelectedItem() }
                 }
                 yield put(action)
                 break

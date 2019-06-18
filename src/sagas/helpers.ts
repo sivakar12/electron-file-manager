@@ -5,3 +5,8 @@ export function* getCurrentPath() {
     const state: AppState = yield select()
     return state.tabs.tabs[state.tabs.current]
 }
+
+export function* getSelectedItem() {
+    const state: AppState = yield select()
+    return state.selection
+}

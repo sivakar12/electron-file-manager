@@ -56,15 +56,13 @@ body {
 }
 .contents {
     margin: 20px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     transition: all 1s ease;
 
     .contents-item {
         padding: 5px;
         margin: 2px;
-        width: 20vw;
         cursor: pointer;
 
         &.selected {

@@ -22,7 +22,7 @@ export default function(state: TransfersState = initialState,
                 path = action.payload.path
                 transferItem = {
                     path,
-                    cut: false,
+                    type: 'copy',
                     started: false,
                     complete: false
                 }
@@ -31,7 +31,7 @@ export default function(state: TransfersState = initialState,
                 path = action.payload.path
                 transferItem = {
                     path,
-                    cut: true,
+                    type: 'cut',
                     started: false,
                     complete: false
                 }

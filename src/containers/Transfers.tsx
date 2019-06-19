@@ -23,7 +23,7 @@ export default function() {
     return (
         <TransfersPanel>
             {Object.values(transfers).map(t =>
-                <TransfersItem key={t.path} path={t.path} onRemove={makeOnRemoveHandler(t)}/>
+                <TransfersItem key={t.path} {...t} onRemove={makeOnRemoveHandler(t)}/>
             )}
         </TransfersPanel>
     )

@@ -17,7 +17,7 @@ export interface ContentItem {
 
 export interface TransferItem {
     path: Path,
-    cut: boolean,
+    type: 'cut' | 'copy' | 'delete',
     totalBytes?: number,
     bytesDone?: number,
     started: boolean,

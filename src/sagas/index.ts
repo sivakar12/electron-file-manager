@@ -20,6 +20,7 @@ import {
 import { getHomeDirectory, getFolderContents, openFile } from '../backend'
 import { AppState } from '../reducers'
 import { handleKeyboardEvents } from './keyboard-shortcuts';
+import handleTransfers from './transfers';
 
 function* handleLoadContents() {
     const {tabs}: AppState = yield select()
@@ -74,6 +75,7 @@ export default function* rootSaga() {
     yield all([
         initialize(),
         setUpActionListeners(),
-        handleKeyboardEvents()
+        handleKeyboardEvents(),
+        handleTransfers()
     ])
 }

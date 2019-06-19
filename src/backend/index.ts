@@ -1,10 +1,13 @@
 import fs from 'fs'
 import os from 'os'
 import pathModule from 'path'
-import _ from 'lodash'
+
 import spawn from 'cross-spawn'
-import { ContentItem } from '../types/core'
-import { string } from 'prop-types';
+import _ from 'lodash'
+import { Observable, Observer } from 'rxjs'
+import { concatMap} from 'rxjs/operators'
+
+import { ContentItem, Path } from '../types/core'
 
 const fsPromise = fs.promises
 
@@ -53,5 +56,26 @@ export function openFile(filePath: string) {
         } catch(e) {
             reject(e)
         }
+    })
+}
+
+export async function getFileDetails(path: Path) {
+    return await fsPromise.stat(path) 
+}
+
+export function copyFile(source: Path, destination: Path): Observable<number> {
+    const readStream  = fs.createReadStream(source)
+    const writeStream = fs.createWriteStream(destination)
+    readStream.pipe(writeStream)
+
+    return Observable.create((observer: Observer<number>)  => {
+        readStream.on('data', (bytesRead: number)  => {
+            observer.next(bytesRead)
+        })
+        readStream.on('error', e => observer.error(e))
+        writeStream.on('close', () => {
+            observer.complete()
+        })
+        writeStream.on('error', e => observer.error(e))
     })
 }

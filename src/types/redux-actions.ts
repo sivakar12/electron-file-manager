@@ -1,6 +1,7 @@
 import {
     Path,
     ContentItem,
+    TransferItemState,
 } from './core'
 
 export const CHANGE_PATH = 'CHANGE_PATH'
@@ -140,9 +141,9 @@ export interface UpdateTransferProgressAction {
     type: typeof UPDATE_TRANSFER_PROGRESS,
     payload: {
         path: Path,
-        totalBytes: number,
-        bytesDone: number,
-        completed: boolean
+        totalBytes?: number,
+        bytesDone?: number,
+        state: TransferItemState
     }
 }
 

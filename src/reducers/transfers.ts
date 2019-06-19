@@ -23,8 +23,7 @@ export default function(state: TransfersState = initialState,
                 transferItem = {
                     path,
                     type: 'copy',
-                    started: false,
-                    complete: false
+                    state: 'added'
                 }
                 return { ...state, [path]: transferItem }
             case CUT_TO_STAGING_AREA:
@@ -32,8 +31,7 @@ export default function(state: TransfersState = initialState,
                 transferItem = {
                     path,
                     type: 'cut',
-                    started: false,
-                    complete: false
+                    state: 'added'
                 }
                 return { ...state, [path]: transferItem }
             case REMOVE_FROM_STAGING_AREA:

@@ -15,11 +15,12 @@ export interface ContentItem {
     size: number;
 }
 
+export type TransferItemState = 'added' | 'started' | 'finished' | 'error'
+
 export interface TransferItem {
     path: Path,
     type: 'cut' | 'copy' | 'delete',
     totalBytes?: number,
     bytesDone?: number,
-    started: boolean,
-    complete: boolean
+    state: TransferItemState
 }

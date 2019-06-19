@@ -2,9 +2,10 @@ import React from 'react'
 import pathModule from 'path'
 
 function getStatus(item) {
-    if (item.complete) return 'done'
-    if (!item.started) return item.type
-    if (item.totalBytes && item.bytesDone) return item.bytesDone + '/' + item.totalBytes
+    if (item.state === 'finished') return 'done'
+    if (item.state === 'started') return item.bytesDone + '/' + item.totalBytes
+    if (item.state === 'added') return item.type
+    if (item.state === 'error') return 'error'
 }
 
 export default (props) => (

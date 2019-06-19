@@ -6,6 +6,7 @@ import Contents from './Contents'
 import PathBar from './PathBar'
 import Favorites from './Favorites'
 import Properties from './Properties'
+import Transfers from './Transfers'
 
 import { AppState } from '../reducers'
 
@@ -29,8 +30,8 @@ export default function() {
             <div id="favorites">
                 <Favorites/>
             </div> }
-            <div id="staging-area">
-            
+            <div id="transfers-panel">
+                <Transfers/>
             </div>
         </div>
     )

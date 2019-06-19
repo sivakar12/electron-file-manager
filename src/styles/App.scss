@@ -19,10 +19,10 @@ body {
     grid-template-columns: auto 1fr auto;
     grid-template-rows: auto auto 1fr auto;
     grid-template-areas: 
-        "title-bar title-bar title-bar" 
-        "path-bar path-bar path-bar" 
-        "favorites contents properties" 
-        "favorites staging-area staging-area";
+    "title-bar title-bar title-bar"
+    "path-bar path-bar path-bar"
+    "favorites contents properties"
+    "favorites transfers-panel transfers-panel";
 }
 
 #title-bar {
@@ -48,23 +48,23 @@ body {
     overflow-y: auto;
     grid-area: properties;
 }
-#staging-area {
+#transfers-panel {
     max-height: 20vh;
     overflow-y: auto;
     overflow-x: auto;
-    grid-area: staging-area;
+    grid-area: transfers-panel;
 }
 .contents {
     margin: 20px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     transition: all 1s ease;
-
+    
     .contents-item {
         padding: 5px;
         margin: 2px;
         cursor: pointer;
-
+        
         &.selected {
             background-color: $color4;
             color: $color2;
@@ -80,7 +80,7 @@ body {
             font-size: 1.2em;
         }
         .contents-item-size {
-          font-size: 0.6em
+            font-size: 0.6em
         }
     }
 }
@@ -111,7 +111,7 @@ body {
     display: flex;
     flex-direction: row;
     align-items: baseline;
-
+    
     .tab-bar-item {
         min-width: 100px;
         max-width: 200px;
@@ -148,15 +148,14 @@ body {
     border: 1px solid black;
     padding: 5px;
     display: flex;
-
     .path-bar-up-button {
         &:hover {
             background-color: $color4;
         }
     }
     .path-bar-path-string {
-      flex-grow: 1;
-      text-align: center;
+        flex-grow: 1;
+        text-align: center;
     }
 }
 .favorites-panel {
@@ -173,25 +172,24 @@ body {
         }
     }
     .favorites-add-button {
-      color: $color5;
+        color: $color5;
     }
 }
-.staging-area {
-    .staging-area-items {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      .staging-area-item {
+.transfers-panel {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    .transfers-panel-item {
         display: flex;
         flex-direction: row;
         min-width: 120px;
         margin: 5px;
-        .staging-area-item-name{
-          flex-grow: 1;
+        .transfers-panel-item-name {
+            flex-grow: 1;
         }
-        .staging-area-item-remove {
-          background: $color1;
+        .transfers-panel-item-remove {
+            cursor: pointer;
+            background-color: red;
         }
-      }
     }
 }

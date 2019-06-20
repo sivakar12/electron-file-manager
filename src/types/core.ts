@@ -24,3 +24,15 @@ export interface TransferItem {
     bytesDone?: number,
     state: TransferItemState
 }
+
+export interface PropertiesItem {
+    name: string,
+    fullPath: Path,
+    size: number,
+    isDirectory: boolean,
+    isSymLink: boolean,
+    mode: number,
+    lastAccessTime: number,
+    lastModifiedTime: number,
+    createdTime: number
+}

@@ -194,3 +194,23 @@ body {
         }
     }
 }
+
+.properties {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-x: auto;
+    .properties-item {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        
+        .properties-item-value {
+            margin-left: 10px;
+            font-weight: bold;
+            font-size: 80%;
+        }
+    }
+}

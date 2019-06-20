@@ -5,13 +5,13 @@ import pathModule from 'path'
 import spawn from 'cross-spawn'
 import _ from 'lodash'
 import { Observable, Observer } from 'rxjs'
-import { concatMap, scan, throttleTime } from 'rxjs/operators'
+import { concatMap, scan, throttleTime, map } from 'rxjs/operators'
 
-import { ContentItem, Path } from '../types/core'
+import { ContentItem, Path, PropertiesItem } from '../types/core'
 
 const fsPromise = fs.promises
 
-export function getHomeDirectory():string {
+export function getHomeDirectory(): Path {
     return os.homedir()
 }
 
@@ -33,7 +33,7 @@ export async function getFolderContents(path: string): Promise<ContentItem[]> {
     return fileDetails
 }
 
-export function openFile(filePath: string) {
+export function openFile(filePath: Path) {
     return new Promise((resolve, reject) => {
         let command
         switch (os.platform()) {
@@ -59,10 +59,6 @@ export function openFile(filePath: string) {
     })
 }
 
-export async function getFileDetails(path: Path) {
-    return await fsPromise.stat(path) 
-}
-
 export function copyFile(source: Path, destination: Path): Observable<number> {
     console.log(`Copying from ${source} to ${destination}`)
     const readStream  = fs.createReadStream(source)
@@ -81,4 +77,46 @@ export function copyFile(source: Path, destination: Path): Observable<number> {
     })
     .pipe(scan((acc: number, x: number) => acc + x))
     .pipe(throttleTime(100))
+}
+
+export async function getFileDetails(path: Path): Promise<PropertiesItem> {
+    const stat = await fsPromise.stat(path)
+    const properties: PropertiesItem = {
+        name: pathModule.basename(path),
+        fullPath: path,
+        isDirectory: stat.isDirectory(),
+        isSymLink: stat.isSymbolicLink(),
+        size: stat.size,
+        mode: stat.mode,
+        lastAccessTime: stat.atimeMs,
+        lastModifiedTime: stat.mtimeMs,
+        createdTime: stat.ctimeMs
+    }
+    return properties
+}
+
+export function getFolderTree(path: Path): Observable<Path> {
+    return Observable.create(async (observer: Observer<Path>) => {
+        async function recurse(folder: Path) {
+            const items = await fsPromise.readdir(folder)
+            for (let i = 0; i < items.length; i++) {
+                const childPath = pathModule.resolve(folder, items[i])
+                observer.next(childPath)
+                const isFolder = (await fsPromise.stat(childPath)).isDirectory()
+                if (isFolder) {
+                    await recurse(childPath)
+                }
+            }
+        }
+        await recurse(path)
+        observer.complete()
+    })
+}
+
+export function getFolderSize(path: Path): Observable<number> {
+    return getFolderTree(path)
+            .pipe(concatMap(getFileDetails))
+            .pipe(map(stats => stats.size))
+            .pipe(scan((total, current) => total + current))
+            .pipe(throttleTime(300))
 }

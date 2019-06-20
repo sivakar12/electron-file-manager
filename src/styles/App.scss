@@ -1,6 +1,14 @@
 @import './fonts';
 @import './colors';
 
+@import './components/contents.scss';
+@import './components/favorites.scss';
+@import './components/path-bar.scss';
+@import './components/properties.scss';
+@import './components/tab-bar.scss';
+@import './components/title-bar.scss';
+@import './components/transfers.scss';
+
 body {
     font-family: 'Merriweather';
     font-size: 20px;
@@ -53,164 +61,4 @@ body {
     overflow-y: auto;
     overflow-x: auto;
     grid-area: transfers-panel;
-}
-.contents {
-    margin: 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    transition: all 1s ease;
-    
-    .contents-item {
-        padding: 5px;
-        margin: 2px;
-        cursor: pointer;
-        
-        &.selected {
-            background-color: $color4;
-            color: $color2;
-        }
-        &:hover {
-            background-color: $color4;
-            color: $color2;
-        }
-        .contents-item-name {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            font-size: 1.2em;
-        }
-        .contents-item-size {
-            font-size: 0.6em
-        }
-    }
-}
-.title-bar {
-    display: flex;
-    align-content: justify;
-    align-items: stretch;
-    .title-bar-draggable-area {
-        flex-grow: 1;
-        -webkit-app-region: drag;
-    }
-    .title-bar-buttons {
-        display: flex;
-        flex-direction: row;
-        align-items: stretch;
-    }
-    .title-bar-button {
-        padding-left: 8px;
-        padding-right: 8px;
-        color: $color1;
-        &:hover {
-            background-color: $color1;
-            color: $color2;
-        }
-    }
-}
-.tab-bar {
-    display: flex;
-    flex-direction: row;
-    align-items: baseline;
-    
-    .tab-bar-item {
-        min-width: 100px;
-        max-width: 200px;
-        padding: 5px;
-        border: 1px solid black;
-        display: flex;
-        
-        &:hover {
-            background-color: $color4;
-        }
-        .tab-bar-path {
-            text-overflow: ellipsis;
-            overflow: hidden;
-            white-space: nowrap;
-            flex-grow: 1;
-        }
-        .tab-bar-close:hover {
-            background-color: $color1;
-        }
-        
-        &.active {
-            background-color: $color4;
-        }
-    }
-    .tab-bar-new-tab {
-        padding: 5px;
-        border: 1px solid black;
-        &:hover {
-            background-color: $color4;
-        }
-    }
-}
-.path-bar {
-    border: 1px solid black;
-    padding: 5px;
-    display: flex;
-    .path-bar-up-button {
-        &:hover {
-            background-color: $color4;
-        }
-    }
-    .path-bar-path-string {
-        flex-grow: 1;
-        text-align: center;
-    }
-}
-.favorites-panel {
-    padding: 5px;
-    .favorites-title {
-        font-weight: bold;
-    }
-    .favorites-item {
-        padding: 5px;
-        cursor: pointer;
-        &:hover {
-            background-color: $color4;
-            color: $color2;
-        }
-    }
-    .favorites-add-button {
-        color: $color5;
-    }
-}
-.transfers-panel {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    grid-gap: 6px;
-    .transfers-panel-item {
-        display: flex;
-        flex-direction: row;
-        .transfers-panel-item-name {
-            flex-grow: 1;
-        }
-        .transfers-panel-status {
-            font-size: 80%
-        }
-        .transfers-panel-item-remove {
-            cursor: pointer;
-            color: red;
-        }
-    }
-}
-
-.properties {
-    display: flex;
-    height: 100%;
-    flex-direction: column;
-    justify-content: flex-start;
-    overflow-x: auto;
-    .properties-item {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        
-        .properties-item-value {
-            margin-left: 10px;
-            font-weight: bold;
-            font-size: 80%;
-        }
-    }
 }

@@ -1,0 +1,19 @@
+.transfers-panel {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 6px;
+    .transfers-panel-item {
+        display: flex;
+        flex-direction: row;
+        .transfers-panel-item-name {
+            flex-grow: 1;
+        }
+        .transfers-panel-status {
+            font-size: 80%
+        }
+        .transfers-panel-item-remove {
+            cursor: pointer;
+            color: red;
+        }
+    }
+}

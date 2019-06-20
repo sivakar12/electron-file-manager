@@ -1,0 +1,23 @@
+.title-bar {
+    display: flex;
+    align-content: justify;
+    align-items: stretch;
+    .title-bar-draggable-area {
+        flex-grow: 1;
+        -webkit-app-region: drag;
+    }
+    .title-bar-buttons {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+    }
+    .title-bar-button {
+        padding-left: 8px;
+        padding-right: 8px;
+        color: $color1;
+        &:hover {
+            background-color: $color1;
+            color: $color2;
+        }
+    }
+}

@@ -1,0 +1,17 @@
+.favorites-panel {
+    padding: 5px;
+    .favorites-title {
+        font-weight: bold;
+    }
+    .favorites-item {
+        padding: 5px;
+        cursor: pointer;
+        &:hover {
+            background-color: $color4;
+            color: $color2;
+        }
+    }
+    .favorites-add-button {
+        color: $color5;
+    }
+}

@@ -5,7 +5,7 @@ import pathModule from 'path'
 import spawn from 'cross-spawn'
 import _ from 'lodash'
 import { Observable, Observer } from 'rxjs'
-import { concatMap} from 'rxjs/operators'
+import { concatMap, scan, throttleTime } from 'rxjs/operators'
 
 import { ContentItem, Path } from '../types/core'
 
@@ -64,13 +64,14 @@ export async function getFileDetails(path: Path) {
 }
 
 export function copyFile(source: Path, destination: Path): Observable<number> {
+    console.log(`Copying from ${source} to ${destination}`)
     const readStream  = fs.createReadStream(source)
     const writeStream = fs.createWriteStream(destination)
     readStream.pipe(writeStream)
 
     return Observable.create((observer: Observer<number>)  => {
-        readStream.on('data', (bytesRead: number)  => {
-            observer.next(bytesRead)
+        readStream.on('data', (bytesRead: Buffer)  => {
+            observer.next(bytesRead.length)
         })
         readStream.on('error', e => observer.error(e))
         writeStream.on('close', () => {
@@ -78,4 +79,6 @@ export function copyFile(source: Path, destination: Path): Observable<number> {
         })
         writeStream.on('error', e => observer.error(e))
     })
+    .pipe(scan((acc: number, x: number) => acc + x))
+    .pipe(throttleTime(100))
 }

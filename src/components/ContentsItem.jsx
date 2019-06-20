@@ -1,5 +1,4 @@
 import React from 'react'
-import filesize from 'filesize'
 
 function ContentsItem(props) {
     return (
@@ -11,8 +10,6 @@ function ContentsItem(props) {
                 {props.name}
                 {props.isSymLink ? '🔗' : '' }
             </div>
-            { !props.isDir &&
-                <div className="contents-item-size">{filesize(props.size)}</div>}
         </div>
     )
 }

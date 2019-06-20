@@ -81,6 +81,7 @@ export function copyFile(source: Path, destination: Path): Observable<number> {
 
 export async function getFileDetails(path: Path): Promise<PropertiesItem> {
     const stat = await fsPromise.stat(path)
+    console.log('Stat called')
     const properties: PropertiesItem = {
         name: pathModule.basename(path),
         fullPath: path,
@@ -95,13 +96,19 @@ export async function getFileDetails(path: Path): Promise<PropertiesItem> {
     return properties
 }
 
-export function getFolderTree(path: Path): Observable<Path> {
+export function getFolderTree(path: Path, maxItems: number = -1): Observable<Path> {
+    let itemsLooked = 0
     return Observable.create(async (observer: Observer<Path>) => {
         async function recurse(folder: Path) {
             const items = await fsPromise.readdir(folder)
             for (let i = 0; i < items.length; i++) {
                 const childPath = pathModule.resolve(folder, items[i])
                 observer.next(childPath)
+                itemsLooked += 1
+                if (itemsLooked === maxItems) {
+                    observer.error({ message: 'Too many items'})
+                    observer.complete()
+                }
                 const isFolder = (await fsPromise.stat(childPath)).isDirectory()
                 if (isFolder) {
                     await recurse(childPath)
@@ -114,7 +121,7 @@ export function getFolderTree(path: Path): Observable<Path> {
 }
 
 export function getFolderSize(path: Path): Observable<number> {
-    return getFolderTree(path)
+    return getFolderTree(path, 1000)
             .pipe(concatMap(getFileDetails))
             .pipe(map(stats => stats.size))
             .pipe(scan((total, current) => total + current))

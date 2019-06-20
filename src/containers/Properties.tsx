@@ -18,15 +18,17 @@ export default function() {
 
     const [size, setSize] = useState<number>(0)
     const [loadingSize, setLoadingSize] = useState<boolean>(false)
+    const [sizeError, setSizeError] = useState<boolean>(false)
     useEffect(() => {
         setLoadingSize(true)
+        setSizeError(false)
         const folderSizeObserver = getFolderSize(currentPath)
         const subscription = folderSizeObserver.subscribe(
             size => setSize(size),
-            error => setSize(0),
+            () => {setSize(0); setSizeError(true)},
             () => setLoadingSize(false)
         )
         return () => { subscription.unsubscribe(); setSize(0) }
     }, [currentPath])
-    return <PropertiesComponent properties={details} loadingSize={loadingSize} size={size}/>
+    return <PropertiesComponent properties={details} loadingSize={loadingSize} sizeError={sizeError} size={size}/>
 }

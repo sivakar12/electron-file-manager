@@ -8,6 +8,8 @@ import {
     SWITCH_TAB,
     CLOSE_TAB,
     NEW_TAB,
+    NEXT_TAB,
+    PREVIOUS_TAB,
     SetContentsAction,
     OpenFileAction,
     GO_TO_PARENT_FOLDER,
@@ -64,7 +66,7 @@ function minimizeWindow() {
 function* setUpActionListeners() {
     yield all([
         takeEvery(LOAD_CONTENTS, handleLoadContents),
-        takeEvery([OPEN_FOLDER, SWITCH_TAB, CLOSE_TAB, NEW_TAB, GO_TO_PARENT_FOLDER, CHANGE_PATH], handleOpenFolder),
+        takeEvery([OPEN_FOLDER, SWITCH_TAB, CLOSE_TAB, NEW_TAB, NEXT_TAB, PREVIOUS_TAB, GO_TO_PARENT_FOLDER, CHANGE_PATH], handleOpenFolder),
         takeEvery(OPEN_FILE, handleOpenFile),
         takeEvery(CLOSE_WINDOW, closeWindow),
         takeEvery(TOGGLE_MAXIMIZE_WINDOW, toggleMaximize),

@@ -7,7 +7,7 @@ import {
 import { ViewState } from '../types/redux-state'
 
 const initialState: ViewState = {
-    properties: true,
+    properties: false,
     favorites: true
 }
 

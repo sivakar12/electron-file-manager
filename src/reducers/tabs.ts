@@ -17,7 +17,7 @@ import {getHomeDirectory} from '../backend'
 
 const initialState: TabsState = {
     current: 0,
-    tabs: [getHomeDirectory()]
+    tabs: [getHomeDirectory()]  // side effect but OK
 } 
 
 function handleTabClose({tabs, current}: TabsState, index: number) {
@@ -44,11 +44,13 @@ export default function tabsReducer(state: TabsState = initialState,
             if (action.payload && action.payload.path) {
                 path = action.payload.path
             } else {
-                path = getHomeDirectory()
+                path = state.tabs[state.current]    // create new tab of the current folder
             }
-            return Object.assign({}, state, {
-              tabs: [...state.tabs, path]  
-            })
+            return {
+                ...state,
+                tabs: [...state.tabs, path],
+                current: state.tabs.length          // old length gives the index of current last
+            }
         case CLOSE_TAB:
             let index
             if (action.payload && action.payload.index) {

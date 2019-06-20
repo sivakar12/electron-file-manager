@@ -11,23 +11,45 @@ import {
 } from '../types/redux-actions';
 import { getCurrentPath, getSelectedItem } from './helpers'
 
+type KeyboardMapping = {
+    combo(e: KeyboardEvent): boolean;
+    callback(): any
+}
+const mappings: KeyboardMapping[] = [
+    {
+        combo: (e) => e.ctrlKey && e.key === 'c',
+        callback: function*() {
+            const action = {
+                type: COPY_TO_STAGING_AREA,
+                payload: { path: yield getSelectedItem()}
+            }
+            yield put(action)
+        }
+    },
+    {
+        combo: (e) => e.ctrlKey && e.key === 'x',
+        callback: function*() {
+            const action = {
+                type: CUT_TO_STAGING_AREA,
+                payload: { path: yield getSelectedItem()}
+            }
+            yield put(action)
+        }
+    },
+    {
+        combo: (e) => e.ctrlKey && e.key === 'v',
+        callback: function*() {
+            const action = {
+                type: PASTE_FROM_STAGING_AREA 
+            }
+            yield put(action)
+        }
+    }
+]
+
 function createKeyboardEventChannel() {
     return eventChannel(emitter => {
-        // const keyCombination = 'ctrl+x ctrl+c ctrl+v'
-        // Mousetrap.bind(keyCombination, function(e, combo) {
-        //     emitter(combo)
-        // })
-        // return () => {
-        //     Mousetrap.unbind(keyCombination)
-        // }
-        const keyHandler = (e: KeyboardEvent) => {
-            if (e.ctrlKey && e.key == 'x')
-            emitter('ctrl+x')
-            if (e.ctrlKey && e.key == 'c')
-            emitter('ctrl+c')
-            if (e.ctrlKey && e.key == 'v') 
-            emitter('ctrl+v')
-        } 
+        const keyHandler = (e: KeyboardEvent) => emitter(e)
         
         document.body.addEventListener('keydown', keyHandler)
         
@@ -38,33 +60,15 @@ function createKeyboardEventChannel() {
 }
 
 export function* handleKeyboardEvents() {
-    console.log('Listening to keyboard')
-    const keyComboChannel = yield call(createKeyboardEventChannel)
-    console.log(keyComboChannel)
+    const keyboardEventChannel = yield call(createKeyboardEventChannel)
     while (true) {
-        const combo = yield take(keyComboChannel)
-        console.log(combo)
-        let action: CopyToStagingAreaAction | CutToStagingAreaAction | PasteFromStagingAreaAction
-        switch (combo) {
-            case 'ctrl+c':
-                action = {
-                    type: COPY_TO_STAGING_AREA,
-                    payload: { path: yield getSelectedItem()}
-                }
-                yield put(action)
+        const event = yield take(keyboardEventChannel)
+        console.log(event)
+        for (let mapping of mappings) {
+            if (mapping.combo(event)) {
+                yield mapping.callback()
                 break
-            case 'ctrl+x':
-                action = {
-                    type: CUT_TO_STAGING_AREA,
-                    payload: { path: yield getSelectedItem() }
-                }
-                yield put(action)
-                break
-            case 'ctrl+v': 
-                action = {
-                    type: PASTE_FROM_STAGING_AREA 
-                }
-                yield put(action)
+            }
         }
     }
 }

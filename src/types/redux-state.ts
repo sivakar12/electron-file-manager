@@ -8,7 +8,7 @@ import {
 
 export interface TabsState {
     current: number,
-    tabs: string[]
+    tabs: Path[]
 }
 
 export type ContentsState = ContentItem[]

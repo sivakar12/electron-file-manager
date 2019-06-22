@@ -2,16 +2,27 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 
 import TitleBar from './TitleBar'
-import Contents from './Contents'
+import ContentsGrid from './ContentsGrid'
 import PathBar from './MainToolbar'
 import Favorites from './Favorites'
 import Properties from './Properties'
 import Transfers from './Transfers'
 
 import { AppState } from '../reducers'
+import ContentsColumns from './ContentsColumns';
 
 export default function() {
     const viewState = useSelector((state: AppState) => state.view)
+    let ContentsView = ContentsGrid
+    switch (viewState.view) {
+        case 'column':
+            ContentsView = ContentsColumns
+            break
+        case 'grid':
+        default:
+            ContentsView = ContentsGrid
+            break
+    }
     return (
         <div id="container">
             <div id="title-bar">
@@ -21,7 +32,7 @@ export default function() {
                 <PathBar/>
             </div>
             <div id="contents">
-                <Contents/>
+                <ContentsView/>
             </div>
             { viewState.properties && <div id="properties">
                 <Properties/>

@@ -1,11 +1,11 @@
 import React from 'react'
 
-function ContentsItem(props) {
+function ContentsGridItem(props) {
     return (
-        <div className={`contents-item ${props.isSelected ? 'selected' : ''}`} 
+        <div className={`contents-grid-item ${props.isSelected ? 'selected' : ''}`} 
             onClick={props.onClick}
             onDoubleClick={props.onDoubleClick}>
-            <div className="contents-item-name">
+            <div className="contents-grid-item-name">
                 {props.isDirectory ? '📁': '📃'}
                 {props.name}
                 {props.isSymLink ? '🔗' : '' }
@@ -14,4 +14,4 @@ function ContentsItem(props) {
     )
 }
 
-export default ContentsItem
+export default ContentsGridItem

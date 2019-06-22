@@ -6,8 +6,9 @@ import _ from 'lodash'
 import { AppState } from '../reducers';
 import { Path, ContentItem } from '../types/core';
 import { getFolderContents } from '../backend';
-import ColumnViewColumn from '../components/ColumnViewColumn';
-import ColumnViewItem from '../components/ColumnViewItem';
+import ColumnContainer from './ColumnViewColumn'
+import ColumnView from '../components/ColumnView'
+
 
 const NUMBER_OF_COLUMNS = 3
 
@@ -22,22 +23,17 @@ export default function() {
         middlePath = pathModule.dirname(middlePath)
     }
     
-    const [columnContents, setColumnContents] = useState<ContentItem[][]>([])
+    const [columnContents, setColumnContents] = useState<ContentItem[][]>(columnPaths.map(() => []))
     useEffect(() => {
         Promise.all(columnPaths.map(p => getFolderContents(p)))
             .then(contents => setColumnContents(contents))
     }, [path])
 
-
     return (
-        <div className="column-view">
-            {_.zip(columnPaths, columnContents).map(([path, contents]) => {
-                return (
-                    <ColumnViewColumn key={path} path={path}>
-                      {contents && contents.map(c => <ColumnViewItem key={c.path} content={c}/>)}
-                    </ColumnViewColumn>
-                )
-            })}
-        </div>
+        <ColumnView>
+            {columnPaths.map((path, index) =>
+                <ColumnContainer path={path} contents={columnContents[index]} level={columnPaths.length - index}/>
+            )}
+        </ColumnView>
     )
 }

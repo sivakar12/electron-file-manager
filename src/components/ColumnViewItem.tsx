@@ -1,12 +1,19 @@
 import React from 'react'
+import { ContentItem } from '../types/core';
 
-export default function(props) {
+type Props = {
+    content: ContentItem,
+    onClick?: (event: any) => void,
+    onDoubleClick?: (item: any) => void,
+    isSelected?: boolean
+}
+export default function(props: Props) {
     let icon = props.content.isDirectory ? '📁': '📃'
     if (props.content.errorAccessing) {
         icon = '❌'
     }
     return (
-        <div className={`column-view-item ${props.content.isSelected ? 'selected' : ''}`} 
+        <div className={`column-view-item ${props.isSelected ? 'selected' : ''}`} 
             onClick={props.onClick}
             onDoubleClick={props.onDoubleClick}>
             <div className="column-view-item-name">

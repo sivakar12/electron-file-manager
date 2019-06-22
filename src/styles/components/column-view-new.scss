@@ -12,12 +12,12 @@
         flex-wrap: nowrap;
         height: 100%;
         width: 100%;
-        overflow-y: auto;
         .column-view-column-name {
-            border-bottom: 2px solid black;
+            border-bottom: 1px;
         }
         .column-view-column-items {
             display: flex;
+            justify-content: flex-start;
             flex-direction: column;
             flex-wrap: nowrap;
             height: 100%;
@@ -41,7 +41,7 @@
                     overflow: hidden;
                     text-overflow: ellipsis;
                 }
-        }
+            }
         }
     }
 }

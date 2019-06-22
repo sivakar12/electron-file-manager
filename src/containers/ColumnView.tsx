@@ -14,7 +14,7 @@ const NUMBER_OF_COLUMNS = 3
 
 export default function() {
     const path = useSelector((state: AppState) => state.tabs.tabs[state.tabs.current])
-    
+    const selection = useSelector((state: AppState) => state.selection)
     const columnPaths: Path[] = []
     let middlePath = path
     while(columnPaths.length < NUMBER_OF_COLUMNS) {
@@ -22,6 +22,8 @@ export default function() {
         columnPaths.unshift(middlePath)
         middlePath = pathModule.dirname(middlePath)
     }
+    const selectedPaths: (Path| null)[] = _.drop(columnPaths, 1)
+    selectedPaths.push(selection)
     
     const [columnContents, setColumnContents] = useState<ContentItem[][]>(columnPaths.map(() => []))
     useEffect(() => {
@@ -32,7 +34,12 @@ export default function() {
     return (
         <ColumnView>
             {columnPaths.map((path, index) =>
-                <ColumnContainer path={path} contents={columnContents[index]} level={columnPaths.length - index}/>
+                <ColumnContainer
+                    key={path}
+                    path={path}
+                    contents={columnContents[index]}
+                    selectedItem={selectedPaths[index]}
+                />
             )}
         </ColumnView>
     )

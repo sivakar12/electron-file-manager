@@ -2,13 +2,14 @@ import React from 'react'
 import { Path } from '../types/core';
 
 type Props = {
-    path: Path;
-    children: Element[];
-    level: number;
+    name: string;
+    children: JSX.Element[];
 }
-export default (props: any) => (
-    <div className='column-view-column'>
-        {props.path}
-        {props.children}
+export default (props: Props) => (
+    <div className="column-view-column">
+        <div className="column-view-column-name">{props.name || ' '}</div>
+        <div className='column-view-column-items'>
+            {props.children}
+        </div>
     </div>
 )

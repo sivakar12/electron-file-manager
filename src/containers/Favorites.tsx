@@ -5,7 +5,9 @@ import {
     AddFavoriteAction,
     ADD_FAVORITE,
     ChangePathAction,
-    CHANGE_PATH
+    CHANGE_PATH,
+    ToggleFavoritesAction,
+    TOGGLE_FAVORITES,
 } from '../types/redux-actions'
 import { AppState } from '../reducers'
 import { FavoriteItem } from '../types/core';
@@ -37,9 +39,18 @@ export default function() {
             dispatch(action)
         }
     }
+    function handleCloseFavorite() {
+        const action: ToggleFavoritesAction = {
+            type: TOGGLE_FAVORITES
+        }
+        dispatch(action)
+    }
 
     return (
-        <FavoritesPanel onAddFavorite={handleAddFavorite}>
+        <FavoritesPanel 
+            onAddFavorite={handleAddFavorite}
+            onClose={handleCloseFavorite}
+            >
             {state.favorites.map(f =>(
                 <FavoriteItemComponent
                     name={f.name}

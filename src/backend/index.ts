@@ -15,19 +15,34 @@ export function getHomeDirectory(): Path {
     return os.homedir()
 }
 
+export async function getStats(path: Path) {
+    try {
+        return await fsPromise.stat(path)
+    } catch {
+        return null
+    }
+}
+
 export async function getFolderContents(path: string): Promise<ContentItem[]> {
     const files = await fsPromise.readdir(path)
     const filePaths = files.map(f => pathModule.join(path, f))
-    const fileStats =  await Promise.all(filePaths.map(f => fsPromise.stat(f)))
-    const fileDetails = _.range(0, files.length).map(i => {
+    const fileStats =  await Promise.all(filePaths.map(f => getStats(f)))
+    const fileDetails: ContentItem[] = _.range(0, files.length).map(i => {
         const stats = fileStats[i]
-        return {
-            name: files[i],
-            path: filePaths[i],
-            size: stats.size,
-            isDirectory: stats.isDirectory(),
-            isSymLink: stats.isSymbolicLink()
-
+        if (stats) {
+            return {
+                name: files[i],
+                path: filePaths[i],
+                size: stats.size,
+                isDirectory: stats.isDirectory(),
+                isSymLink: stats.isSymbolicLink()
+            }
+        } else {
+            return {
+                name: files[i],
+                path: filePaths[i],
+                errorAccessing: true
+            }
         }
     })
     return fileDetails

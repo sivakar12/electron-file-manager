@@ -10,9 +10,10 @@ export interface FavoriteItem {
 export interface ContentItem {
     name: string;
     path: Path;
-    isDirectory: boolean,
-    isSymLink: boolean,
-    size: number;
+    isDirectory?: boolean,
+    isSymLink?: boolean,
+    size?: number;
+    errorAccessing?: boolean
 }
 
 export type TransferItemState = 'added' | 'started' | 'finished' | 'error'

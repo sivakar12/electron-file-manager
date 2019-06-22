@@ -1,14 +1,16 @@
 import {
     ViewActions,
     TOGGLE_FAVORITES,
-    TOGGLE_PROPERTIES
+    TOGGLE_PROPERTIES,
+    CHANGE_VIEW
 } from '../types/redux-actions'
 
 import { ViewState } from '../types/redux-state'
 
 const initialState: ViewState = {
     properties: false,
-    favorites: true
+    favorites: true,
+    view: 'grid'
 }
 
 export default function viewReducer(state: ViewState = initialState, 
@@ -23,6 +25,11 @@ export default function viewReducer(state: ViewState = initialState,
             return {
                 ...state,
                 properties: !state.properties
+            }
+        case CHANGE_VIEW:
+            return {
+                ...state,
+                view: action.payload.view
             }
         default:
             return state

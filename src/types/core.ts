@@ -36,3 +36,5 @@ export interface PropertiesItem {
     lastModifiedTime: number,
     createdTime: number
 }
+
+export type ViewType = 'grid' | 'column' | 'list'

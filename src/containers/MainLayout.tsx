@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 
 import TitleBar from './TitleBar'
 import Contents from './Contents'
-import PathBar from './PathBar'
+import PathBar from './MainToolbar'
 import Favorites from './Favorites'
 import Properties from './Properties'
 import Transfers from './Transfers'
@@ -17,7 +17,7 @@ export default function() {
             <div id="title-bar">
                 <TitleBar/>
             </div>
-            <div id="path-bar">
+            <div id="main-toolbar">
                 <PathBar/>
             </div>
             <div id="contents">

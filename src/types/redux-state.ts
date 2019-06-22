@@ -2,7 +2,8 @@ import {
     ContentItem,
     FavoriteItem,
     Path,
-    TransferItem
+    TransferItem,
+    ViewType
 } from './core'
 
 export interface TabsState {
@@ -16,7 +17,8 @@ export type FavoritesState = FavoriteItem[]
 
 export type ViewState = {
     properties: boolean,
-    favorites: boolean
+    favorites: boolean,
+    view: ViewType
 }
 
 export type SelectionState = null | Path

@@ -120,7 +120,6 @@ export function* handleKeyboardEvents() {
     const keyboardEventChannel = yield call(createKeyboardEventChannel)
     while (true) {
         const event = yield take(keyboardEventChannel)
-        console.log(event)
         for (let mapping of mappings) {
             if (mapping.combo(event)) {
                 event.preventDefault()

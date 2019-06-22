@@ -3,7 +3,7 @@
 
 @import './components/contents.scss';
 @import './components/favorites.scss';
-@import './components/path-bar.scss';
+@import './components/main-toolbar.scss';
 @import './components/properties.scss';
 @import './components/tab-bar.scss';
 @import './components/title-bar.scss';
@@ -28,7 +28,7 @@ body {
     grid-template-rows: auto auto 1fr auto;
     grid-template-areas: 
     "title-bar title-bar title-bar"
-    "path-bar path-bar path-bar"
+    "main-toolbar main-toolbar main-toolbar"
     "favorites contents properties"
     "favorites transfers-panel transfers-panel";
 }
@@ -36,8 +36,8 @@ body {
 #title-bar {
     grid-area: title-bar;
 }
-#path-bar {
-    grid-area: path-bar;
+#main-toolbar {
+    grid-area: main-toolbar;
 }
 #favorites {
     width: 20vw;

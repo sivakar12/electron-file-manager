@@ -2,6 +2,7 @@ import {
     Path,
     ContentItem,
     TransferItemState,
+    ViewType,
 } from './core'
 
 export const CHANGE_PATH = 'CHANGE_PATH'
@@ -157,6 +158,13 @@ export interface ToggleFavoritesAction {
     type: typeof TOGGLE_FAVORITES
 }
 
+export const CHANGE_VIEW = 'CHANGE_VIEW'
+export interface ChangeViewAction {
+    type: typeof CHANGE_VIEW,
+    payload: {
+        view: ViewType
+    }
+}
 
 // Select actions supported by reducers
 export type FavoritesActions = AddFavoriteAction
@@ -175,7 +183,7 @@ export type TabActions = SwitchTabAction
 export type ContentActions = SetContentsAction
 | OpenFolderAction | GoToParentFolderAction | ChangePathAction
 
-export type ViewActions = ToggleFavoritesAction | TogglePropertiesAction
+export type ViewActions = ToggleFavoritesAction | TogglePropertiesAction | ChangeViewAction
 
 export type SelectionActions = SelectItemAction | ClearSelectionAction |
     OpenFileAction | OpenFolderAction | GoToParentFolderAction

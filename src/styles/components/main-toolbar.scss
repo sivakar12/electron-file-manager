@@ -1,0 +1,24 @@
+
+.main-toolbar {
+    border: 1px solid black;
+    padding: 5px;
+    display: flex;
+    .main-toolbar-up-button {
+        &:hover {
+            background-color: $color4;
+        }
+    }
+    .main-toolbar-path-string {
+        flex-grow: 1;
+        text-align: center;
+    }
+    .main-toolbar-view-types {
+        .main-toolbar-view-type {
+            display: inline-block;
+            margin: 0 5px;
+            &:hover {
+                background-color: $color4;
+            }
+        }
+    }
+}

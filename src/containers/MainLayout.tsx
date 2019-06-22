@@ -2,25 +2,25 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 
 import TitleBar from './TitleBar'
-import ContentsGrid from './ContentsGrid'
+import GridView from './GridView'
+import ColumnView from './ColumnView';
 import PathBar from './MainToolbar'
 import Favorites from './Favorites'
 import Properties from './Properties'
 import Transfers from './Transfers'
 
 import { AppState } from '../reducers'
-import ContentsColumns from './ContentsColumns';
 
 export default function() {
     const viewState = useSelector((state: AppState) => state.view)
-    let ContentsView = ContentsGrid
+    let ContentsView = GridView
     switch (viewState.view) {
         case 'column':
-            ContentsView = ContentsColumns
+            ContentsView = ColumnView
             break
         case 'grid':
         default:
-            ContentsView = ContentsGrid
+            ContentsView = GridView
             break
     }
     return (

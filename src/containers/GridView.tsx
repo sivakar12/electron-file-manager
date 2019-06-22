@@ -12,8 +12,8 @@ import {
 import { AppState } from '../reducers'
 import { ContentItem } from '../types/core'
 
-import ContentsGridItem from '../components/ContentsGridItem'
-import ContentsGridView from '../components/ContentsGrid'
+import GridViewItem from '../components/GridViewItem'
+import GridViewComponent from '../components/GridView'
 
 export default function() {
     const { contents, selection } = useSelector((state: AppState) => state)
@@ -50,9 +50,9 @@ export default function() {
         }
     }
     return (
-        <ContentsGridView>
+        <GridViewComponent>
             {contents.map(c => 
-                <ContentsGridItem 
+                <GridViewItem
                     {...c}
                     key={c.path}
                     onClick={makeOnClickHandler(c)}
@@ -60,6 +60,6 @@ export default function() {
                     isSelected={isItemSelected(c)}
                 />
             )}
-        </ContentsGridView>
+        </GridViewComponent>
     )
 }

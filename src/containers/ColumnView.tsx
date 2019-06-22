@@ -6,10 +6,11 @@ import _ from 'lodash'
 import { AppState } from '../reducers';
 import { Path, ContentItem } from '../types/core';
 import { getFolderContents } from '../backend';
-import ContentColumn from '../components/ContentColumn';
-import ContentColumnItem from '../components/ContentColumnItem';
+import ColumnViewColumn from '../components/ColumnViewColumn';
+import ColumnViewItem from '../components/ColumnViewItem';
 
 const NUMBER_OF_COLUMNS = 3
+
 export default function() {
     const path = useSelector((state: AppState) => state.tabs.tabs[state.tabs.current])
     
@@ -29,12 +30,12 @@ export default function() {
 
 
     return (
-        <div className="contents-column-view">
+        <div className="column-view">
             {_.zip(columnPaths, columnContents).map(([path, contents]) => {
                 return (
-                    <ContentColumn key={path} path={path}>
-                      {contents && contents.map(c => <ContentColumnItem key={c.path} content={c}/>)}
-                    </ContentColumn>
+                    <ColumnViewColumn key={path} path={path}>
+                      {contents && contents.map(c => <ColumnViewItem key={c.path} content={c}/>)}
+                    </ColumnViewColumn>
                 )
             })}
         </div>

@@ -6,10 +6,10 @@ export default function(props) {
         icon = '❌'
     }
     return (
-        <div className={`contents-column-item ${props.content.isSelected ? 'selected' : ''}`} 
+        <div className={`column-view-item ${props.content.isSelected ? 'selected' : ''}`} 
             onClick={props.onClick}
             onDoubleClick={props.onDoubleClick}>
-            <div className="contents-column-item-name">
+            <div className="column-view-item-name">
                 { icon }
                 {props.content.name}
                 {props.content.isSymLink ? '🔗' : '' }

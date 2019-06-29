@@ -1,4 +1,4 @@
-import { takeEvery, put, all, select, call } from 'redux-saga/effects'
+import { takeEvery, takeLatest, put, all, select, call } from 'redux-saga/effects'
 import { remote } from 'electron'
 
 import {
@@ -17,12 +17,16 @@ import {
     OPEN_FILE,
     CLOSE_WINDOW,
     TOGGLE_MAXIMIZE_WINDOW,
-    MINIMIZE_WINDOW
+    MINIMIZE_WINDOW,
+    SetPropertiesAction,
+    SET_PROPERTIES,
+    SELECT_ITEM
 } from '../types/redux-actions'
-import { getHomeDirectory, getFolderContents, openFile } from '../backend'
+import { getHomeDirectory, getFolderContents, openFile, getFileDetails } from '../backend'
 import { AppState } from '../reducers'
 import { handleKeyboardEvents } from './keyboard-shortcuts';
 import handleTransfers from './transfers';
+import { PropertiesItem } from '../types/core';
 
 function* handleLoadContents() {
     const {tabs}: AppState = yield select()
@@ -63,10 +67,24 @@ function minimizeWindow() {
     remote.getCurrentWindow().minimize()
 }
 
-function* setUpActionListeners() {
+function* loadProperties() {
+    const state: AppState = yield select()
+    const path = state.selection.path || state.tabs.tabs[state.tabs.current]
+    const properties: PropertiesItem = yield getFileDetails(path)
+    const action: SetPropertiesAction = {
+        type: SET_PROPERTIES,
+        payload: { properties: properties }
+    }
+    yield put(action)
+}
+const pathChangingActions = [OPEN_FOLDER, SWITCH_TAB, CLOSE_TAB, NEW_TAB, 
+    NEXT_TAB, PREVIOUS_TAB, GO_TO_PARENT_FOLDER, CHANGE_PATH]
+
+    function* setUpActionListeners() {
     yield all([
         takeEvery(LOAD_CONTENTS, handleLoadContents),
-        takeEvery([OPEN_FOLDER, SWITCH_TAB, CLOSE_TAB, NEW_TAB, NEXT_TAB, PREVIOUS_TAB, GO_TO_PARENT_FOLDER, CHANGE_PATH], handleOpenFolder),
+        takeEvery(pathChangingActions, handleOpenFolder),
+        takeLatest([LOAD_CONTENTS, SELECT_ITEM], loadProperties),
         takeEvery(OPEN_FILE, handleOpenFile),
         takeEvery(CLOSE_WINDOW, closeWindow),
         takeEvery(TOGGLE_MAXIMIZE_WINDOW, toggleMaximize),

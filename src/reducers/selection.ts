@@ -4,8 +4,10 @@ import {
     CLEAR_SELECTION,
     OPEN_FOLDER,
     GO_TO_PARENT_FOLDER,
-    SelectionActions
+    SelectionActions,
+    SET_PROPERTIES
 } from '../types/redux-actions'
+import { statement } from '@babel/template';
 
 const initialState: SelectionState = { path: null }
 
@@ -19,6 +21,8 @@ export default function selectionReducer(state: SelectionState = initialState,
         case OPEN_FOLDER:
         case GO_TO_PARENT_FOLDER:
             return { path: null }
+        case SET_PROPERTIES:
+            return { ...state, properties: action.payload.properties }
         default:
             return state
     }

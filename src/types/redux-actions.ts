@@ -3,6 +3,7 @@ import {
     ContentItem,
     TransferItemState,
     ViewType,
+    PropertiesItem,
 } from './core'
 
 export const CHANGE_PATH = 'CHANGE_PATH'
@@ -166,6 +167,13 @@ export interface ChangeViewAction {
     }
 }
 
+export const SET_PROPERTIES = 'SET_PROPERTIES'
+export interface SetPropertiesAction {
+    type: typeof SET_PROPERTIES,
+    payload: {
+        properties: PropertiesItem
+    }
+}
 // Select actions supported by reducers
 export type FavoritesActions = AddFavoriteAction
 | RemoveFavoriteAction
@@ -186,7 +194,7 @@ export type ContentActions = SetContentsAction
 export type ViewActions = ToggleFavoritesAction | TogglePropertiesAction | ChangeViewAction
 
 export type SelectionActions = SelectItemAction | ClearSelectionAction |
-    OpenFileAction | OpenFolderAction | GoToParentFolderAction
+    OpenFileAction | OpenFolderAction | GoToParentFolderAction | SetPropertiesAction 
 
 export type TransferActions = CutToStagingAreaAction | CopyToStagingAreaAction |
     PasteFromStagingAreaAction | RemoveFromStagingAreaAction | UpdateTransferProgressAction

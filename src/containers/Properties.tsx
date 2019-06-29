@@ -9,7 +9,7 @@ import { getFileDetails, getFolderSize } from '../backend';
 
 export default function() {
     const { tabs, selection } = useSelector((state: AppState) => state)
-    let currentPath: Path = selection || tabs.tabs[tabs.current]
+    let currentPath: Path = selection.path || tabs.tabs[tabs.current]
     
     const [details, setDetails] = useState<PropertiesItem | null>(null)
     useEffect(() => {

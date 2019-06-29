@@ -20,7 +20,7 @@ export default function() {
     const dispatch = useDispatch()
 
     function isItemSelected(item: ContentItem) {
-        return selection === item.path
+        return selection.path === item.path
     }
     function makeOnClickHandler(item: ContentItem) {
         return function() {

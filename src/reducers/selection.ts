@@ -7,20 +7,18 @@ import {
     SelectionActions
 } from '../types/redux-actions'
 
-const initialState: SelectionState = null
+const initialState: SelectionState = { path: null }
 
 export default function selectionReducer(state: SelectionState = initialState, 
         action: SelectionActions): SelectionState {
     switch (action.type) {
         case SELECT_ITEM:
-            if (state === action.payload.path) return null
-            return action.payload.path
+            if (state.path === action.payload.path) return { path: null}
+            return { path: action.payload.path }
         case CLEAR_SELECTION:
-            return null
         case OPEN_FOLDER:
-            return null
         case GO_TO_PARENT_FOLDER:
-            return null
+            return { path: null }
         default:
             return state
     }

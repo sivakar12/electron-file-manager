@@ -4,16 +4,16 @@ import { all, takeEvery, select, call, put, delay } from 'redux-saga/effects'
 import { Observable } from 'rxjs'
 
 import { PASTE_FROM_STAGING_AREA, PasteFromStagingAreaAction, UpdateTransferProgressAction, UPDATE_TRANSFER_PROGRESS, LOAD_CONTENTS } from '../types/redux-actions';
-import { Path, TransferItem } from '../types/core';
+import { Path, TransferItem, PropertiesItem } from '../types/core';
 import { AppState } from '../reducers';
 import { getFileDetails, copyFile } from '../backend';
 import { channelFromObservable } from './helpers';
 
 function* handleOnePaste(transferItem: TransferItem, destionation: Path) {
-    const fileDetails: fs.Stats  = yield call(getFileDetails, transferItem.path)
+    const fileDetails: PropertiesItem  = yield call(getFileDetails, transferItem.path)
 
     // throw error for directory copy
-    if (fileDetails.isDirectory()) {
+    if (fileDetails.isDirectory) {
         const errorAction: UpdateTransferProgressAction = {
             type: UPDATE_TRANSFER_PROGRESS,
             payload: {

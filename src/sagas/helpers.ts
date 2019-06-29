@@ -10,7 +10,7 @@ export function* getCurrentPath() {
 
 export function* getSelectedItem() {
     const state: AppState = yield select()
-    return state.selection
+    return state.selection.path
 }
 
 export function* channelFromObservable<T>(

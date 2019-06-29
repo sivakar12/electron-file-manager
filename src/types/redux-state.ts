@@ -3,7 +3,8 @@ import {
     FavoriteItem,
     Path,
     TransferItem,
-    ViewType
+    ViewType,
+    PropertiesItem
 } from './core'
 
 export interface TabsState {
@@ -21,6 +22,12 @@ export type ViewState = {
     view: ViewType
 }
 
-export type SelectionState = null | Path
+export type SelectionState = {
+    path: Path | null,
+    properties?: PropertiesItem,
+    folderSize?: number,
+    loadingFolderSize?: boolean,
+    folderSizeTimeout?: boolean
+}
 
 export type TransfersState = { [path: string]: TransferItem }

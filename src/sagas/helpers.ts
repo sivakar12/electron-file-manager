@@ -1,4 +1,4 @@
-import { select, take, call } from 'redux-saga/effects'
+import { select, take, call, cancelled } from 'redux-saga/effects'
 import { AppState } from '../reducers';
 import { Observable } from 'rxjs';
 import { eventChannel, END, } from 'redux-saga'
@@ -20,12 +20,14 @@ export function* channelFromObservable<T>(
     onComplete: any
 ) {
     const channel = yield eventChannel(emitter => {
-        observable.subscribe(
+        const subscription = observable.subscribe(
             (data) => emitter({ type: 'data', payload: data }),
             (error) => emitter({ type: 'error', payload: error }),
             () => emitter(END) 
         )
-        return () => {}
+        return () => { 
+            subscription.unsubscribe()
+        }
     })
 
     try {
@@ -38,7 +40,10 @@ export function* channelFromObservable<T>(
                 yield call(onError, data.payload)
         }
     } finally {
+        if (yield cancelled()) {
+            channel.close()
+            console.log('folder size cancelled')
+        }
         yield call(onComplete)
     }
-
 }

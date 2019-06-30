@@ -136,7 +136,7 @@ export function getFolderTree(path: Path, maxItems: number = -1): Observable<Pat
 }
 
 export function getFolderSize(path: Path): Observable<number> {
-    return getFolderTree(path, 1000)
+    return getFolderTree(path, 10000)
             .pipe(concatMap(getFileDetails))
             .pipe(map(stats => stats.size))
             .pipe(scan((total, current) => total + current))

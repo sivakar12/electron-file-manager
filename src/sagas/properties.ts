@@ -8,6 +8,10 @@ import { channelFromObservable } from "./helpers";
 
 export function* loadProperties() {
     const state: AppState = yield select()
+    
+    // if properties tab is not visible do not calculate
+    if (!state.view.properties) return
+
     const path = state.selection || state.tabs.tabs[state.tabs.current]
     const properties: PropertiesItem = yield getFileDetails(path)
     const action: SetPropertiesAction = {

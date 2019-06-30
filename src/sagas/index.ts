@@ -20,7 +20,8 @@ import {
     MINIMIZE_WINDOW,
     SetPropertiesAction,
     SET_PROPERTIES,
-    SELECT_ITEM
+    SELECT_ITEM,
+    TOGGLE_PROPERTIES
 } from '../types/redux-actions'
 import { getHomeDirectory, getFolderContents, openFile, getFileDetails } from '../backend'
 import { AppState } from '../reducers'
@@ -76,7 +77,7 @@ function* setUpActionListeners() {
     yield all([
         takeEvery(LOAD_CONTENTS, handleLoadContents),
         takeEvery(pathChangingActions, handleOpenFolder),
-        takeLatest([LOAD_CONTENTS, SELECT_ITEM], loadProperties),
+        takeLatest([LOAD_CONTENTS, SELECT_ITEM, TOGGLE_PROPERTIES], loadProperties),
         takeEvery(OPEN_FILE, handleOpenFile),
         takeEvery(CLOSE_WINDOW, closeWindow),
         takeEvery(TOGGLE_MAXIMIZE_WINDOW, toggleMaximize),

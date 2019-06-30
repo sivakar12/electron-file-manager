@@ -27,6 +27,7 @@ import { AppState } from '../reducers'
 import { handleKeyboardEvents } from './keyboard-shortcuts';
 import handleTransfers from './transfers';
 import { PropertiesItem } from '../types/core';
+import { loadProperties } from './properties';
 
 function* handleLoadContents() {
     const {tabs}: AppState = yield select()
@@ -67,20 +68,11 @@ function minimizeWindow() {
     remote.getCurrentWindow().minimize()
 }
 
-function* loadProperties() {
-    const state: AppState = yield select()
-    const path = state.selection || state.tabs.tabs[state.tabs.current]
-    const properties: PropertiesItem = yield getFileDetails(path)
-    const action: SetPropertiesAction = {
-        type: SET_PROPERTIES,
-        payload: { properties: properties }
-    }
-    yield put(action)
-}
+
 const pathChangingActions = [OPEN_FOLDER, SWITCH_TAB, CLOSE_TAB, NEW_TAB, 
     NEXT_TAB, PREVIOUS_TAB, GO_TO_PARENT_FOLDER, CHANGE_PATH]
 
-    function* setUpActionListeners() {
+function* setUpActionListeners() {
     yield all([
         takeEvery(LOAD_CONTENTS, handleLoadContents),
         takeEvery(pathChangingActions, handleOpenFolder),

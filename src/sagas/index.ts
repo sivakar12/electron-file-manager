@@ -69,7 +69,7 @@ function minimizeWindow() {
 
 function* loadProperties() {
     const state: AppState = yield select()
-    const path = state.selection.path || state.tabs.tabs[state.tabs.current]
+    const path = state.selection || state.tabs.tabs[state.tabs.current]
     const properties: PropertiesItem = yield getFileDetails(path)
     const action: SetPropertiesAction = {
         type: SET_PROPERTIES,

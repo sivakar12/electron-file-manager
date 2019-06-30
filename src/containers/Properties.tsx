@@ -1,20 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
-import _ from 'lodash'
 
 import PropertiesComponent from '../components/Properties'
 import { AppState } from '../reducers';
-import { Path, PropertiesItem } from '../types/core';
-import { getFileDetails, getFolderSize } from '../backend';
 
 export default function() {
-    const { selection } = useSelector((state: AppState) => state)
+    const { properties } = useSelector((state: AppState) => state)
     return (
         <PropertiesComponent
-            properties={selection.properties}
-            loadingFolderSize={selection.loadingFolderSize}
-            folderSizeError={selection.folderSizeTimeout}
-            folderSize={selection.folderSize}
+            properties={properties.properties}
+            loadingFolderSize={properties.loadingFolderSize}
+            folderSizeError={properties.folderSizeTimeout}
+            folderSize={properties.folderSize}
         />
     )
 }

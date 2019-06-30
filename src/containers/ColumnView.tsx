@@ -14,7 +14,7 @@ const NUMBER_OF_COLUMNS = 3
 
 export default function() {
     const path = useSelector((state: AppState) => state.tabs.tabs[state.tabs.current])
-    const selection = useSelector((state: AppState) => state.selection.path)
+    const selection = useSelector((state: AppState) => state.selection)
     const columnPaths: Path[] = []
     let middlePath = path
     while(columnPaths.length < NUMBER_OF_COLUMNS) {

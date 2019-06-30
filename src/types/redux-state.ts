@@ -22,8 +22,9 @@ export type ViewState = {
     view: ViewType
 }
 
-export type SelectionState = {
-    path: Path | null,
+export type SelectionState = Path | null
+
+export type PropertiesState = {
     properties?: PropertiesItem,
     folderSize?: number,
     loadingFolderSize?: boolean,

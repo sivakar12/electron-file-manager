@@ -6,6 +6,7 @@ import favorites from './favorites'
 import view from './view'
 import selection from './selection'
 import transfers from './transfers'
+import properties from './properties'
 
 const rootReducer = combineReducers({
     tabs,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
     favorites,
     view,
     selection,
-    transfers
+    transfers,
+    properties
 })
 export default rootReducer
 

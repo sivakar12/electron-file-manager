@@ -9,20 +9,18 @@ import {
 } from '../types/redux-actions'
 import { statement } from '@babel/template';
 
-const initialState: SelectionState = { path: null }
+const initialState: SelectionState = null
 
 export default function selectionReducer(state: SelectionState = initialState, 
         action: SelectionActions): SelectionState {
     switch (action.type) {
         case SELECT_ITEM:
-            if (state.path === action.payload.path) return { path: null}
-            return { path: action.payload.path }
+            if (state === action.payload.path) return null
+            return action.payload.path
         case CLEAR_SELECTION:
         case OPEN_FOLDER:
         case GO_TO_PARENT_FOLDER:
-            return { path: null }
-        case SET_PROPERTIES:
-            return { ...state, properties: action.payload.properties }
+            return null
         default:
             return state
     }

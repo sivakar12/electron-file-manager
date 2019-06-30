@@ -8,8 +8,8 @@ import {
 import { ViewState } from '../types/redux-state'
 
 const initialState: ViewState = {
-    properties: false,
-    favorites: true,
+    properties: true,
+    favorites: false,
     view: 'grid'
 }
 

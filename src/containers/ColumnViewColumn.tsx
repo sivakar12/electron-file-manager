@@ -62,7 +62,7 @@ export default function(props: Props) {
     }
     return (
         <ColumnViewColumn name={pathModule.basename(props.path) || props.path}>
-            {props.contents.map(c => 
+            {props.contents && props.contents.map(c => 
                 <ColumnViewItem
                     key={c.path} 
                     content={c}

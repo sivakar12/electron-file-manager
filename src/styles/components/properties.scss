@@ -4,6 +4,16 @@
     flex-direction: column;
     justify-content: flex-start;
     overflow-x: auto;
+    padding: 0 20px;
+    .properties-header {
+        padding-bottom: 20px;
+        .properties-title {
+            font-weight: bold;
+        }
+        .properties-close {
+            float: right;
+        }
+    }
     .properties-item {
         display: flex;
         flex-direction: row;

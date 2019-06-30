@@ -7,13 +7,17 @@ type Props = {
     properties?: PropertiesItem,
     folderSize?: number,
     loadingFolderSize?: boolean
-    folderSizeError?:boolean
+    folderSizeError?:boolean,
+    onClose: () => void
 }
 export default function Properties(props: Props) {
 
     return (
         <div className="properties">
-            <h3 className="properties-title">Properties</h3>
+            <div className="properties-header">
+                <div className="properties-close" onClick={props.onClose}>x</div>
+                <div className="properties-title">Properties</div>
+            </div>
             {props.properties && _.entries(props.properties).map(([key, value]) => (
                 <div key={key} className="properties-item">
                     <div className="properties-item-key">{key}</div>

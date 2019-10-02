@@ -23,7 +23,6 @@ import {
 import { getHomeDirectory, getFolderContents, openFile, getFileDetails } from '../backend'
 import { AppState } from '../reducers'
 import { handleKeyboardEvents } from './keyboard-shortcuts';
-import handleTransfers from './transfers';
 import { PropertiesItem } from '../types/core';
 import { loadProperties } from './properties';
 
@@ -71,7 +70,6 @@ export default function* rootSaga() {
     yield all([
         initialize(),
         setUpActionListeners(),
-        handleKeyboardEvents(),
-        handleTransfers()
+        handleKeyboardEvents()
     ])
 }

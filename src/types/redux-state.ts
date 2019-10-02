@@ -1,8 +1,6 @@
 import {
-    ContentItem,
     FavoriteItem,
     Path,
-    TransferItem,
     ViewType,
     PropertiesItem
 } from './core'
@@ -28,5 +26,3 @@ export type PropertiesState = {
     loadingFolderSize?: boolean,
     folderSizeTimeout?: boolean
 }
-
-export type TransfersState = { [path: string]: TransferItem }

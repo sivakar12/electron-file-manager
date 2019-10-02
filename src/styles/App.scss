@@ -8,7 +8,6 @@
 @import './components/properties.scss';
 @import './components/tab-bar.scss';
 @import './components/title-bar.scss';
-@import './components/transfers.scss';
 
 body {
     font-family: 'Merriweather';
@@ -31,7 +30,6 @@ body {
     "title-bar title-bar title-bar"
     "main-toolbar main-toolbar main-toolbar"
     "favorites contents properties"
-    "favorites transfers-panel transfers-panel";
 }
 
 #title-bar {
@@ -56,10 +54,4 @@ body {
     overflow-x: auto;
     overflow-y: auto;
     grid-area: properties;
-}
-#transfers-panel {
-    max-height: 20vh;
-    overflow-y: auto;
-    overflow-x: auto;
-    grid-area: transfers-panel;
 }

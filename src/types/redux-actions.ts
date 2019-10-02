@@ -1,7 +1,6 @@
 import {
     Path,
     ContentItem,
-    TransferItemState,
     ViewType,
     PropertiesItem,
 } from './core'
@@ -105,40 +104,6 @@ export interface CloseWindowAction {
     type: typeof CLOSE_WINDOW
 }
 
-export const COPY_TO_STAGING_AREA = 'COPY_TO_STAGING_AREA'
-export interface CopyToStagingAreaAction {
-    type: typeof COPY_TO_STAGING_AREA,
-    payload: { path: Path }
-}
-
-export const CUT_TO_STAGING_AREA = 'CUT_TO_STAGING_AREA'
-export interface CutToStagingAreaAction {
-    type: typeof CUT_TO_STAGING_AREA,
-    payload: { path: Path }
-}
-
-export const REMOVE_FROM_STAGING_AREA = 'REMOVE_FROM_STAGING_AREA'
-export interface RemoveFromStagingAreaAction {
-    type: typeof REMOVE_FROM_STAGING_AREA,
-    payload: { path: Path }
-}
-
-export const PASTE_FROM_STAGING_AREA = 'PASTE_FROM_STAGING_AREA'
-export interface PasteFromStagingAreaAction {
-    type: typeof PASTE_FROM_STAGING_AREA
-}
-
-export const UPDATE_TRANSFER_PROGRESS = 'UPDATE_TRANSFER_PROGRESS'
-export interface UpdateTransferProgressAction {
-    type: typeof UPDATE_TRANSFER_PROGRESS,
-    payload: {
-        path: Path,
-        totalBytes?: number,
-        bytesDone?: number,
-        state: TransferItemState
-    }
-}
-
 export const TOGGLE_PROPERTIES = 'TOGGLE_PROPERTIES'
 export interface TogglePropertiesAction {
     type: typeof TOGGLE_PROPERTIES
@@ -182,6 +147,3 @@ export type SelectionActions = SelectItemAction | ClearSelectionAction |
     OpenFileAction | OpenFolderAction | GoToParentFolderAction
     
 export type PropertiesActions = SetPropertiesAction 
-
-export type TransferActions = CutToStagingAreaAction | CopyToStagingAreaAction |
-    PasteFromStagingAreaAction | RemoveFromStagingAreaAction | UpdateTransferProgressAction

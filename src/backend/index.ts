@@ -96,7 +96,7 @@ export function copyFile(source: Path, destination: Path): Observable<number> {
 
 export async function getFileDetails(path: Path): Promise<PropertiesItem> {
     const stat = await fsPromise.stat(path)
-    console.log('Stat called')
+    console.log(`Stat called for ${path}`)
     const properties: PropertiesItem = {
         name: pathModule.basename(path),
         fullPath: path,

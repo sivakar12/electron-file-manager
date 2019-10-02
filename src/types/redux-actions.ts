@@ -4,7 +4,6 @@ import {
     ViewType,
     PropertiesItem,
 } from './core'
-import { PropertiesState } from './redux-state';
 
 export const CHANGE_PATH = 'CHANGE_PATH'
 export interface ChangePathAction {
@@ -122,11 +121,6 @@ export interface ChangeViewAction {
     }
 }
 
-export const SET_PROPERTIES = 'SET_PROPERTIES'
-export interface SetPropertiesAction {
-    type: typeof SET_PROPERTIES,
-    payload: PropertiesState
-}
 // Select actions supported by reducers
 export type FavoritesActions = AddFavoriteAction
 | RemoveFavoriteAction
@@ -145,5 +139,3 @@ export type ViewActions = ToggleFavoritesAction | TogglePropertiesAction | Chang
 
 export type SelectionActions = SelectItemAction | ClearSelectionAction |
     OpenFileAction | OpenFolderAction | GoToParentFolderAction
-    
-export type PropertiesActions = SetPropertiesAction 

@@ -4,10 +4,8 @@ import {
     CLEAR_SELECTION,
     OPEN_FOLDER,
     GO_TO_PARENT_FOLDER,
-    SelectionActions,
-    SET_PROPERTIES
+    SelectionActions
 } from '../types/redux-actions'
-import { statement } from '@babel/template';
 
 const initialState: SelectionState = null
 

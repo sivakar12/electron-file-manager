@@ -11,9 +11,8 @@ import {
     SelectItemAction,
     SELECT_ITEM,
     OPEN_FOLDER,
-    OpenFileAction,
-    OPEN_FILE
 } from '../types/redux-actions';
+import { openFile } from '../backend';
 
 type Props = {
     path: Path,
@@ -52,11 +51,7 @@ export default function(props: Props) {
                 }
                 dispatch(action)
             } else {
-                const action: OpenFileAction = {
-                    type: OPEN_FILE,
-                    payload: { path: item.path }
-                }
-                dispatch(action)
+                openFile(item.path)
             }
         }
     }

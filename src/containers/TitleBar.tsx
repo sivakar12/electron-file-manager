@@ -1,39 +1,21 @@
 import React from 'react'
-import { useDispatch } from 'react-redux';
 
 import Tabs from './Tabs'
 
-import {
-    CLOSE_WINDOW,
-    MINIMIZE_WINDOW,
-    TOGGLE_MAXIMIZE_WINDOW,
-    CloseWindowAction,
-    MinimizeWindowAction,
-    ToggleMaximizeWindowAction,
-} from '../types/redux-actions'
+import { minimizeWindow, toggleMaximize, closeWindow } from '../backend/window';
 
 export default function() {
-    const dispatch = useDispatch()
 
     function handleMinimizeWindow() {
-        const action: MinimizeWindowAction = {
-            type: MINIMIZE_WINDOW
-        }
-        dispatch(action)
+        minimizeWindow()
     }
 
     function handleToggleMaximizeWindow() {
-        const action: ToggleMaximizeWindowAction = {
-            type: TOGGLE_MAXIMIZE_WINDOW
-        }
-        dispatch(action)
+        toggleMaximize()
     }
 
     function handleCloseWindow() {
-        const action: CloseWindowAction = {
-            type: CLOSE_WINDOW
-        }
-        dispatch(action)
+        closeWindow()
     }
     
     return (

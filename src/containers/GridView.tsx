@@ -3,10 +3,8 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import {
     OpenFolderAction,
-    OpenFileAction,
     SelectItemAction,
     OPEN_FOLDER,
-    OPEN_FILE,
     SELECT_ITEM
 } from '../types/redux-actions'
 import { AppState } from '../reducers'
@@ -15,7 +13,7 @@ import { ContentItem } from '../types/core'
 import GridViewItem from '../components/GridViewItem'
 import GridViewComponent from '../components/GridView'
 
-import { getFolderContents } from '../backend'
+import { getFolderContents, openFile } from '../backend'
 
 export default function() {
     const { selection, tabs } = useSelector((state: AppState) => state)
@@ -49,11 +47,7 @@ export default function() {
                 }
                 dispatch(action)
             } else {
-                const action: OpenFileAction = {
-                    type: OPEN_FILE,
-                    payload: { path: item.path }
-                }
-                dispatch(action)
+                openFile(item.path)
             }
         }
     }

@@ -1,8 +1,6 @@
 import {
     Path,
-    ContentItem,
     ViewType,
-    PropertiesItem,
 } from './core'
 
 export const CHANGE_PATH = 'CHANGE_PATH'
@@ -19,12 +17,6 @@ export interface GoToParentFolderAction {
 export const OPEN_FOLDER = 'OPEN_FOLDER'
 export interface OpenFolderAction {
     type: typeof OPEN_FOLDER,
-    payload: { path: Path }
-}
-
-export const OPEN_FILE = 'OPEN_FILE'
-export interface OpenFileAction {
-    type: typeof OPEN_FILE,
     payload: { path: Path }
 }
 
@@ -68,7 +60,7 @@ export interface SwitchTabAction {
 export const CLOSE_TAB = 'CLOSE_TAB'
 export interface CloseTabAction {
     type: typeof CLOSE_TAB,
-    payload: { index: number }
+    payload: { index?: number }
 }
 
 export const NEW_TAB = 'NEW_TAB'
@@ -137,5 +129,7 @@ export type TabActions = SwitchTabAction
 
 export type ViewActions = ToggleFavoritesAction | TogglePropertiesAction | ChangeViewAction
 
-export type SelectionActions = SelectItemAction | ClearSelectionAction |
-    OpenFileAction | OpenFolderAction | GoToParentFolderAction
+export type SelectionActions = SelectItemAction | ClearSelectionAction 
+| OpenFolderAction | GoToParentFolderAction
+
+export type AllActions = FavoritesActions | TabActions | ViewActions | SelectionActions

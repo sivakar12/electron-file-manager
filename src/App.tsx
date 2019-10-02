@@ -1,3 +1,4 @@
+import { hot } from 'react-hot-loader/root'
 import React from 'react';
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
@@ -25,4 +26,4 @@ const App: React.FC = () => {
         )
     }
 
-export default App;
+export default hot(App);

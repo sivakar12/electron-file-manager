@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import {
@@ -15,10 +15,18 @@ import { ContentItem } from '../types/core'
 import GridViewItem from '../components/GridViewItem'
 import GridViewComponent from '../components/GridView'
 
+import { getFolderContents } from '../backend'
+
 export default function() {
-    const { contents, selection } = useSelector((state: AppState) => state)
+    const { selection, tabs } = useSelector((state: AppState) => state)
     const dispatch = useDispatch()
 
+    const currentPath = tabs.tabs[tabs.current]
+    const [contents, setContents] = useState<ContentItem[]>([])
+    useEffect(() => {
+        getFolderContents(currentPath).then(c => setContents(c))
+    }, [currentPath])
+    
     function isItemSelected(item: ContentItem) {
         return selection === item.path
     }

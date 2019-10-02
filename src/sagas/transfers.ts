@@ -3,7 +3,7 @@ import pathModule from 'path'
 import { all, takeEvery, select, call, put, delay } from 'redux-saga/effects'
 import { Observable } from 'rxjs'
 
-import { PASTE_FROM_STAGING_AREA, PasteFromStagingAreaAction, UpdateTransferProgressAction, UPDATE_TRANSFER_PROGRESS, LOAD_CONTENTS } from '../types/redux-actions';
+import { PASTE_FROM_STAGING_AREA, PasteFromStagingAreaAction, UpdateTransferProgressAction, UPDATE_TRANSFER_PROGRESS } from '../types/redux-actions';
 import { Path, TransferItem, PropertiesItem } from '../types/core';
 import { AppState } from '../reducers';
 import { getFileDetails, copyFile } from '../backend';
@@ -81,7 +81,6 @@ function* handlePaste(action: PasteFromStagingAreaAction) {
         const destionation: Path = pathModule.join(destionationFolder, pathModule.basename(transfer.path))
         // TODO: Include destination in the redux state itself
         yield handleOnePaste(transfer, destionation + '.copy')
-        yield put({ type: LOAD_CONTENTS })
     }
 
 }

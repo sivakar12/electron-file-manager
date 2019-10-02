@@ -12,8 +12,6 @@ export interface TabsState {
     tabs: Path[]
 }
 
-export type ContentsState = ContentItem[]
-
 export type FavoritesState = FavoriteItem[]
 
 export type ViewState = {

@@ -2,15 +2,12 @@ import { takeEvery, takeLatest, put, all, select, call } from 'redux-saga/effect
 import { remote } from 'electron'
 
 import {
-    LOAD_CONTENTS,
-    SET_CONTENTS, 
     OPEN_FOLDER,
     SWITCH_TAB,
     CLOSE_TAB,
     NEW_TAB,
     NEXT_TAB,
     PREVIOUS_TAB,
-    SetContentsAction,
     OpenFileAction,
     GO_TO_PARENT_FOLDER,
     CHANGE_PATH,
@@ -30,19 +27,7 @@ import handleTransfers from './transfers';
 import { PropertiesItem } from '../types/core';
 import { loadProperties } from './properties';
 
-function* handleLoadContents() {
-    const {tabs}: AppState = yield select()
-    const path = tabs.tabs[tabs.current]
-    const contents = yield getFolderContents(path)
-    const action: SetContentsAction = {
-        type: SET_CONTENTS,
-        payload: { contents }
-    }
-    yield put(action)
-}
-
 function* handleOpenFolder() {
-    yield put({ type: LOAD_CONTENTS })
 }
 
 function* handleOpenFile(action: OpenFileAction) {
@@ -50,7 +35,6 @@ function* handleOpenFile(action: OpenFileAction) {
 }
 
 function *initialize() {
-    yield put({ type: LOAD_CONTENTS })
 }
 function closeWindow() {
     remote.getCurrentWindow().close()
@@ -75,9 +59,8 @@ const pathChangingActions = [OPEN_FOLDER, SWITCH_TAB, CLOSE_TAB, NEW_TAB,
 
 function* setUpActionListeners() {
     yield all([
-        takeEvery(LOAD_CONTENTS, handleLoadContents),
         takeEvery(pathChangingActions, handleOpenFolder),
-        takeLatest([LOAD_CONTENTS, SELECT_ITEM, TOGGLE_PROPERTIES], loadProperties),
+        takeLatest([SELECT_ITEM, TOGGLE_PROPERTIES], loadProperties),
         takeEvery(OPEN_FILE, handleOpenFile),
         takeEvery(CLOSE_WINDOW, closeWindow),
         takeEvery(TOGGLE_MAXIMIZE_WINDOW, toggleMaximize),

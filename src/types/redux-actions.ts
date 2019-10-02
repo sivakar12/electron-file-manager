@@ -13,17 +13,6 @@ export interface ChangePathAction {
     payload: { path: Path }
 }
 
-export const LOAD_CONTENTS = 'LOAD_CONTENTS'
-export interface LoadContentsAction {
-    type: typeof LOAD_CONTENTS
-}
-
-export const SET_CONTENTS = 'SET_CONTENTS'
-export interface SetContentsAction {
-    type: typeof SET_CONTENTS,
-    payload: { contents: ContentItem[] }
-}
-
 export const GO_TO_PARENT_FOLDER = 'GO_TO_PARENT_FOLDER'
 export interface GoToParentFolderAction {
     type: typeof GO_TO_PARENT_FOLDER
@@ -186,9 +175,6 @@ export type TabActions = SwitchTabAction
 | ChangePathAction
 | OpenFolderAction
 | GoToParentFolderAction
-
-export type ContentActions = SetContentsAction
-| OpenFolderAction | GoToParentFolderAction | ChangePathAction
 
 export type ViewActions = ToggleFavoritesAction | TogglePropertiesAction | ChangeViewAction
 

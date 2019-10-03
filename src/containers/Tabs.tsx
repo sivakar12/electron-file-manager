@@ -1,5 +1,4 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
 import pathModule from 'path'
 
 import {
@@ -11,14 +10,11 @@ import {
     CloseTabAction
 } from '../global-state/tabs'
 
-import { AppState } from '../reducers'
-
 import TabBar from '../components/TabBar'
 import TabItem from '../components/TabItem'
 import { useTabs } from '../global-state'
 
 export default function() {
-    const state = useSelector((state: AppState) => state)
     const { tabsState, tabsDispatch } = useTabs()
 
     const { tabs, current } = tabsState

@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
 
 import PropertiesComponent from '../components/Properties'
-import { AppState } from '../reducers';
-import { TogglePropertiesAction, TOGGLE_PROPERTIES } from '../types/redux-actions';
 import { PropertiesItem } from '../types/core';
 import { getFileDetails, getFolderSize } from '../backend';
-import { observable } from 'rxjs';
 import { useCurrentPath, useSelection, useViewState } from '../global-state';
 
 export default function() {

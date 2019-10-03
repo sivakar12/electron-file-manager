@@ -8,6 +8,6 @@ export type ViewState = {
 
 export const defaultState: ViewState = {
     properties: false,
-    favorites: false,
+    favorites: true,
     view: 'grid'
 }

@@ -10,7 +10,6 @@
     "@types/node": "^12.7.9",
     "@types/react": "^16.9.2",
     "@types/react-dom": "^16.9.0",
-    "@types/react-redux": "^7.1.4",
     "babel-loader": "^8.0.6",
     "concurrently": "^4.1.2",
     "cross-env": "^6.0.0",
@@ -35,9 +34,6 @@
     "lodash": "^4.17.15",
     "react": "^16.9.0",
     "react-dom": "npm:@hot-loader/react-dom",
-    "react-redux": "^7.1.1",
-    "redux": "^4.0.4",
-    "redux-logger": "^3.0.6",
     "rxjs": "^6.5.3"
   },
   "scripts": {

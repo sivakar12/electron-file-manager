@@ -1,37 +1,25 @@
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React, { useState } from 'react'
+import pathModule from 'path'
 
-import {
-    AddFavoriteAction,
-    ADD_FAVORITE,
-    ToggleFavoritesAction,
-    TOGGLE_FAVORITES,
-} from '../types/redux-actions'
 import {
     CHANGE_PATH,
     ChangePathAction
 } from '../global-state/tabs'
-import { AppState } from '../reducers'
 import { FavoriteItem } from '../types/core';
 import FavoriteItemComponent from '../components/FavoriteItem'
 import FavoritesPanel from '../components/FavoritesPanel';
-import { useCurrentPath, useTabs } from '../global-state'
+import { useCurrentPath, useTabs, useViewState } from '../global-state'
 
 export default function() {
-    const state = useSelector((state: AppState) => state)
-    const dispatch = useDispatch()
-
+    const [favorites, setFavorites] = useState<FavoriteItem[]>([])
     const { tabsDispatch } = useTabs()
-    function handleAddFavorite(favorite: FavoriteItem) {
-        const path = useCurrentPath()
-        const action: AddFavoriteAction = {
-            type: ADD_FAVORITE,
-            payload: {
-                path
-            }
-        }
-        dispatch(action)
+    const path = useCurrentPath()
+    const { viewState, setViewState } = useViewState()
+
+    function handleAddFavorite() {
+        setFavorites([...favorites, {path}])
     }
+
     function makeOnclickHandler(favorite: FavoriteItem) {
         const action: ChangePathAction = {
             type: CHANGE_PATH,
@@ -44,10 +32,7 @@ export default function() {
         }
     }
     function handleCloseFavorite() {
-        const action: ToggleFavoritesAction = {
-            type: TOGGLE_FAVORITES
-        }
-        dispatch(action)
+        setViewState({...viewState, favorites: false})
     }
 
     return (
@@ -55,9 +40,9 @@ export default function() {
             onAddFavorite={handleAddFavorite}
             onClose={handleCloseFavorite}
             >
-            {state.favorites.map(f =>(
+            {favorites.map(f =>(
                 <FavoriteItemComponent
-                    name={f.name}
+                    name={f.name || pathModule.basename(f.path)}
                     key={f.path}
                     onClick={makeOnclickHandler(f)}/>
             ))}

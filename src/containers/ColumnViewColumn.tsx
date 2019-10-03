@@ -1,5 +1,4 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
 import _ from 'lodash'
 import pathModule from 'path'
 
@@ -8,11 +7,10 @@ import ColumnViewColumn from '../components/ColumnViewColumn';
 import ColumnViewItem from '../components/ColumnViewItem';
 import {
     OpenFolderAction,
-    SelectItemAction,
-    SELECT_ITEM,
     OPEN_FOLDER,
-} from '../types/redux-actions';
+} from '../global-state/tabs';
 import { openFile } from '../backend';
+import { useTabs, useSelection } from '../global-state';
 
 type Props = {
     path: Path,
@@ -20,24 +18,21 @@ type Props = {
     selectedItem: string | null;
 }
 export default function(props: Props) {
-    const dispatch = useDispatch()
+    const { tabsDispatch } = useTabs()
 
     function isItemSelected(item: ContentItem) {
         return item.path === props.selectedItem
     }
     function makeOnClickHandler(item: ContentItem) {
         return function() {
-            const selectItemAction: SelectItemAction = {
-                type: SELECT_ITEM,
-                payload: { path: item.path }
-            }
-            dispatch(selectItemAction)
+            const { setSelection } = useSelection()
+            setSelection(item.path)
             if (item.isDirectory) {
                 const openFolderAction: OpenFolderAction = {
                     type: OPEN_FOLDER,
                     payload: { path: item.path }
                 }
-                dispatch(openFolderAction)
+                tabsDispatch(openFolderAction)
             }
         }
     }
@@ -49,7 +44,7 @@ export default function(props: Props) {
                     type: OPEN_FOLDER,
                     payload: { path: item.path }
                 }
-                dispatch(action)
+                tabsDispatch(action)
             } else {
                 openFile(item.path)
             }

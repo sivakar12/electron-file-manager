@@ -1,5 +1,4 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 
 import TitleBar from './TitleBar'
 import GridView from './GridView'
@@ -8,10 +7,10 @@ import PathBar from './MainToolbar'
 import Favorites from './Favorites'
 import Properties from './Properties'
 
-import { AppState } from '../reducers'
+import { useViewState } from '../global-state';
 
 export default function() {
-    const viewState = useSelector((state: AppState) => state.view)
+    const { viewState } = useViewState()
     let ContentsView = GridView
     switch (viewState.view) {
         case 'column':

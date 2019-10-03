@@ -9,25 +9,26 @@ import {
     NewTabAction,
     SwitchTabAction,
     CloseTabAction
-} from '../types/redux-actions'
+} from '../global-state/tabs'
 
 import { AppState } from '../reducers'
 
 import TabBar from '../components/TabBar'
 import TabItem from '../components/TabItem'
+import { useTabs } from '../global-state'
 
 export default function() {
     const state = useSelector((state: AppState) => state)
-    const dispatch = useDispatch()
+    const { tabsState, tabsDispatch } = useTabs()
 
-    const { tabs, current } = state.tabs 
+    const { tabs, current } = tabsState
     
     function handleNewTab() {
         const action: NewTabAction = {
             type: NEW_TAB,
             payload: {}
         }
-        dispatch(action)
+        tabsDispatch(action)
     }
 
     function makeCloseTabHandler(i: number) {
@@ -36,7 +37,7 @@ export default function() {
                 type: CLOSE_TAB,
                 payload: { index : i }
             }
-            dispatch(action)
+            tabsDispatch(action)
         }
     }
     
@@ -46,7 +47,7 @@ export default function() {
                 type: SWITCH_TAB,
                 payload: { index : i }
             }
-            dispatch(action)
+            tabsDispatch(action)
         }
     }
 
@@ -60,7 +61,6 @@ export default function() {
                     onClick={makeSwitchTabHandler(index)}
                     onClose={makeCloseTabHandler(index)}
                 />
-                // <div key={index}>Tab {index}</div>
             )}
         </TabBar>
     )

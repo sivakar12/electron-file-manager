@@ -4,34 +4,29 @@ import { useSelector, useDispatch } from 'react-redux'
 import {
     GoToParentFolderAction,
     GO_TO_PARENT_FOLDER,
-    ChangeViewAction,
-    CHANGE_VIEW
-} from '../types/redux-actions'
-import { AppState } from '../reducers'
+} from '../global-state/tabs'
+
 import MainToolbar from '../components/MainToolbar'
 import { ViewType } from '../types/core';
+import { useCurrentPath, useViewState, useTabs } from '../global-state'
 
 export default function() {
 
-    const state = useSelector((state: AppState) => state)
-    const path = state.tabs.tabs[state.tabs.current]
-    const viewType = state.view.view
+    const path = useCurrentPath()
+    const { viewState, setViewState } = useViewState()
+    const { tabsDispatch } = useTabs()
 
-    const dispatch = useDispatch()
+    const viewType = viewState.view
+
     function handleOnGoUp() {
         const action: GoToParentFolderAction = {
             type: GO_TO_PARENT_FOLDER
         }
-        dispatch(action)
+        tabsDispatch(action)
     }
+
     function makeToggleViewHandler(view: ViewType) {
-        const action: ChangeViewAction = {
-            type: CHANGE_VIEW,
-            payload: { view }
-        }
-        return function() {
-            dispatch(action)
-        }
+        return () => setViewState({...viewState, view})
     }
     return <MainToolbar 
         path={path} 

@@ -9,6 +9,7 @@ import MainLayout from './containers/MainLayout'
 
 import './styles/App.scss';
 import { addKeyboardShortcuts } from './keyboard-shortcuts';
+import { GlobalContextProvider } from './global-state';
     
 const store = createStore(
     rootReducer,
@@ -20,7 +21,9 @@ addKeyboardShortcuts(store)
 const App = () => {
     return (
         <Provider store={store}>
-            <MainLayout/>
+            <GlobalContextProvider>
+                <MainLayout/>
+            </GlobalContextProvider>
         </Provider>
     )
 }

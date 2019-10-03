@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
 import pathModule from 'path'
 import _ from 'lodash'
 
-import { AppState } from '../reducers';
 import { Path, ContentItem } from '../types/core';
 import { getFolderContents } from '../backend';
 import ColumnContainer from './ColumnViewColumn'
 import ColumnView from '../components/ColumnView'
-
+import { useCurrentPath, useSelection } from '../global-state';
 
 const NUMBER_OF_COLUMNS = 3
 
 export default function() {
-    const path = useSelector((state: AppState) => state.tabs.tabs[state.tabs.current])
-    const selection = useSelector((state: AppState) => state.selection)
+    const path = useCurrentPath()
+    const { selection } = useSelection()
+
     const columnPaths: Path[] = []
     let middlePath = path
     while(columnPaths.length < NUMBER_OF_COLUMNS) {
@@ -26,6 +25,7 @@ export default function() {
     selectedPaths.push(selection)
     
     const [columnContents, setColumnContents] = useState<ContentItem[][]>(columnPaths.map(() => []))
+
     useEffect(() => {
         Promise.all(columnPaths.map(p => getFolderContents(p)))
             .then(contents => setColumnContents(contents))

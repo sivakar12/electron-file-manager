@@ -4,22 +4,26 @@ import { useSelector, useDispatch } from 'react-redux'
 import {
     AddFavoriteAction,
     ADD_FAVORITE,
-    ChangePathAction,
-    CHANGE_PATH,
     ToggleFavoritesAction,
     TOGGLE_FAVORITES,
 } from '../types/redux-actions'
+import {
+    CHANGE_PATH,
+    ChangePathAction
+} from '../global-state/tabs'
 import { AppState } from '../reducers'
 import { FavoriteItem } from '../types/core';
 import FavoriteItemComponent from '../components/FavoriteItem'
 import FavoritesPanel from '../components/FavoritesPanel';
+import { useCurrentPath, useTabs } from '../global-state'
 
 export default function() {
     const state = useSelector((state: AppState) => state)
     const dispatch = useDispatch()
 
+    const { tabsDispatch } = useTabs()
     function handleAddFavorite(favorite: FavoriteItem) {
-        const path = state.tabs.tabs[state.tabs.current]
+        const path = useCurrentPath()
         const action: AddFavoriteAction = {
             type: ADD_FAVORITE,
             payload: {
@@ -36,7 +40,7 @@ export default function() {
             }
         }
         return function() {
-            dispatch(action)
+            tabsDispatch(action)
         }
     }
     function handleCloseFavorite() {

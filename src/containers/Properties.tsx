@@ -7,13 +7,15 @@ import { TogglePropertiesAction, TOGGLE_PROPERTIES } from '../types/redux-action
 import { PropertiesItem } from '../types/core';
 import { getFileDetails, getFolderSize } from '../backend';
 import { observable } from 'rxjs';
+import { useCurrentPath, useSelection, useViewState } from '../global-state';
 
 export default function() {
 
-    const { tabs, selection } = useSelector((state: AppState) => state)
-    const dispatch = useDispatch()
+    const currentPath = useCurrentPath()
+    const { selection } = useSelection()
+    const { viewState, setViewState } = useViewState()
 
-    const path = selection || tabs.tabs[tabs.current]
+    const path = selection || currentPath
 
     const [properties, setProperties] = useState<PropertiesItem>(null)
     const [folderSize, setFolderSize] = useState<number>(0)
@@ -50,10 +52,7 @@ export default function() {
     }, [path])
 
     function handleOnClose() { 
-        const action: TogglePropertiesAction = {
-            type: TOGGLE_PROPERTIES
-        }
-        dispatch(action)
+        setViewState({...viewState, properties: false})
     }
     return (
         <PropertiesComponent

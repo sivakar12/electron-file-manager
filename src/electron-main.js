@@ -14,6 +14,7 @@ function createWindow () {
       nodeIntegration: true
     }
   })
+  win.setMenu(null) // To prevent CTRL+W from closing the window. Side effect: can't open dev tools
   console.log(process.env.NODE_ENV)
   // and load the index.html of the app.
   if (process.env.NODE_ENV == 'production') {
@@ -23,7 +24,7 @@ function createWindow () {
     win.loadURL('http://localhost:3000/')
   }
     // Open the DevTools.
-  //win.webContents.openDevTools()
+  // win.webContents.openDevTools()
 
   // Emitted when the window is closed.
   win.on('closed', () => {

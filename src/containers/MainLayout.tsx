@@ -8,9 +8,11 @@ import Favorites from './Favorites'
 import Properties from './Properties'
 
 import { useViewState } from '../global-state';
+import useKeyboardShortcuts from '../useKeyboardShortcuts';
 
 export default function() {
     const { viewState } = useViewState()
+    useKeyboardShortcuts()
     let ContentsView = GridView
     switch (viewState.view) {
         case 'column':

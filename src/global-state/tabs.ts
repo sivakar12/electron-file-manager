@@ -8,59 +8,47 @@ interface TabsState {
     tabs: Path[]
 }
 
-export const SWITCH_TAB = 'SWITCH_TAB'
-export interface SwitchTabAction {
-    type: typeof SWITCH_TAB,
-    payload: { index: number }
-}
+export const switchTab = (index: number) => ({
+    type: 'SWITCH_TAB',
+    payload: { index }
+})
 
-export const CLOSE_TAB = 'CLOSE_TAB'
-export interface CloseTabAction {
-    type: typeof CLOSE_TAB,
-    payload: { index?: number }
-}
+export const closeTab = (index?: number) => ({
+    type: 'CLOSE_TAB',
+    payload: { index }
+})
 
-export const NEW_TAB = 'NEW_TAB'
-export interface NewTabAction {
-    type: typeof NEW_TAB,
-    payload: { path?: Path }
-}
+export const newTab = (path?: Path) => ({
+    type: 'NEW_TAB',
+    payload: { path }
+})
 
-export const NEXT_TAB = 'NEXT_TAB'
-export interface NextTabAction {
-    type: typeof NEXT_TAB
-}
+export const nextTab = () => ({
+    type: 'NEXT_TAB',
+})
 
-export const PREVIOUS_TAB = 'PREVIOUS_TAB'
-export interface PreviousTabAction {
-    type: typeof PREVIOUS_TAB
-}
+export const previousTab = () => ({
+    type: 'PREVIOUS_TAB',
+})
 
-export const CHANGE_PATH = 'CHANGE_PATH'
-export interface ChangePathAction {
-    type: typeof CHANGE_PATH,
-    payload: { path: Path }
-}
+export const changePath = (path: Path) => ({
+    type: 'CHANGE_PATH',
+    payload: { path }
+})
 
-export const GO_TO_PARENT_FOLDER = 'GO_TO_PARENT_FOLDER'
-export interface GoToParentFolderAction {
-    type: typeof GO_TO_PARENT_FOLDER
-}
+export const GoToParentFolder = () => ({
+    type: 'GO_TO_PARENT_FOLDER',
+    payload: {}
+})
 
-export const OPEN_FOLDER = 'OPEN_FOLDER'
-export interface OpenFolderAction {
-    type: typeof OPEN_FOLDER,
-    payload: { path: Path }
-}
-
-export type TabActions = SwitchTabAction 
-| NewTabAction
-| CloseTabAction
-| NextTabAction
-| PreviousTabAction
-| ChangePathAction
-| OpenFolderAction
-| GoToParentFolderAction
+export type TabActions = 
+| ReturnType<typeof switchTab> 
+| ReturnType<typeof newTab>
+| ReturnType<typeof closeTab>
+| ReturnType<typeof nextTab>
+| ReturnType<typeof previousTab>
+| ReturnType<typeof changePath>
+| ReturnType<typeof GoToParentFolder>
 
 export const initialState: TabsState = {
     current: 0,
@@ -80,7 +68,7 @@ function handleTabClose({tabs, current}: TabsState, index: number) {
     return { tabs: newTabs, current: newCurrent }
 }
 
-export const reducer = (state: TabsState = initialState,   action: TabActions): TabsState => {
+export const reducer = (state: TabsState = initialState, action: any): TabsState => {
     let newPath: Path
     let newTabs: Path[]
     let newCurrent: number

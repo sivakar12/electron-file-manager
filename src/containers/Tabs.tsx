@@ -1,18 +1,11 @@
 import React from 'react'
 import pathModule from 'path'
 
-import {
-    NEW_TAB,
-    SWITCH_TAB,
-    CLOSE_TAB,
-    NewTabAction,
-    SwitchTabAction,
-    CloseTabAction
-} from '../global-state/tabs'
-
 import TabBar from '../components/TabBar'
 import TabItem from '../components/TabItem'
 import { useTabs } from '../global-state'
+import { newTab, closeTab, switchTab } from '../global-state/tabs'
+import { Path } from '../types/core'
 
 export default function() {
     const { tabsState, tabsDispatch } = useTabs()
@@ -20,36 +13,24 @@ export default function() {
     const { tabs, current } = tabsState
     
     function handleNewTab() {
-        const action: NewTabAction = {
-            type: NEW_TAB,
-            payload: {}
-        }
-        tabsDispatch(action)
+        tabsDispatch(newTab())
     }
 
     function makeCloseTabHandler(i: number) {
         return function() {
-            const action: CloseTabAction = {
-                type: CLOSE_TAB,
-                payload: { index : i }
-            }
-            tabsDispatch(action)
+            tabsDispatch(closeTab())
         }
     }
     
     function makeSwitchTabHandler(i: number) {
         return function() {
-            const action: SwitchTabAction = {
-                type: SWITCH_TAB,
-                payload: { index : i }
-            }
-            tabsDispatch(action)
+            tabsDispatch(switchTab(i))
         }
     }
 
     return (
         <TabBar onNewTab={() => handleNewTab()}>
-            {tabs.map((t, index) => 
+            {tabs.map((t: Path, index: number) => 
                 <TabItem
                     key={index}
                     name={pathModule.basename(t)}

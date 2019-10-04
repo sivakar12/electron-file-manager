@@ -36,7 +36,7 @@ export const changePath = (path: Path) => ({
     payload: { path }
 })
 
-export const GoToParentFolder = () => ({
+export const goToParentFolder = () => ({
     type: 'GO_TO_PARENT_FOLDER',
     payload: {}
 })
@@ -48,7 +48,7 @@ export type TabActions =
 | ReturnType<typeof nextTab>
 | ReturnType<typeof previousTab>
 | ReturnType<typeof changePath>
-| ReturnType<typeof GoToParentFolder>
+| ReturnType<typeof goToParentFolder>
 
 export const initialState: TabsState = {
     current: 0,

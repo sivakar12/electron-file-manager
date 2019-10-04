@@ -6,8 +6,7 @@ import { Path, ContentItem } from '../types/core';
 import ColumnViewColumn from '../components/ColumnViewColumn';
 import ColumnViewItem from '../components/ColumnViewItem';
 import {
-    OpenFolderAction,
-    OPEN_FOLDER,
+    changePath,
 } from '../global-state/tabs';
 import { openFile } from '../backend';
 import { useTabs, useSelection } from '../global-state';
@@ -28,11 +27,7 @@ export default function(props: Props) {
             const { setSelection } = useSelection()
             setSelection(item.path)
             if (item.isDirectory) {
-                const openFolderAction: OpenFolderAction = {
-                    type: OPEN_FOLDER,
-                    payload: { path: item.path }
-                }
-                tabsDispatch(openFolderAction)
+                tabsDispatch(changePath(item.path))
             }
         }
     }
@@ -40,11 +35,7 @@ export default function(props: Props) {
     function makeOnDoubleClickHandler(item: ContentItem) {
         return function() {
             if (item.isDirectory) {
-                const action: OpenFolderAction = {
-                    type: OPEN_FOLDER,
-                    payload: { path: item.path }
-                }
-                tabsDispatch(action)
+                tabsDispatch(changePath(item.path))
             } else {
                 openFile(item.path)
             }

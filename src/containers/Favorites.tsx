@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import pathModule from 'path'
 
 import {
-    CHANGE_PATH,
-    ChangePathAction
+    changePath
 } from '../global-state/tabs'
 import { FavoriteItem } from '../types/core';
 import FavoriteItemComponent from '../components/FavoriteItem'
@@ -21,14 +20,8 @@ export default function() {
     }
 
     function makeOnclickHandler(favorite: FavoriteItem) {
-        const action: ChangePathAction = {
-            type: CHANGE_PATH,
-            payload: {
-                path: favorite.path
-            }
-        }
         return function() {
-            tabsDispatch(action)
+            tabsDispatch(changePath(favorite.path))
         }
     }
     function handleCloseFavorite() {

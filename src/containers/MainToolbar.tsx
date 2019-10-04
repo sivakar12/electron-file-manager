@@ -1,8 +1,7 @@
 import React from 'react'
 
 import {
-    GoToParentFolderAction,
-    GO_TO_PARENT_FOLDER,
+    goToParentFolder
 } from '../global-state/tabs'
 
 import MainToolbar from '../components/MainToolbar'
@@ -18,10 +17,7 @@ export default function() {
     const viewType = viewState.view
 
     function handleOnGoUp() {
-        const action: GoToParentFolderAction = {
-            type: GO_TO_PARENT_FOLDER
-        }
-        tabsDispatch(action)
+        tabsDispatch(goToParentFolder())
     }
 
     function makeToggleViewHandler(view: ViewType) {

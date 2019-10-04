@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import {
-    OpenFolderAction,
-    OPEN_FOLDER,
+    changePath
 } from '../global-state/tabs'
 import { ContentItem } from '../types/core'
 
@@ -15,7 +14,6 @@ export default function() {
 
     const currentPath = useCurrentPath()
     const { selection, setSelection } = useSelection()
-    const { tabsDispatch } = useTabs()
     
     const [contents, setContents] = useState<ContentItem[]>([])
     useEffect(() => {
@@ -33,11 +31,7 @@ export default function() {
     function makeOnDoubleClickHandler(item: ContentItem) {
         return function() {
             if (item.isDirectory) {
-                const action: OpenFolderAction = {
-                    type: OPEN_FOLDER,
-                    payload: { path: item.path }
-                }
-                tabsDispatch(action)
+                changePath(item.path)
             } else {
                 openFile(item.path)
             }

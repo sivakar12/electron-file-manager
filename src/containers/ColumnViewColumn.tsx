@@ -25,7 +25,7 @@ export default function(props: Props) {
     function makeOnClickHandler(item: ContentItem) {
         return function() {
             const { setSelection } = useSelection()
-            setSelection(item.path)
+            tabsDispatch(setSelection(item.path))
             if (item.isDirectory) {
                 tabsDispatch(changePath(item.path))
             }

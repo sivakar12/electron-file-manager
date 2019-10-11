@@ -1,6 +1,13 @@
 import React from 'react'
+import { ContentItem } from '../types/core'
 
-function ContentsGridItem(props) {
+type Props = ContentItem & {
+    isSelected: boolean,
+    onClick: () => void,
+    onDoubleClick: () => void
+}
+
+export default (props: Props) => {
     let icon = props.isDirectory ? '📁': '📃'
     if (props.errorAccessing) {
         icon = '❌'
@@ -17,5 +24,3 @@ function ContentsGridItem(props) {
         </div>
     )
 }
-
-export default ContentsGridItem

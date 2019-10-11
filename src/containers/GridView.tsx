@@ -16,6 +16,7 @@ export default function() {
     const { selection, setSelection } = useSelection()
     
     const [contents, setContents] = useState<ContentItem[]>([])
+    const { tabsDispatch } = useTabs()
     useEffect(() => {
         getFolderContents(currentPath).then(c => setContents(c))
     }, [currentPath])
@@ -31,7 +32,7 @@ export default function() {
     function makeOnDoubleClickHandler(item: ContentItem) {
         return function() {
             if (item.isDirectory) {
-                changePath(item.path)
+                tabsDispatch(changePath(item.path))
             } else {
                 openFile(item.path)
             }

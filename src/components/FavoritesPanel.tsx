@@ -1,6 +1,11 @@
 import React from 'react'
 
-export default props => (
+type Props = {
+    onClose: () => void,
+    onAddFavorite: () => void,
+    children: React.ReactNodeArray
+}
+export default (props: Props) => (
     <div className="favorites-panel">
         <div className="favorites-close" onClick={props.onClose}>x</div>
         <div className="favorites-title">Favorites</div>

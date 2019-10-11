@@ -1,5 +1,13 @@
 import React from 'react'
-export default props => (
+import { Path } from '../types/core'
+
+type Props = {
+    path: Path,
+    onGoUp: () => void,
+    onSetGridView: () => void,
+    onSetColumnView: () => void
+}
+export default (props: Props) => (
     <div className="main-toolbar">
         <div className="main-toolbar-up-button"
                 onClick={() => props.onGoUp()}>

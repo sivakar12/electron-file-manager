@@ -2,7 +2,7 @@
 yarn install
 
 ### To run in development
-yarn electron-dev
+yarn start
 
 ### If it stops working,
 Use Ctrl + R to reload

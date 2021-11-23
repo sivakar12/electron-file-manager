@@ -1,5 +1,7 @@
 {
-  "name": "react-electron-boilerplate",
+  "name": "electron-file-manager",
+  "private": "true",
+  "version": "0.1.0",
   "main": "src/electron-main.js",
   "devDependencies": {
     "@babel/core": "^7.6.2",

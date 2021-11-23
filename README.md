@@ -1,10 +1,10 @@
 # Elecron File Manager
 
 ## To setup
-yarn install
+npm install
 
 ## To run in development
-yarn start
+npm start
 
 ## If it stops working,
 Use Ctrl + R to reload
